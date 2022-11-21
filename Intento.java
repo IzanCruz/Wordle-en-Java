@@ -11,4 +11,6 @@ package PracticaWordle;
  */
 public class Intento {
     
+    //EETO ES UNA PRUEBA
+    
 }
