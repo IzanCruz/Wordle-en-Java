@@ -10,5 +10,19 @@ package PracticaWordle;
  * @author USER
  */
 public class PartidaPalabra {
+    //Atributes
+    private Jugador jugador;    
+    private boolean ganada;
+    private Palabra palabra;
+    private Intento intento;
+    
+    //Constructors
+    public PartidaPalabra(Jugador j, Palabra p) {
+        if (j!= null) jugador = j;
+        if (p != null) palabra = p;        
+    }
+        
+    //Methods
+    
     
 }
