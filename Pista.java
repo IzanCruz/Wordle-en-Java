@@ -10,5 +10,16 @@ package PracticaWordle;
  * @author USER
  */
 public class Pista {
+     
+    private int coste;   
+    //Constructores
+    public Pista(int i){
+        coste = i;
+    }
+    
+    //Get Set
+    public int getCoste(){
+        return coste;
+    }
     
 }
