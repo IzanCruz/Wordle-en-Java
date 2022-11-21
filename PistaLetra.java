@@ -10,5 +10,12 @@ package PracticaWordle;
  * @author USER
  */
 public class PistaLetra {
+        
+    private static final int COSTE = 2;
+    
+    //Constructores
+    public PistaLetra(){
+        super(COSTE);
+    }
     
 }
