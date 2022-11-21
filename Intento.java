@@ -11,6 +11,17 @@ package PracticaWordle;
  */
 public class Intento {
 
-    //esto es de prueba
+    private int numIntento;
+    private static final int MAXNUMINTENTOS = 5;
+    
+    //Constructores
+    public Intento(){
+        numIntento = MAXNUMINTENTOS;
+    }
+    
+    //Get Set
+    public int getNumIntento(){
+        return numIntento;
+    }
     
 }
