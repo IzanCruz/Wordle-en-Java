@@ -10,5 +10,15 @@ package PracticaWordle;
  * @author USER
  */
 public class Palabra {
+    //Atributos 
+    private static final int MAX=5; 
+    private char[] palabra;
+    
+    //Constructor
+    public Palabra(){
+        palabra = new char[MAX];
+    }
+    
+    //Metodos
     
 }
