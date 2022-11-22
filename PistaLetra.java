@@ -9,7 +9,7 @@ package PracticaWordle;
  *
  * @author USER
  */
-public class PistaLetra {
+public class PistaLetra  extends Pista {
         
     private static final int COSTE = 2;
     
