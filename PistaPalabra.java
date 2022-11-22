@@ -9,6 +9,13 @@ package PracticaWordle;
  *
  * @author USER
  */
-public class PistaPalabra {
+public class PistaPalabra  extends Pista {
+
+    private final static int COSTE = 5;
+
+    //Constructores
+    public PistaPalabra(){
+        super(COSTE);
+    }
     
 }
