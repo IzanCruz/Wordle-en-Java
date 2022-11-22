@@ -21,5 +21,18 @@ public class Pista {
     public int getCoste(){
         return coste;
     }
+
+    //Metodos
+    @Override
+    public boolean equals(Object o){
+        if (this == o)
+            return true;
+        if (o == null)
+            return false;
+        if (getClass() != o.getClass())
+            return false;
+        Pista p = (Pista) o;
+        return (getCoste() == p.getCoste());
+    }
     
 }
