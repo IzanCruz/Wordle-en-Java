@@ -50,15 +50,15 @@ public class Jugador {
     }
     
     public void setGanadas(int i){
-        ganadas += i;
+        ganadas = i;
     } 
     
     public void setEmpatadas(int i){
-        empatadas += i;
+        empatadas = i;
     }
     
     public void setPerdidas(int i){
-        perdidas += i;
+        perdidas = i;
     }
     
     //Metodos
