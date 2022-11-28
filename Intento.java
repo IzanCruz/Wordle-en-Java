@@ -23,5 +23,6 @@ public class Intento {
     public int getNumIntento(){
         return numIntento;
     }
+    //ETO E UNA BAKANERIA
     
 }
