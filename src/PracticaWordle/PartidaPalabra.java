@@ -40,7 +40,29 @@ public class PartidaPalabra {
     public Intento getIntento() {
         return intento;
     }
+
+    public int getPuntos(){
+        return puntos;        
+    }
     
     //Methods
-    
+    public void darPuntos() {
+        puntos = intento.getNumIntento();
+    }
+
+    public void resolver() {
+
+    }
+
+    private void comprobarPalabra(String palabra) {
+        if (palabra.length() == 5) {
+            Palabra aux = new Palabra(palabra);
+            
+
+        } else {
+            System.err.println("No se ha introducido una palabra de 5 letras. Inserte una válida");            
+        }
+    }
+
+
 }
