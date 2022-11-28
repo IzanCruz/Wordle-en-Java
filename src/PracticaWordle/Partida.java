@@ -55,8 +55,24 @@ public class Partida {
         return ganadosJug2;
     }
 
-    public PartidaPalabra[][] getListaPalabras() {
+    public PartidaPalabra[][] getListaPPalabras() {
         return listaPPalabras;
+    }
+
+    public int getPuntosJ1(){
+        return puntosJug1;
+    }
+
+    public int getPuntosJ2(){
+        return puntosJug2;
+    }
+
+    public int getCont1(){
+        return cont1;
+    }
+
+    public int getCont2(){
+        return cont2;
     }
 
     public void setNumPalabras(int n) {
@@ -71,12 +87,32 @@ public class Partida {
         ganadosJug2 = n;
     }
 
+    public void setPuntosJ1(int n){
+        puntosJug1 = n;
+    }
+
+    public void setPuntosJ2(int n){
+        puntosJug2 = n;
+    }
+
+    public void setCont1(int n){
+        cont1 = n;
+    }
+
+    public void setCont2(int n){
+        cont2 = n;
+    }
+
     // Methods
     public void crearPartida(Jugador j, Palabra p) {
-        if (j.equals(jugador1) && (cont1 < MAXPALABRAS -1)) 
-            listaPPalabras[0][(cont1++)] = new PartidaPalabra(j, p);
-        else if (j.equals(jugador2) && (cont2 < MAXPALABRAS -1))
-            listaPPalabras[1][(cont2++)] = new PartidaPalabra(j, p);
+        if (j.equals(getJugador1()) && (getCont1() < MAXPALABRAS -1)){ 
+            getListaPPalabras()[0][(getCont1() + 1)] = new PartidaPalabra(j, p);
+            setCont1(getCont1() + 1);
+        }
+        else if (j.equals(getJugador2()) && (getCont2() < MAXPALABRAS -1)){
+            getListaPPalabras()[1][(getCont2() + 1)] = new PartidaPalabra(j, p);
+            setCont2(getCont2() + 1);
+        }
     }
 
     @Override
@@ -90,7 +126,7 @@ public class Partida {
         Partida p = (Partida) o;
         return ((getJugador1().equals(p.getJugador1())) && (getJugador2().equals(p.getJugador2())) &&
                 (getNumPalabras() == p.getNumPalabras()) && (getGanadosJug1() == p.getGanadosJug1()) &&
-                (getGanadosJug2() == p.getGanadosJug2()) && (getListaPalabras().equals(p.getListaPalabras())));
+                (getGanadosJug2() == p.getGanadosJug2()) && (getListaPPalabras().equals(p.getListaPPalabras())));
     }
 
 }
