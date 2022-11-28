@@ -10,7 +10,7 @@ package PracticaWordle;
  * @author USER
  */
 public class Pista {
-     
+    //Atributes
     private int coste;   
     //Constructores
     public Pista(int i){
