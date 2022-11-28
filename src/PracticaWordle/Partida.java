@@ -71,7 +71,7 @@ public class Partida {
         ganadosJug2 = n;
     }
 
-    // Resto de Metodos
+    // Methods
     public void crearPartida(Jugador j, Palabra p) {
         if (j.equals(jugador1) && (cont1 < MAXPALABRAS -1)) 
             listaPPalabras[0][(cont1++)] = new PartidaPalabra(j, p);
