@@ -46,10 +46,18 @@ public class PartidaPalabra {
     public int getPuntos(){
         return puntos;        
     }
+
+    public void setGanada(boolean p){
+        ganada = p;
+    }
+
+    public void setPuntos(int n){
+        puntos = n;
+    }
     
     //Methods
     public void darPuntos() {
-        puntos = intento.getNumIntento();
+        setPuntos(getPuntos() + getIntento().getNumIntento());
     }
 
     public void resolver() {
@@ -66,32 +74,30 @@ public class PartidaPalabra {
 
     private String comprobarPalabra(String palabra) {
         String respuesta=""; //Respuesta al usuario sobre el estado de la palabra.
-
         if (palabra.length() == 5) {
             Palabra aux = new Palabra(palabra);
-
             if (getPalabraOculta().equals(aux)) {
                 respuesta = "Felicidades! Has adivinado la palabra: " + getPalabraOculta();
-                puntos = intento.getNumIntento();
-                ganada = true;
+                setPuntos(getPuntos() + intento.getNumIntento());
+                setGanada(true);
             } else {
                 for (int i = 0; i <= 4; i++) {
-                    if (palabraOculta.getPalabra()[i] == aux.getPalabra()[i]) { //En caso de que la letra sea correcta
+                    if (getPalabraOculta().getPalabra()[i] == aux.getPalabra()[i]) { //En caso de que la letra sea correcta
                         respuesta+= aux.getPalabra()[i] + " ";
                     } else {    
                         if (contieneLetra(aux.getPalabra()[i])) {
                             respuesta+= "(" + aux.getPalabra()[i] + ") ";
                         } else respuesta+= "[] ";                 
                     }
-                }return respuesta;
+                }
             }
-
-        } else {
-            respuesta ="No se ha introducido una palabra de 5 letras. Inserte una válida";            
+        } 
+        else {
+            respuesta = "No se ha introducido una palabra de 5 letras. Inserte una válida";            
         }
-        return "";
-    } 
-
+        return respuesta;
+    }
+ 
     private boolean contieneLetra(char c){
         int i = 0;
         boolean encontrado = false;
@@ -102,9 +108,7 @@ public class PartidaPalabra {
         return encontrado;
     } 
 
-
 }
-
 /*
  *  [] -> letra incorrecta
  *  (a) -> la letra pertenece a la palabra pero no esta en el lugar correcto
