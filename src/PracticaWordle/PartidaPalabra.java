@@ -54,11 +54,14 @@ public class PartidaPalabra {
 
     public void resolver() {
         int i=0;
+        Scanner s = new Scanner(System.in);
         while (i < intento.getMaxIntentos()) {
-            Scanner s = new Scanner(System.in);
             String entrada = s.next();
-            System.out.println(comprobarPalabra(entrada));
+            System.out.println(comprobarPalabra(entrada));  
+            i++;          
         }
+        s.close();
+
     }
 
     private String comprobarPalabra(String palabra) {
