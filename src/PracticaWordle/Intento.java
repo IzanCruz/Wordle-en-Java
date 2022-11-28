@@ -23,5 +23,27 @@ public class Intento {
     public int getNumIntento(){
         return numIntento;
     }
+
+    private void setIntento(int n){
+        numIntento = n;
+    }
+
+    //Metodos
+    @Override
+    public boolean equals(Object o){
+        if (this == o)
+            return true;
+        if (o == null)
+            return false;
+        if (getClass() != o.getClass())
+            return false;
+        Intento i = (Intento) o;
+        return (getNumIntento() == i.getNumIntento());
+    }
+
+    public void actualizarIntento(){
+        if (getNumIntento() > 0)
+            setIntento(getNumIntento() - 1);
+    }
     
 }
