@@ -15,8 +15,9 @@ public class Palabra {
     private char[] palabra;
     
     //Constructor
-    public Palabra(){
+    public Palabra(String s){
         palabra = new char[MAX];
+        rellenarPalabra(s);
     }
 
     //Get Set
@@ -37,6 +38,13 @@ public class Palabra {
         return ((getPalabra()[0] == p.getPalabra()[0]) && (getPalabra()[1] == p.getPalabra()[1]) && 
         (getPalabra()[2] == p.getPalabra()[2]) && (getPalabra()[3] == p.getPalabra()[3]) && 
         (getPalabra()[4] == p.getPalabra()[4]));
+    }
+
+    private void rellenarPalabra(String s){
+        char[] aux = s.toCharArray();
+        for (int i = 0; i <= 4; i++){
+            getPalabra()[i] = aux[i];
+        }
     }
     
 }
