@@ -34,7 +34,9 @@ public class Palabra {
         if (getClass() != o.getClass())
             return false;
         Palabra p = (Palabra) o;
-        return ((getPalabra()[0] == p.getPalabra()[0]) && (getPalabra()[1] == p.getPalabra()[1]) && (getPalabra()[2] == p.getPalabra()[2]) && (getPalabra()[3] == p.getPalabra()[3]) && (getPalabra()[4] == p.getPalabra()[4]));
+        return ((getPalabra()[0] == p.getPalabra()[0]) && (getPalabra()[1] == p.getPalabra()[1]) && 
+        (getPalabra()[2] == p.getPalabra()[2]) && (getPalabra()[3] == p.getPalabra()[3]) && 
+        (getPalabra()[4] == p.getPalabra()[4]));
     }
     
 }

@@ -11,27 +11,30 @@ package PracticaWordle;
  */
 public class Partida {
     //Atributes
-    private int numPalabras;
+    private int numPalabras; //Numero de palabras que se juega
     private Jugador jugador1, jugador2;
     private int ganadosJug1, ganadosJug2;
-    private PartidaPalabra[] listaPalabras;
+    private PartidaPalabra[][] listaPPalabras;
     private final static int MAXPALABRAS = 10;
+    private final static int NUMJUGADORES = 2;
+    private int puntosJug1, puntosJug2;
+
 
     //Constructores
-    public Partida(Jugador j1, Jugador j2) {
-        this(j1);
+    public Partida(Jugador j1, Jugador j2, int n) { //Modo multijugador
+        this(j1, n);
         if (j2 != null)
             jugador2 = j2;
     }    
     
-    public Partida(Jugador j) {
-        listaPalabras = new PartidaPalabra[MAXPALABRAS];
-        numPalabras = -1; 
+    public Partida(Jugador j, int n) { //Modo entrenamiento
+        listaPPalabras = new PartidaPalabra[NUMJUGADORES][MAXPALABRAS];
+        numPalabras = n; 
         if (j != null)
             jugador1 = j;
     }
 
-    //Get Set
+    //Getters
     public Jugador getJugador1(){
         return jugador1;
     }
@@ -53,7 +56,7 @@ public class Partida {
     }
 
     public PartidaPalabra [] getListaPalabras(){
-        return listaPalabras;
+        return listaPPalabras;
     }
 
     public void setNumPalabras(int n){
@@ -68,15 +71,9 @@ public class Partida {
         ganadosJug2 = n;
     }
     
-    //Metodos
-    public void crearPartida(Palabra p) {
-        crearIndividual(jugador1, p);
-        crearIndividual(jugador2, p);
-    }
-    
-    private void crearIndividual(Jugador j, Palabra p) {
-        getListaPalabras()[(getNumPalabras() + 1)] = new PartidaPalabra(j,p);
-        
+    // Resto de Metodos  
+    private void crearPartida(Jugador j, Palabra p) {
+        listaPPalabras[(getNumPalabras() + 1)] = new PartidaPalabra(j,p);        
     }
 
     @Override
@@ -94,3 +91,8 @@ public class Partida {
     }
     
 }
+
+// partidaPalabra1 = new PartidaPalabra(j1,"cinco");
+// if (partidaPalabra1.jugador.equals(jugador1))
+//  listaPPalabras[0][cont++] = partidaPalabra1
+//else {listaPPalabras[1][cont++] = partidaPalabra1}
