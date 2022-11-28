@@ -6,23 +6,41 @@
 package PracticaWordle;
 
 /**
- *
+*
  * @author USER
  */
 public class PartidaPalabra {
     //Atributes
     private Jugador jugador;    
     private boolean ganada;
-    private Palabra palabra;
+    private Palabra palabraOculta;
     private Intento intento;
-    
+    private int puntos;
+ 
+
     //Constructors
     public PartidaPalabra(Jugador j, Palabra p) {
         if (j!= null) jugador = j;
-        if (p != null) palabra = p;        
+        if (p != null) palabraOculta = p;        
     }
         
-    //Methods
+    //Methods           
+    public Jugador getJugador() {
+        return jugador;
+    }
+
+    public boolean isGanada() {
+        return ganada;
+    }
+
+    public Palabra getPalabra() {
+        return palabraOculta;
+    }
+
+    public Intento getIntento() {
+        return intento;
+    }
     
+    //Methods
     
 }
