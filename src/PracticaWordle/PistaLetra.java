@@ -12,10 +12,12 @@ package PracticaWordle;
 public class PistaLetra  extends Pista {
         
     private static final int COSTE = 2;
+    private char letra;
     
     //Constructores
-    public PistaLetra(){
+    public PistaLetra(char a){
         super(COSTE);
+        letra = a;
     }
     
 }
