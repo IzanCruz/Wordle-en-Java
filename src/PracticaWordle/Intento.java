@@ -24,6 +24,10 @@ public class Intento {
         return numIntento;
     }
 
+    public int getMaxIntentos() {
+        return MAXNUMINTENTOS;        
+    }
+
     private void setIntento(int n){
         numIntento = n;
     }
