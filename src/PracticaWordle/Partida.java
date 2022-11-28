@@ -16,6 +16,7 @@ public class Partida {
     private int ganadosJug1, ganadosJug2;
     private PartidaPalabra[] listaPalabras;
     private final static int MAXPALABRAS = 10;
+
     //Constructores
     public Partida(Jugador j1, Jugador j2) {
         this(j1);
@@ -87,7 +88,9 @@ public class Partida {
         if (getClass() != o.getClass())
             return false;
         Partida p = (Partida) o;
-        return ((getJugador1().equals(p.getJugador1())) && (getJugador2().equals(o.getJugador2())) && (getNumPalabras() == p.getNumPalabras()) && (getGanadosJug1() == p.getGanadosJug1()) && (getGanadosJug2() == p.ganadosJug2()) && (getListaPalabras().equals(p.getListaPalabras())));
+        return ((getJugador1().equals(p.getJugador1())) && (getJugador2().equals(p.getJugador2())) && 
+        (getNumPalabras() == p.getNumPalabras()) && (getGanadosJug1() == p.getGanadosJug1()) && 
+        (getGanadosJug2() == p.getGanadosJug2()) && (getListaPalabras().equals(p.getListaPalabras())));
     }
     
 }
