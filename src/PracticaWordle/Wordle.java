@@ -4,11 +4,14 @@
  * and open the template in the editor.
  */
 package PracticaWordle;
-
+import java.util.ArrayList;
 /**
  *
  * @author USER
  */
 public class Wordle {
+
+    private ArrayList <Partida> listaPartidas;
+    private ArrayList <Jugador> listaJugadores;
     
 }
