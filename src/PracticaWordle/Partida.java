@@ -105,18 +105,18 @@ public class Partida {
 
     // Methods
     public void crearPartida(Jugador j, Palabra p) {
-        if (j.equals(getJugador1()) && (getCont1() < MAXPALABRAS -1)){ 
+        if (j.equals(getJugador1()) && (getCont1() < numPalabras-1)){ 
             PartidaPalabra nueva = new PartidaPalabra(j, p); //Se crea para jugador1
             if (!partidaEncontrada(0, nueva))            
                 listaPPalabras[0][cont1++] = nueva;
         }
-        else if (j.equals(getJugador2()) && (getCont2() < MAXPALABRAS -1)){
+        else if (j.equals(getJugador2()) && (getCont2() < numPalabras-1)){
             PartidaPalabra nueva = new PartidaPalabra(j, p); //Se crea para jugador2
             if (!partidaEncontrada(1, nueva))            
                 listaPPalabras[1][cont2++] = nueva;
             
         }
-    }
+    }    
 
     private boolean partidaEncontrada(int n, PartidaPalabra nueva) {
         boolean encontrado = false;
@@ -127,9 +127,14 @@ public class Partida {
             i++;
         }
 
-        return encontrado;
-        
-        
+        return encontrado;        
+    }
+
+    public void jugarPartida(PartidaPalabra partida) {
+        partida.resolver();
+        setPuntosJ1(getPuntosJ1()+ partida.getPuntos());
+        if (partida.isGanada())
+            setGanadosJug1(getGanadosJug1()+1);        
     }
 
     @Override
