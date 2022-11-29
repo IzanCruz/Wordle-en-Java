@@ -106,13 +106,30 @@ public class Partida {
     // Methods
     public void crearPartida(Jugador j, Palabra p) {
         if (j.equals(getJugador1()) && (getCont1() < MAXPALABRAS -1)){ 
-            getListaPPalabras()[0][(getCont1() + 1)] = new PartidaPalabra(j, p);
-            setCont1(getCont1() + 1);
+            PartidaPalabra nueva = new PartidaPalabra(j, p); //Se crea para jugador1
+            if (!partidaEncontrada(0, nueva))            
+                listaPPalabras[0][cont1++] = nueva;
         }
         else if (j.equals(getJugador2()) && (getCont2() < MAXPALABRAS -1)){
-            getListaPPalabras()[1][(getCont2() + 1)] = new PartidaPalabra(j, p);
-            setCont2(getCont2() + 1);
+            PartidaPalabra nueva = new PartidaPalabra(j, p); //Se crea para jugador2
+            if (!partidaEncontrada(1, nueva))            
+                listaPPalabras[1][cont2++] = nueva;
+            
         }
+    }
+
+    private boolean partidaEncontrada(int n, PartidaPalabra nueva) {
+        boolean encontrado = false;
+        int i=0;
+        while(i < getCont1()-1 && !encontrado){
+            encontrado = nueva.equals(listaPPalabras[n][i]);
+            if (!encontrado)
+            i++;
+        }
+
+        return encontrado;
+        
+        
     }
 
     @Override

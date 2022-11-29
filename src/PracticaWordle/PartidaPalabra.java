@@ -126,4 +126,16 @@ public class PartidaPalabra {
         return encontrado;
     }
 
+    @Override
+    public boolean equals(Object o) { //Son iguales dos partidas si tienen al mismo jugador y palabra.
+        if (this == o)
+            return true;
+        if (o == null)
+            return false;
+        if (getClass() != o.getClass())
+            return false;
+        PartidaPalabra pp = (PartidaPalabra) o;
+        return pp.getPalabraOculta().equals(getPalabraOculta()) && 
+        pp.getJugador().equals(getJugador());
+    }
 }
