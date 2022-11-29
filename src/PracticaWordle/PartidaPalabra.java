@@ -95,7 +95,7 @@ public class PartidaPalabra {
             if (getPalabraOculta().equals(aux)) {
                 setPuntos(getPuntos() + intento.getNumIntento());
                 setGanada(true);
-                return "Felicidades! Has adivinado la palabra: " + getPalabraOculta();                
+                respuesta = "Felicidades! Has adivinado la palabra: " + getPalabraOculta();                
             } else {
                 for (int i = 0; i <= 4; i++) {
                     if (getPalabraOculta().getPalabra()[i] == aux.getPalabra()[i]) { // En caso de que la letra sea
