@@ -20,7 +20,15 @@ public class PistaLetra extends Pista {
         letra = a;
     }
 
-    public void obtenerPista() {}
+    public void obtenerPista(PartidaPalabra p) {
+        int posLetra = 0;
+        do {
+            posLetra = (int) Math.random()+4;
+        } while (p.getLetrasEncontradas()[posLetra] == true); //Cuando sea false, parará. Esto es para que no te de una pista de
+                                                              // de una letra que ya se ha encontrado 
+         
+
+    }
 
     /*Deberíamos usar lo que dimos en ED de un Array de booleans    
      *o algo parecido de manera que podamos saber si la letra que

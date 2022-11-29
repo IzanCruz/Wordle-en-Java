@@ -103,6 +103,10 @@ public class Partida {
         cont2 = n;
     }
 
+    public void setGanador(Jugador g) {
+        ganador = g;
+    }
+
     // Methods
     public void crearPartida(Jugador j, Palabra p) {
         if (j.equals(getJugador1()) && (getCont1() < numPalabras-1)){ 
@@ -139,8 +143,8 @@ public class Partida {
 
     public void elegirGanador() {
         if (jugador1.getGanadas() > jugador2.getGanadas())        
-            ganador = jugador1;
-        else ganador = jugador2;
+            setGanador(jugador1);
+        else setGanador(jugador2);
     }
 
     @Override

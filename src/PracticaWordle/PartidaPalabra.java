@@ -18,9 +18,12 @@ public class PartidaPalabra {
     private Palabra palabraOculta;
     private Intento intento;
     private int puntos;
+    private boolean[] letrasEncontradas;
+    private final static int MAX = 5;
 
     // Constructors
     public PartidaPalabra(Jugador j, Palabra p) {
+        letrasEncontradas = new boolean[MAX];
         if (j != null)
             jugador = j;
         if (p != null)
@@ -38,6 +41,10 @@ public class PartidaPalabra {
 
     public Palabra getPalabraOculta() {
         return palabraOculta;
+    }
+
+    public boolean[] getLetrasEncontradas() {
+        return letrasEncontradas;
     }
 
     public Intento getIntento() {
@@ -73,7 +80,7 @@ public class PartidaPalabra {
         s.close();
         if (intento.getNumIntento() == 0)
             mostrarPalabraOculta(); 
-    }           
+    }                   
 
     private void mostrarPalabraOculta() {
         System.out.println("Vaya! Has alcanzado el número máximo de intentos.\nLa palabra oculta" +
@@ -95,11 +102,12 @@ public class PartidaPalabra {
             if (getPalabraOculta().equals(aux)) {
                 setPuntos(getPuntos() + intento.getNumIntento());
                 setGanada(true);
+                marcarGanada();
                 respuesta = "Felicidades! Has adivinado la palabra: " + getPalabraOculta();                
             } else {
                 for (int i = 0; i <= 4; i++) {
-                    if (getPalabraOculta().getPalabra()[i] == aux.getPalabra()[i]) { // En caso de que la letra sea
-                                                                                     // correcta
+                    if (getPalabraOculta().getPalabra()[i] == aux.getPalabra()[i]) { // En caso de que la letra sea correcta
+                        letrasEncontradas[i] = true;
                         respuesta += aux.getPalabra()[i] + " ";
                     } else {
                         if (contieneLetra(aux.getPalabra()[i])) {
@@ -113,6 +121,12 @@ public class PartidaPalabra {
             respuesta = "No se ha introducido una palabra de 5 letras. Inserte una válida";
         }
         return respuesta;
+    }
+
+    private void marcarGanada() {
+        for (int i = 0; i < MAX; i++) {
+            letrasEncontradas[i] = true;
+        }
     }
 
     private boolean contieneLetra(char c) {
