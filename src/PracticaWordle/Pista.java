@@ -9,7 +9,7 @@ package PracticaWordle;
  *
  * @author USER
  */
-public class Pista {
+public abstract class Pista {
     //Atributes
     private int coste;   
     //Constructores
@@ -21,8 +21,11 @@ public class Pista {
     public int getCoste(){
         return coste;
     }
-
+    
     //Metodos
+    public abstract void obtenerPista(PartidaPalabra p);
+
+
     @Override
     public boolean equals(Object o){
         if (this == o)

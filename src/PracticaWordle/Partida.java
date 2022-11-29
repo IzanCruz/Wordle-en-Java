@@ -12,7 +12,7 @@ package PracticaWordle;
 public class Partida {
     // Atributes
     private int numPalabras; // Numero de palabras que se juega
-    private Jugador jugador1, jugador2;
+    private Jugador jugador1, jugador2, ganador;
     private int ganadosJug1, ganadosJug2;
     private PartidaPalabra[][] listaPPalabras;
     private final static int MAXPALABRAS = 10;
@@ -135,6 +135,12 @@ public class Partida {
         setPuntosJ1(getPuntosJ1()+ partida.getPuntos());
         if (partida.isGanada())
             setGanadosJug1(getGanadosJug1()+1);        
+    }
+
+    public void elegirGanador() {
+        if (jugador1.getGanadas() > jugador2.getGanadas())        
+            ganador = jugador1;
+        else ganador = jugador2;
     }
 
     @Override

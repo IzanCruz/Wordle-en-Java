@@ -9,7 +9,7 @@ package PracticaWordle;
  *
  * @author USER
  */
-public class PistaPalabra  extends Pista {
+public class PistaPalabra extends Pista {
 
     private final static int COSTE = 5;
 
@@ -17,5 +17,15 @@ public class PistaPalabra  extends Pista {
     public PistaPalabra(){
         super(COSTE);
     }
+
+    public void obtenerPista(PartidaPalabra p) {
+        mostrarPalabraOculta(p);
+        System.out.println("Se te restarán 5 puntos del cómputo total de esta partida.");
+        p.setPuntos(p.getPuntos()-5);
+        p.setGanada(true);    
+    }
     
+    private void mostrarPalabraOculta(PartidaPalabra p) {
+        System.out.println("La palabra oculta es: " + p.getPalabraOculta());        
+    }
 }
