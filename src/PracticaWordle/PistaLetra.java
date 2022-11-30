@@ -15,9 +15,8 @@ public class PistaLetra extends Pista {
     private char letra;
     
     //Constructores
-    public PistaLetra(char a){
+    public PistaLetra(){
         super(COSTE);
-        letra = a;
     }
 
     public void obtenerPista(PartidaPalabra p) {
@@ -26,19 +25,15 @@ public class PistaLetra extends Pista {
             posLetra = (int) Math.random()+4;
         } while (p.getLetrasEncontradas()[posLetra] == true); //Cuando sea false, parará. Esto es para que no te de una pista de
                                                               // de una letra que ya se ha encontrado 
-         
-
+        mostrarPista(posLetra, p);         
     }
 
-    /*Deberíamos usar lo que dimos en ED de un Array de booleans    
-     *o algo parecido de manera que podamos saber si la letra que
-     *se encuentra en la posición 3 ha sido acertada.
-     O inclso puede usarse un array de tipo enumerado, en el que tengamos
-     ENCONTRADA
-     MAL_UBICADA
-     NO_ENCONTRADA
-     y así podemos controlar que pista de letra podemos dar, para no dar
-     una pista de una letra y ubicación que ya se tienen.
-    */
-    
+    public void mostrarPista(int n, PartidaPalabra p) {
+        System.out.println("La letra concedida como pista es la " + 
+        p.getPalabraOculta().getPalabra()[n] + 
+        "y se encuentra en la posición " + n+1);
+    }
+
+    //mejor que esto habria que darle al usuario un estado actual de la palabra
+    //con la letra otorgada incluida en ese estado actual, impreso por pantalla.
 }

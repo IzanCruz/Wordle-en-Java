@@ -19,13 +19,13 @@ public class PistaPalabra extends Pista {
     }
 
     public void obtenerPista(PartidaPalabra p) {
-        mostrarPalabraOculta(p);
+        mostrarPista(p);
         System.out.println("Se te restarán 5 puntos del cómputo total de esta partida.");
         p.setPuntos(p.getPuntos()-5);
         p.setGanada(true);    
     }
     
-    private void mostrarPalabraOculta(PartidaPalabra p) {
+    public void mostrarPista(PartidaPalabra p) {
         System.out.println("La palabra oculta es: " + p.getPalabraOculta());        
     }
 }

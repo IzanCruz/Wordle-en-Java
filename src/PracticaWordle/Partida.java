@@ -43,6 +43,10 @@ public class Partida {
         return jugador2;
     }
 
+    public Jugador getGanador() {
+        return ganador;
+    }
+
     public int getNumPalabras() {
         return numPalabras;
     }

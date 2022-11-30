@@ -26,6 +26,7 @@ public abstract class Pista {
     public abstract void obtenerPista(PartidaPalabra p);
 
 
+
     @Override
     public boolean equals(Object o){
         if (this == o)
