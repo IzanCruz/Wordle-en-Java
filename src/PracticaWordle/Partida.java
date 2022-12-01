@@ -83,12 +83,12 @@ public class Partida {
         numPalabras = n;
     }
 
-    public void setGanadosJug1(int n) {
-        ganadosJug1 = n;
+    public void setGanadosJug1() {
+        ganadosJug1++;
     }
 
-    public void setGanadosJug2(int n) {
-        ganadosJug2 = n;
+    public void setGanadosJug2() {
+        ganadosJug2++;
     }
 
     public void setPuntosJ1(int n){
@@ -126,6 +126,40 @@ public class Partida {
         }
     }    
 
+    private void actualizarDatos(){
+        //Acualizar datos de esta clase        
+        int i = 0; //Actualizar para jugador1
+        for (int j = 0; j <= getNumPalabras()-1; j++) {
+            if (listaPPalabras[i][j].isGanada()) setGanadosJug1();
+            setPuntosJ1(listaPPalabras[i][j].getPuntos() + getPuntosJ1());
+        }
+        i = 1; //Actualizar para jugador2
+        for (int j = 0; j <= getNumPalabras()-1; j++) {
+            if (listaPPalabras[i][j].isGanada()) setGanadosJug2();
+            setPuntosJ2(listaPPalabras[i][j].getPuntos() + getPuntosJ2());
+        }
+        elegirGanador(); //Se elige el ganador de esta partida.
+        actualizarJugadores(getJugador1(), getJugador2()); //Luego actualiza los datos en la clase Jugador
+        
+    }
+
+    private void actualizarJugadores(Jugador j1, Jugador j2) {
+        //Actualizar los atributos de la clase Jugador.
+
+        if (getGanador().equals(j1)) {
+            getJugador1().incrementarGanadas();
+            getJugador2().incrementarPerdidas();            
+        } else if (getGanador().equals(j2)) {
+            getJugador2().incrementarGanadas();
+            getJugador1().incrementarPerdidas();
+        } else {
+            getJugador1().incrementarEmpatadas();
+            getJugador2().incrementarEmpatadas();
+        }
+        getJugador1().setPuntos(getJugador1().getPuntos() + getPuntosJ1());
+        getJugador2().setPuntos(getJugador2().getPuntos() + getPuntosJ2());     
+    }
+
     private boolean partidaEncontrada(int n, PartidaPalabra nueva) {
         boolean encontrado = false;
         int i=0;
@@ -139,16 +173,14 @@ public class Partida {
     }
 
     public void jugarPartida(PartidaPalabra partida) {
-        partida.resolver();
-        setPuntosJ1(getPuntosJ1()+ partida.getPuntos());
-        if (partida.isGanada())
-            setGanadosJug1(getGanadosJug1()+1);        
+        partida.resolver();            
     }
 
-    public void elegirGanador() {
-        if (jugador1.getGanadas() > jugador2.getGanadas())        
-            setGanador(jugador1);
-        else setGanador(jugador2);
+    private void elegirGanador() {
+        if (getJugador1().getGanadas() > getJugador2().getGanadas())        
+            setGanador(getJugador1());
+        else if (getJugador1().getGanadas() < getJugador2().getGanadas())
+            setGanador(getJugador2());
     }
 
     @Override
