@@ -76,7 +76,7 @@ public class Jugador {
 
     @Override
     public String toString() {
-        return getNombre();
+        return (getNombre() + "\n" + getPuntos() + " pts\n" + getGanadas() + " ganadas\n" + getEmpatadas() + " empatadas\n" + getPerdidas() + " perdidas");
     }
     
 }
