@@ -24,7 +24,7 @@ public class Jugador {
         }
     }
     
-    //Get Set
+    //Get incrementar
     public String getNombre(){
         return nombreUsuario;
     }
@@ -46,19 +46,19 @@ public class Jugador {
     }
     
     public void setPuntos(int i){
-        puntos = i;
+        puntos+= i;
     }
     
-    public void setGanadas(int i){
-        ganadas = i;
+    public void incrementarGanadas(){
+        ganadas++;
     } 
     
-    public void setEmpatadas(int i){
-        empatadas = i;
+    public void incrementarEmpatadas(){
+        empatadas++;
     }
     
-    public void setPerdidas(int i){
-        perdidas = i;
+    public void incrementarPerdidas(){
+        perdidas++;
     }
     
     //Metodos

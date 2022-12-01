@@ -100,7 +100,7 @@ public class PartidaPalabra {
         if (palabra.length() == 5) {
             Palabra aux = new Palabra(palabra);
             if (getPalabraOculta().equals(aux)) {
-                setPuntos(getPuntos() + intento.getNumIntento());
+                darPuntos();
                 setGanada(true);
                 marcarGanada();
                 respuesta = "Felicidades! Has adivinado la palabra: " + getPalabraOculta();                
