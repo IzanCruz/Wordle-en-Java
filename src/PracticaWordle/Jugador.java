@@ -73,5 +73,10 @@ public class Jugador {
         Jugador j = (Jugador) o;
         return (getNombre().equals(j.getNombre()));
     }
+
+    @Override
+    public String toString() {
+        return getNombre();
+    }
     
 }
