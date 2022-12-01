@@ -51,4 +51,15 @@ public class Wordle {
         while((i < (getListaJugadores().size() - 1)) && (estado == false));
         return estado;
     }
+
+    private ArrayList <Jugador> rankingJugadores(ArrayList <Jugador> list){
+        list.sort(new ComparadorJugador());
+        return list;
+    }
+
+    private ArrayList <Jugador> ordenAlfabetico(ArrayList <Jugador> list){
+        list.sort(new ComparadorAlfabetico());
+        return list;
+    }
+
 }
