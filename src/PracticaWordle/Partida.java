@@ -168,19 +168,22 @@ public class Partida {
 
     private boolean partidaEncontrada(int n, PartidaPalabra nueva) {
         boolean encontrado = false;
-        int i=0;
-        while(i < getCont1()-1 && !encontrado){
-            encontrado = nueva.equals(listaPPalabras[n][i]);
-            if (!encontrado)
+        int i = 0;
+        int j = 0;
+        while(i < 1 && !encontrado){
+            while ((j < getCont1()-1) && !encontrado){
+                encontrado = nueva.equals(getListaPPalabras()[i][j]);
+                if (!encontrado)
+                j++;
+            }
             i++;
         }
-
         return encontrado;        
     }
 
-    private void jugarPartida(Jugador j, PartidaPalabra partida) {
+    /*private void jugarPartida(Jugador j, PartidaPalabra partida) {
         partida.resolver();            
-    }
+    }*/
 
     private void elegirGanador() {
         if (getJugador1().getGanadas() > getJugador2().getGanadas())        
