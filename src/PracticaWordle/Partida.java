@@ -209,4 +209,8 @@ public class Partida {
                 (getGanadosJug2() == p.getGanadosJug2()) && (getListaPPalabras().equals(p.getListaPPalabras())));
     }
 
+    public String toString(){
+        return (" J1: " + getJugador1() + " J2: " + getJugador2() + " Ganador: " + getGanador() + "\n");
+    }
+
 }
