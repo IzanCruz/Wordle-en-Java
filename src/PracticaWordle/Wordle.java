@@ -52,14 +52,34 @@ public class Wordle {
         return estado;
     }
 
-    private ArrayList <Jugador> rankingJugadores(ArrayList <Jugador> list){
+    public String rankingJugadores(ArrayList <Jugador> list){
         list.sort(new ComparadorJugador());
-        return list;
+        return imprimirListaJ(list);
     }
 
-    private ArrayList <Jugador> ordenAlfabetico(ArrayList <Jugador> list){
+    public String ordenAlfabetico(ArrayList <Jugador> list){
         list.sort(new ComparadorAlfabetico());
-        return list;
+        return imprimirListaJ(list);
+    }
+
+    public String partidas(ArrayList <Partida> part){
+        return imprimirListaP(part);
+    }
+    
+    private String imprimirListaJ(ArrayList <Jugador> list){
+        String aux = "";
+        for (int i = 0; i <= (list.size() - 1); i++){
+            aux += list.get(i).toString();
+        }
+        return aux;
+    }
+
+    private String imprimirListaP(ArrayList <Partida> list){
+        String aux = "";
+        for (int i = 0; i <= (list.size() - 1); i++){
+            aux += list.get(i).toString();
+        }
+        return aux;
     }
 
 }
