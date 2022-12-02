@@ -97,12 +97,12 @@ public class Wordle {
         return estado;
     }
 
-    private ArrayList <Jugador> rankingJugadores(ArrayList <Jugador> list){
+    private String rankingJugadores(ArrayList <Jugador> list){
         list.sort(new ComparadorJugador());
         return imprimirListaJ(list);
     }
 
-    private ArrayList <Jugador> ordenAlfabetico(ArrayList <Jugador> list){
+    private String ordenAlfabetico(ArrayList <Jugador> list){
         list.sort(new ComparadorAlfabetico());
         return imprimirListaJ(list);
     }
