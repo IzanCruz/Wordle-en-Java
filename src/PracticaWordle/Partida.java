@@ -112,7 +112,7 @@ public class Partida {
     }
 
     // Methods
-    public void jugarPartida(Jugador j, Palabra p) {
+    public void crearPartidaPalabra(Jugador j, Palabra p) {
         PartidaPalabra nueva = null;
         if (j.equals(getJugador1()) && (getCont1() < numPalabras-1)){ 
             nueva = new PartidaPalabra(j, p); //Se crea para jugador1
@@ -124,13 +124,16 @@ public class Partida {
             if (!partidaEncontrada(1, nueva))            
                 listaPPalabras[1][cont2++] = nueva;
             
-        } else if (j.equals(null)) {
+        } else {
             System.out.println("Seleccione un jugador registrado en esta partida: \n"  
             + "1. " +getJugador1().toString() + "\n2. " + getJugador2().toString());
         }
 
         nueva.resolver();
+        actualizarDatos();
     }    
+
+
 
     private void actualizarDatos(){
         //Acualizar datos de esta clase        
@@ -171,10 +174,10 @@ public class Partida {
         int i = 0;
         int j = 0;
         while(i < 1 && !encontrado){
-            while ((j < getCont1()-1) && !encontrado){
-                encontrado = nueva.equals(getListaPPalabras()[i][j]);
+            while ((j < cont1 - 1) && !encontrado){
+                encontrado = nueva.equals(listaPPalabras[i][j]);
                 if (!encontrado)
-                j++;
+                    j++;
             }
             i++;
         }
