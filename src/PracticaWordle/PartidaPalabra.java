@@ -28,6 +28,7 @@ public class PartidaPalabra {
             jugador = j;
         if (p != null)
             palabraOculta = p;
+        intento = new Intento();
     }
 
     // Methods

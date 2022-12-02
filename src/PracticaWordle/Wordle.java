@@ -56,13 +56,20 @@ public class Wordle {
         }        
     }    
 
-    public void iniciarPartida(String j1, String j2, Partida p) {      
-        int numPalabras = p.getNumPalabras();  
+    public void iniciarPartida(String j1, String j2, int numPalabras) {  
+        //Verifico si los jugadores con los que se quiere iniciar la partida están registrados
         Jugador jug1 = registrarJugador(j1);
-        Jugador jug2 = registrarJugador(j2);
+        Jugador jug2 = registrarJugador(j2);    
+        //Creo la partida con los jugadore y el numero de palabras que se me indique
+        Partida p = new Partida(jug1, jug2, numPalabras);
+        //Crear las partidaPalabras
+
+        String[] soloParaPrueba = {"patas", "tapas", "cinco", "aereo", "doble", "movil", "cofre", "sobre", "molde",
+        "suave", "pobre", "reloj", "pulso", "sordo", "miedo", "hiena", "crema", "casco", "redes", "letra"};
+
         for (int i = 0; i <= numPalabras; i++) {
-            Palabra palabraJ1 = new Palabra("resultado aletorio de busqueda en el fichero");
-            Palabra palabraJ2 = new Palabra("resultado aletorio de busqueda en el fichero");
+            Palabra palabraJ1 = new Palabra(soloParaPrueba[i]); //En el modelo final, accedería al 
+            Palabra palabraJ2 = new Palabra(soloParaPrueba[i+1]); //fichero y esogería una palabra aleatoriamente
             p.crearPartidaPalabra(jug1, palabraJ1);
             p.crearPartidaPalabra(jug2, palabraJ2);
             /*
@@ -72,7 +79,16 @@ public class Wordle {
              * 
              */
         }
+        anadirPartida(p);
+        p.actualizarDatos();
        
+    }
+
+    private void anadirPartida(Partida p) {
+        if (!listaPartidas.contains(p)) {
+            listaPartidas.add(p);
+            System.out.println("La partida se ha guardado correctamente.");
+        } else System.err.println("Error: Esta partida ya se ha guardado anteriormente.");
     }
 
     private Jugador encontrarJugador(String nombre) {

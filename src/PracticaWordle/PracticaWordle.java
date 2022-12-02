@@ -17,6 +17,12 @@ public class PracticaWordle {
     public static void main(String[] args) {
         Wordle w = new Wordle();
         
+        w.registrarJugador("Santiago");
+        w.registrarJugador("David");
+
+        w.iniciarPartida("Santiago", "David", 2);
+
+        w.iniciarPartida("David", "Izan", 2);
     }
     
 }

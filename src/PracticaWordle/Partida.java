@@ -130,12 +130,12 @@ public class Partida {
         }
 
         nueva.resolver();
-        actualizarDatos();
+     
     }    
 
 
 
-    private void actualizarDatos(){
+    public void actualizarDatos(){
         //Acualizar datos de esta clase        
         int i = 0; //Actualizar para jugador1
         for (int j = 0; j <= getNumPalabras()-1; j++) {

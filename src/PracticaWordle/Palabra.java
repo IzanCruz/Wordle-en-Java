@@ -25,6 +25,11 @@ public class Palabra {
         return palabra;
     }
     
+    public String getPalabraString() {
+        //Hacer que devuelva la versión de String de la palabra.
+        return "";
+    }
+    
     //Metodos
     @Override
     public boolean equals (Object o){
@@ -45,6 +50,11 @@ public class Palabra {
         for (int i = 0; i <= 4; i++){
             getPalabra()[i] = aux[i];
         }
+    }
+
+    @Override
+    public String toString() {
+        return getPalabraString();
     }
     
 }
