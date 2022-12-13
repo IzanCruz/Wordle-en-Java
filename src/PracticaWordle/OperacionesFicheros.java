@@ -30,13 +30,13 @@ public class OperacionesFicheros {
     public String obtenerPalabra(){
         int aleatorio = (int) (Math.random()*4896+1);
         int i = 0;
-        String texto = null;
+        String palabra = null;
         try {            
             do {
-                texto = br.readLine();                
+                palabra = br.readLine();                
                 i++;
             } while (i <= aleatorio);
-            return texto;               
+            return palabra;               
         } catch (IOException e) {
             System.err.println("No se ha encontrado el archivo");
         }
