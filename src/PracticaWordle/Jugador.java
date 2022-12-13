@@ -24,6 +24,14 @@ public class Jugador {
         }
     }
     
+    public Jugador (Jugador j){
+        nombreUsuario = j.getNombre();
+        puntos = j.getPuntos();
+        ganadas = j.getGanadas();
+        empatadas = j.getEmpatadas();
+        perdidas = j.getPerdidas();
+    }
+    
     //Get incrementar
     public String getNombre(){
         return nombreUsuario;
