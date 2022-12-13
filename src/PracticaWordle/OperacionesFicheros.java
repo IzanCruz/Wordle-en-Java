@@ -9,25 +9,46 @@ import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 
-public class OperacionesFicheros {        
+public class OperacionesFicheros {    
     
-    public String obtenerPalabra(String nombre){
+    //Atributes
+    private BufferedReader br;
+    
+    //Constructors
+    public OperacionesFicheros() {}
+    
+    public BufferedReader abrirLector(String nombre) {        
+        try {
+            br = new BufferedReader(new FileReader((nombre)));
+            return br;
+        } catch (FileNotFoundException e) {
+            System.err.println("Error: Archivo no encontrado." + e.getMessage());            
+        }
+        return null;
+    }
+    
+    public String obtenerPalabra(){
         int aleatorio = (int) (Math.random()*4896+1);
         int i = 0;
         String texto = null;
-        try {
-            BufferedReader br = 
-            new BufferedReader(new FileReader((nombre)));
+        try {            
             do {
                 texto = br.readLine();                
                 i++;
             } while (i <= aleatorio);
-            System.out.println(texto);
             return texto;               
         } catch (IOException e) {
             System.err.println("No se ha encontrado el archivo");
         }
         return null;
+    }
+
+    public void cerrarLector(){
+        try {
+            br.close();
+        } catch (IOException e) {
+            System.err.println("Error: No se ha podido cerrar el lector. " + e.getMessage());
+        }
     }
 }
     

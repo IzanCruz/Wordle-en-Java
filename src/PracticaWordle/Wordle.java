@@ -5,8 +5,8 @@
  */
 package PracticaWordle;
 import java.util.ArrayList;
-//import java.util.Scanner;
-//import java.io.FileInputStream;
+import java.util.Scanner;
+import java.io.FileInputStream;
 /**
  *
  * @author USER
@@ -56,6 +56,17 @@ public class Wordle {
         }        
     }    
 
+    private String[] obtenerPalabras(Partida p){
+        OperacionesFicheros of = new OperacionesFicheros();
+        String[] palabras = new String[p.getNumPalabras()*2];
+        of.abrirLector("C:/Users/santi/OneDrive - Universidad Rey Juan Carlos/3º Curso/POO/PracticaWordle/PalabrasWordleDefinitivo.txt");
+        for (int i = 0; i < p.getNumPalabras()*2; i++) {
+            palabras[i]= of.obtenerPalabra();            
+        }
+        of.cerrarLector();
+        return palabras;
+    }
+
     public void iniciarPartida(String j1, String j2, int numPalabras) {  
         //Verifico si los jugadores con los que se quiere iniciar la partida están registrados
         Jugador jug1 = registrarJugador(j1);
@@ -63,13 +74,11 @@ public class Wordle {
         //Creo la partida con los jugadore y el numero de palabras que se me indique
         Partida p = new Partida(jug1, jug2, numPalabras);
         //Crear las partidaPalabras
-
-        String[] soloParaPrueba = {"patas", "tapas", "cinco", "aereo", "doble", "movil", "cofre", "sobre", "molde",
-        "suave", "pobre", "reloj", "pulso", "sordo", "miedo", "hiena", "crema", "casco", "redes", "letra"};
+       String[] palabras = obtenerPalabras(p);
 
         for (int i = 0; i <= numPalabras; i++) {
-            Palabra palabraJ1 = new Palabra(soloParaPrueba[i]); //En el modelo final, accedería al 
-            Palabra palabraJ2 = new Palabra(soloParaPrueba[i+1]); //fichero y esogería una palabra aleatoriamente
+            Palabra palabraJ1 = new Palabra(palabras[i]); //En el modelo final, accedería al 
+            Palabra palabraJ2 = new Palabra(palabras[i+1]); //fichero y esogería una palabra aleatoriamente
             p.crearPartidaPalabra(jug1, palabraJ1);
             p.crearPartidaPalabra(jug2, palabraJ2);
             /*
@@ -102,7 +111,7 @@ public class Wordle {
         return listaJugadores.contains(jugador);
     }
 
-    /*private boolean existeJugador(Jugador j){
+    private boolean existeJugador(Jugador j){
         int i = 0;
         boolean estado = false;
         do{
@@ -111,7 +120,7 @@ public class Wordle {
         }
         while((i < (getListaJugadores().size() - 1)) && (estado == false));
         return estado;
-    }*/
+    }
 
     public String rankingJugadores(ArrayList <Jugador> list){
         list.sort(new ComparadorJugador());
