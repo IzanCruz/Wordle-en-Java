@@ -20,9 +20,7 @@ public class PracticaWordle {
         w.registrarJugador("Santiago");
         w.registrarJugador("David");
 
-        w.iniciarPartida("Santiago", "David", 2);
-
-        w.iniciarPartida("David", "Izan", 2);
+        w.iniciarPartida("David", "Santiago", 2);
     }
     
 }
