@@ -27,7 +27,11 @@ public class Palabra {
     
     public String getPalabraString() {
         //Hacer que devuelva la versión de String de la palabra.
-        return "";
+        String res = "";
+        for (int i = 0; i <= (MAX-1); i++){
+            res += getPalabra()[i];
+        }
+        return res;
     }
     
     //Metodos
