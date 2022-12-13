@@ -5,8 +5,8 @@
  */
 package PracticaWordle;
 import java.util.ArrayList;
-import java.util.Scanner;
-import java.io.FileInputStream;
+//import java.util.Scanner;
+//import java.io.FileInputStream;
 /**
  *
  * @author USER
@@ -102,7 +102,7 @@ public class Wordle {
         return listaJugadores.contains(jugador);
     }
 
-    private boolean existeJugador(Jugador j){
+    /*private boolean existeJugador(Jugador j){
         int i = 0;
         boolean estado = false;
         do{
@@ -111,7 +111,7 @@ public class Wordle {
         }
         while((i < (getListaJugadores().size() - 1)) && (estado == false));
         return estado;
-    }
+    }*/
 
     public String rankingJugadores(ArrayList <Jugador> list){
         list.sort(new ComparadorJugador());

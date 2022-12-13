@@ -69,6 +69,7 @@ public class PartidaPalabra {
         setPuntos(getPuntos() + getIntento().getNumIntento());
     }
 
+
     public void resolver() {
         mostrarLeyenda();
         Scanner s = new Scanner(System.in);
@@ -97,7 +98,7 @@ public class PartidaPalabra {
                 + " se encuentran en la palabra oculta, usaremos el siguiente formato:/n" +
                 "[] -> letra incorrecta\n(a) -> la letra \"a\" pertenece a la palabra pero no esta en lugar correcto"
                 + "\na -> letra correcta.\n Por ejemplo, si la palabra oculta es \"patos\" y se introduce \"tapas\","
-                + " se mostrará el siguiente mensaje:\n Palabra incorrecta. Quedan n intentos.\n (p) a (t) [] s\n");
+                + " se mostrará el siguiente mensaje:\n Palabra incorrecta. Quedan n intentos.\n (p) a (t) [] s");
     }
 
     private String comprobarPalabra(String palabra) {
@@ -105,10 +106,16 @@ public class PartidaPalabra {
         if (palabra.length() == 5) {
             Palabra aux = new Palabra(palabra);
             if (getPalabraOculta().equals(aux)) {
+                respuesta = "Felicidades! Has adivinado la palabra: " + getPalabraOculta();
                 darPuntos();
                 setGanada(true);
                 marcarGanada();
-                respuesta = "Felicidades! Has adivinado la palabra: " + getPalabraOculta();                
+                try{
+                    Thread.sleep(500);
+                }
+                catch (Exception e){
+                    System.out.println(e);
+                }
             } else {
                 for (int i = 0; i <= 4; i++) {
                     if (getPalabraOculta().getPalabra()[i] == aux.getPalabra()[i]) { // En caso de que la letra sea correcta
@@ -127,6 +134,21 @@ public class PartidaPalabra {
         }
         return respuesta;
     }
+
+    
+    private void mostrarPalabraOculta() {
+        System.out.println("Vaya! Has alcanzado el número máximo de intentos.\nLa palabra oculta" +
+        " era: " + getPalabraOculta());
+    }
+
+    private void mostrarLeyenda() {
+        System.out.println("Para identificar que letras de la palabra que has introducido"
+                + " se encuentran en la palabra oculta, usaremos el siguiente formato:/n" +
+                "[] -> letra incorrecta\n(a) -> la letra \"a\" pertenece a la palabra pero no esta en lugar correcto"
+                + "\na -> letra correcta.\n Por ejemplo, si la palabra oculta es \"tapas\" y se introduce \"patos\","
+                + " se mostrará el siguiente mensaje:\n Palabra incorrecta. Quedan n intentos.\n (p) a (t) [] s");
+    }
+
 
     private void marcarGanada() {
         for (int i = 0; i < MAX; i++) {
