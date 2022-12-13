@@ -92,7 +92,7 @@ public class PartidaPalabra {
         System.out.println("Para identificar que letras de la palabra que has introducido"
                 + " se encuentran en la palabra oculta, usaremos el siguiente formato:/n" +
                 "[] -> letra incorrecta\n(a) -> la letra \"a\" pertenece a la palabra pero no esta en lugar correcto"
-                + "\na -> letra correcta.\n Por ejemplo, si la palabra oculta es \"patos\" y se introduce \"tapas\","
+                + "\na -> letra correcta.\n Por ejemplo, si la palabra oculta es \"tapas\" y se introduce \"patos\","
                 + " se mostrará el siguiente mensaje:\n Palabra incorrecta. Quedan n intentos.\n (p) a (t) [] s");
     }
 
