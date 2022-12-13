@@ -15,8 +15,7 @@ public class PracticaWordle {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        OperacionesFicheros of = new OperacionesFicheros();
-        of.obtenerPalabra("C:/Users/santi/OneDrive - Universidad Rey Juan Carlos/3º Curso/POO/PracticaWordle/PalabrasWordleDefinitivo.txt");
+        
         
         Wordle w = new Wordle();
         
