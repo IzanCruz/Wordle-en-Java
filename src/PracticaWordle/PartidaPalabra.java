@@ -73,8 +73,12 @@ public class PartidaPalabra {
     public void resolver() {
         mostrarLeyenda();
         Scanner s = new Scanner(System.in);
-        while (intento.getNumIntento() > 0 && !isGanada()) {//Mientras que el numero de intentos sea mayor que 0
-            String entrada = s.next();                      //o no se haya adivinado la palabra.
+        String entrada = null;
+        while (intento.getNumIntento() > 0 && !isGanada()) {//Mientras que el numero de intentos sea mayor que 0 o no se haya adivinado la palabra
+            do {
+                entrada = s.next();   
+            } while (entrada == null); //Mientas que la palabra introducida no se encuentre entre las palabras del fichero.
+                                  
             System.out.println(comprobarPalabra(entrada));
             if (!isGanada()) //Solo se quita un intento en caso de que no se haya adivinado.
                 intento.actualizarIntento();
@@ -83,7 +87,6 @@ public class PartidaPalabra {
         if (intento.getNumIntento() == 0)
             mostrarPalabraOculta(); 
     }                   
-
 
     private String comprobarPalabra(String palabra) {
         String respuesta = ""; // Respuesta al usuario sobre el estado de la palabra.
