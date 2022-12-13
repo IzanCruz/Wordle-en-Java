@@ -72,8 +72,12 @@ public class PartidaPalabra {
     public void resolver() {
         mostrarLeyenda();
         Scanner s = new Scanner(System.in);
-        while (intento.getNumIntento() > 0 && !isGanada()) {//Mientras que el numero de intentos sea mayor que 0
-            String entrada = s.next();                      //o no se haya adivinado la palabra.
+        String entrada = null;
+        while (intento.getNumIntento() > 0 && !isGanada()) {//Mientras que el numero de intentos sea mayor que 0 o no se haya adivinado la palabra
+            do {
+                entrada = s.next();   
+            } while (entrada == null); //Mientas que la palabra introducida no se encuentre entre las palabras del fichero.
+                                  
             System.out.println(comprobarPalabra(entrada));
             if (!isGanada()) //Solo se quita un intento en caso de que no se haya adivinado.
                 intento.actualizarIntento();
@@ -93,7 +97,7 @@ public class PartidaPalabra {
                 + " se encuentran en la palabra oculta, usaremos el siguiente formato:/n" +
                 "[] -> letra incorrecta\n(a) -> la letra \"a\" pertenece a la palabra pero no esta en lugar correcto"
                 + "\na -> letra correcta.\n Por ejemplo, si la palabra oculta es \"patos\" y se introduce \"tapas\","
-                + " se mostrará el siguiente mensaje:\n Palabra incorrecta. Quedan n intentos.\n (p) a (t) [] s");
+                + " se mostrará el siguiente mensaje:\n Palabra incorrecta. Quedan n intentos.\n (p) a (t) [] s\n");
     }
 
     private String comprobarPalabra(String palabra) {
