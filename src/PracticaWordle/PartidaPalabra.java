@@ -94,12 +94,6 @@ public class PartidaPalabra {
                 darPuntos();
                 setGanada(true);
                 marcarGanada();
-                try{
-                    Thread.sleep(500);
-                }
-                catch (Exception e){
-                    System.out.println(e);
-                }
             } else {
                 for (int i = 0; i <= 4; i++) {
                     if (getPalabraOculta().getPalabra()[i] == aux.getPalabra()[i]) { // En caso de que la letra sea correcta

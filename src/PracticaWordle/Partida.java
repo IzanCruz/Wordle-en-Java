@@ -114,17 +114,17 @@ public class Partida {
     // Methods
     public void crearPartidaPalabra(Jugador j, Palabra p) {
         PartidaPalabra nueva = null;
-        if (j.equals(getJugador1()) && (getCont1() < numPalabras-1)){ 
+        if (j.equals(getJugador1()) && (getCont1() < getNumPalabras()-1)){ 
             nueva = new PartidaPalabra(j, p); //Se crea para jugador1
             if (!partidaEncontrada(0, nueva)){            
-                listaPPalabras[0][getCont1() + 1] = nueva;
+                getListaPPalabras()[0][getCont1() + 1] = nueva;
                 setCont1(getCont1() + 1);
             }
         }
-        else if (j.equals(getJugador2()) && (getCont2() < numPalabras-1)){
+        else if (j.equals(getJugador2()) && (getCont2() < getNumPalabras()-1)){
             nueva = new PartidaPalabra(j, p); //Se crea para jugador2
             if (!partidaEncontrada(1, nueva)){            
-                listaPPalabras[1][getCont2() + 1] = nueva;
+                getListaPPalabras()[1][getCont2() + 1] = nueva;
                 setCont2(getCont2() + 1);
             }
             
@@ -134,7 +134,7 @@ public class Partida {
         }
 
         nueva.resolver();
-     
+        
     }    
 
 
