@@ -119,7 +119,7 @@ public class Partida {
                     getListaPPalabras()[j][i] = new PartidaPalabra(getJugador1(),new Palabra(lista[i]));
                 }
                 else{
-                    getListaPPalabras()[j][i] = new PartidaPalabra(getJugador2(),new Palabra(lista[i]));
+                    getListaPPalabras()[j][i] = new PartidaPalabra(getJugador2(),new Palabra(lista[i+(getNumPalabras()-1)]));
                 }
             }
         }
