@@ -74,13 +74,15 @@ public class Wordle {
         //Creo la partida con los jugadore y el numero de palabras que se me indique
         Partida p = new Partida(jug1, jug2, numPalabras);
         //Crear las partidaPalabras
-       String[] palabras = obtenerPalabras(p);
+
+        String[] soloParaPrueba = {"patas", "tapas", "cinco", "aereo", "doble", "movil", "cofre", "sobre", "molde",
+        "suave", "pobre", "reloj", "pulso", "sordo", "miedo", "hiena", "crema", "casco", "redes", "letra"};
 
         for (int i = 0; i <= numPalabras; i++) {
-            Palabra palabraJ1 = new Palabra(palabras[i]); //En el modelo final, accedería al 
-            Palabra palabraJ2 = new Palabra(palabras[i+1]); //fichero y esogería una palabra aleatoriamente
-            p.crearPartidaPalabra(jug1, palabraJ1);
-            p.crearPartidaPalabra(jug2, palabraJ2);
+            //Palabra palabraJ1 = new Palabra(soloParaPrueba[i]); //En el modelo final, accedería al 
+            //Palabra palabraJ2 = new Palabra(soloParaPrueba[i+1]); //fichero y esogería una palabra aleatoriamente
+            //p.crearPartidaPalabra(jug1, palabraJ1);
+            //p.crearPartidaPalabra(jug2, palabraJ2);
             /*
              * Aqui la idea es que se lean las palabras de un fichero y se les pasen a los constructores
              * de palabra, de manera que los jugadores tendrían palabras distintas siempre.
@@ -89,8 +91,9 @@ public class Wordle {
              */
         }
         anadirPartida(p);
-        p.actualizarDatos();
-       
+        p.crearPartidasPalabra(soloParaPrueba);
+        p.jugarPartida();
+       System.out.println("Fin de partida");
     }
 
     private void anadirPartida(Partida p) {
