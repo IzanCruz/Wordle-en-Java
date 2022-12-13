@@ -74,18 +74,17 @@ public class PartidaPalabra {
         mostrarLeyenda();
         Scanner s = new Scanner(System.in);
         String entrada = null;
-        while (intento.getNumIntento() > 0 && !isGanada()) {//Mientras que el numero de intentos sea mayor que 0 o no se haya adivinado la palabra
-            do {
-                entrada = s.next();   
-            } while (entrada == null); //Mientas que la palabra introducida no se encuentre entre las palabras del fichero.
-                                  
-            System.out.println(comprobarPalabra(entrada));
-            if (!isGanada()) //Solo se quita un intento en caso de que no se haya adivinado.
-                intento.actualizarIntento();
+        try{
+            while (intento.getNumIntento() > 0 && !isGanada()) {//Mientras que el numero de intentos sea mayor que 0 o no se haya adivinado la palabra
+                do {
+                    entrada = s.next();   
+                } while (entrada == null); //Mientas que la palabra introducida no se encuentre entre las palabras del fichero.
+                System.out.println(comprobarPalabra(entrada));
+            }
         }
-        s.close();
+        catch(Exception e){System.out.println(e);}
         if (intento.getNumIntento() == 0)
-            mostrarPalabraOculta(); 
+            mostrarPalabraOculta();
     }                   
 
     private String comprobarPalabra(String palabra) {
@@ -109,6 +108,7 @@ public class PartidaPalabra {
                             respuesta += "[] ";
                     }
                 }
+                intento.actualizarIntento();
             }
         } else {
             respuesta = "No se ha introducido una palabra de 5 letras. Inserte una válida";
@@ -119,7 +119,7 @@ public class PartidaPalabra {
     
     private void mostrarPalabraOculta() {
         System.out.println("Vaya! Has alcanzado el número máximo de intentos.\nLa palabra oculta" +
-        " era: " + getPalabraOculta());
+        " era: " + getPalabraOculta().toString());
     }
 
     private void mostrarLeyenda() {
