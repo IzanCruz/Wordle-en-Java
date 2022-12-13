@@ -84,16 +84,16 @@ public class PartidaPalabra {
             mostrarPalabraOculta(); 
     }                   
 
-    
+
     private String comprobarPalabra(String palabra) {
         String respuesta = ""; // Respuesta al usuario sobre el estado de la palabra.
         if (palabra.length() == 5) {
             Palabra aux = new Palabra(palabra);
             if (getPalabraOculta().equals(aux)) {
+                respuesta = "Felicidades! Has adivinado la palabra: " + getPalabraOculta();
                 darPuntos();
                 setGanada(true);
                 marcarGanada();
-                respuesta = "Felicidades! Has adivinado la palabra: " + getPalabraOculta();                
             } else {
                 for (int i = 0; i <= 4; i++) {
                     if (getPalabraOculta().getPalabra()[i] == aux.getPalabra()[i]) { // En caso de que la letra sea correcta
