@@ -112,30 +112,28 @@ public class Partida {
     }
 
     // Methods
-    public void crearPartidaPalabra(Jugador j, Palabra p) {
-        PartidaPalabra nueva = null;
-        if (j.equals(getJugador1()) && (getCont1() < getNumPalabras()-1)){ 
-            nueva = new PartidaPalabra(j, p); //Se crea para jugador1
-            if (!partidaEncontrada(0, nueva)){            
-                getListaPPalabras()[0][getCont1() + 1] = nueva;
-                setCont1(getCont1() + 1);
+    public void crearPartidasPalabra(String [] lista) {
+        for (int j = 0; j<=1; j++){    
+            for (int i = 0; i <= (getNumPalabras() - 1); i++){
+                if(j == 0){
+                    getListaPPalabras()[j][i] = new PartidaPalabra(getJugador1(),new Palabra(lista[i]));
+                }
+                else{
+                    getListaPPalabras()[j][i] = new PartidaPalabra(getJugador2(),new Palabra(lista[i]));
+                }
             }
         }
-        else if (j.equals(getJugador2()) && (getCont2() < getNumPalabras()-1)){
-            nueva = new PartidaPalabra(j, p); //Se crea para jugador2
-            if (!partidaEncontrada(1, nueva)){            
-                getListaPPalabras()[1][getCont2() + 1] = nueva;
-                setCont2(getCont2() + 1);
-            }
-            
-        } else {
-            System.out.println("Seleccione un jugador registrado en esta partida: \n"  
-            + "1. " +getJugador1().toString() + "\n2. " + getJugador2().toString());
-        }
+    }
 
-        nueva.resolver();
-        
-    }    
+    public void jugarPartida(){
+        for (int j = 0; j <= (NUMJUGADORES - 1); j++){
+            for (int i = 0; i<(getNumPalabras() - 1); i++){
+                System.out.println("J" + (j+1));
+                getListaPPalabras()[j][i].resolver();
+            }
+        }
+        actualizarDatos();
+    }   
 
 
 
@@ -158,16 +156,17 @@ public class Partida {
 
     private void actualizarJugadores(Jugador j1, Jugador j2) {
         //Actualizar los atributos de la clase Jugador.
-
-        if (getGanador().equals(j1)) {
-            getJugador1().incrementarGanadas();
-            getJugador2().incrementarPerdidas();            
-        } else if (getGanador().equals(j2)) {
-            getJugador2().incrementarGanadas();
-            getJugador1().incrementarPerdidas();
-        } else {
+        if (getGanador() == null){
             getJugador1().incrementarEmpatadas();
             getJugador2().incrementarEmpatadas();
+        }
+        else{ if (getGanador().equals(j1)) {
+                getJugador1().incrementarGanadas();
+                getJugador2().incrementarPerdidas();            
+            } else if (getGanador().equals(j2)) {
+                getJugador2().incrementarGanadas();
+                getJugador1().incrementarPerdidas();
+            }
         }
         getJugador1().setPuntos(getJugador1().getPuntos() + getPuntosJ1());
         getJugador2().setPuntos(getJugador2().getPuntos() + getPuntosJ2());     
@@ -197,7 +196,9 @@ public class Partida {
             setGanador(getJugador1());
         else if (getJugador1().getGanadas() < getJugador2().getGanadas())
             setGanador(getJugador2());
+        else setGanador(null);
     }
+    
 
     @Override
     public boolean equals(Object o) {
