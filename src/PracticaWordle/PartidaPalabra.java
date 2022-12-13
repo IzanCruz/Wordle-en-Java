@@ -69,6 +69,7 @@ public class PartidaPalabra {
         setPuntos(getPuntos() + getIntento().getNumIntento());
     }
 
+
     public void resolver() {
         mostrarLeyenda();
         Scanner s = new Scanner(System.in);
@@ -83,19 +84,7 @@ public class PartidaPalabra {
             mostrarPalabraOculta(); 
     }                   
 
-    private void mostrarPalabraOculta() {
-        System.out.println("Vaya! Has alcanzado el número máximo de intentos.\nLa palabra oculta" +
-        " era: " + getPalabraOculta());
-    }
-
-    private void mostrarLeyenda() {
-        System.out.println("Para identificar que letras de la palabra que has introducido"
-                + " se encuentran en la palabra oculta, usaremos el siguiente formato:/n" +
-                "[] -> letra incorrecta\n(a) -> la letra \"a\" pertenece a la palabra pero no esta en lugar correcto"
-                + "\na -> letra correcta.\n Por ejemplo, si la palabra oculta es \"tapas\" y se introduce \"patos\","
-                + " se mostrará el siguiente mensaje:\n Palabra incorrecta. Quedan n intentos.\n (p) a (t) [] s");
-    }
-
+    
     private String comprobarPalabra(String palabra) {
         String respuesta = ""; // Respuesta al usuario sobre el estado de la palabra.
         if (palabra.length() == 5) {
@@ -123,6 +112,21 @@ public class PartidaPalabra {
         }
         return respuesta;
     }
+
+    
+    private void mostrarPalabraOculta() {
+        System.out.println("Vaya! Has alcanzado el número máximo de intentos.\nLa palabra oculta" +
+        " era: " + getPalabraOculta());
+    }
+
+    private void mostrarLeyenda() {
+        System.out.println("Para identificar que letras de la palabra que has introducido"
+                + " se encuentran en la palabra oculta, usaremos el siguiente formato:/n" +
+                "[] -> letra incorrecta\n(a) -> la letra \"a\" pertenece a la palabra pero no esta en lugar correcto"
+                + "\na -> letra correcta.\n Por ejemplo, si la palabra oculta es \"tapas\" y se introduce \"patos\","
+                + " se mostrará el siguiente mensaje:\n Palabra incorrecta. Quedan n intentos.\n (p) a (t) [] s");
+    }
+
 
     private void marcarGanada() {
         for (int i = 0; i < MAX; i++) {
