@@ -114,12 +114,18 @@ public class Partida {
     }
 
     // Methods
-    public void crearPartidasPalabra(String[] lista) {          
-        for (int i = 0; i < (getNumPalabras()); i++){                
-            //Crear partidaPalabras para J1
-            getListaPPalabras()[0][i] = new PartidaPalabra(getJugador1(),new Palabra(lista[i]));        
-            //Crear partidaPalabras para J2
-            getListaPPalabras()[1][i] = new PartidaPalabra(getJugador2(),new Palabra(lista[i+1]));                
+
+    public void crearPartidasPalabra(String [] lista) {
+        for (int j = 0; j<=1; j++){    
+            for (int i = 0; i <= (getNumPalabras() - 1); i++){
+                if(j == 0){
+                    getListaPPalabras()[j][i] = new PartidaPalabra(getJugador1(),new Palabra(lista[i]));
+                }
+                else{
+                    getListaPPalabras()[j][i] = new PartidaPalabra(getJugador2(),new Palabra(lista[i+(getNumPalabras()-1)]));
+                }
+            }
+
         }
         
     }

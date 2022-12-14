@@ -60,6 +60,7 @@ public class Wordle {
         int numPalabras = p.getNumPalabras()*2;
         String[] palabrasPartida = new String[numPalabras];
         OperacionesFicheros of = new OperacionesFicheros();
+
         String[] palabrasObtenidas = of.obtenerPalabras();
         for (int i = 0; i < numPalabras; i++) {
             int aleatorio = (int)Math.random()*of.getNumPalanbrasFich();
@@ -74,14 +75,16 @@ public class Wordle {
         Jugador jug2 = registrarJugador(j2);    
         //Creo la partida con los jugadore y el numero de palabras que se me indique
         Partida p = new Partida(jug1, jug2, numPalabras);
-                
+ 
         //Se obtienen las palabras de manera aleatoria accediendo a un fichero con miles de palabras
         String[] palabras = meterPalabras(p);
         //Se añade la partida a la lista de partidas
         anadirPartida(p);
         //Se crean todas las partidasPalabras y finalmente se juega la partida
         p.crearPartidasPalabra(palabras);
+
         p.jugarPartida();
+        anadirPartida(p);
        System.out.println("Fin de partida");
     }
 

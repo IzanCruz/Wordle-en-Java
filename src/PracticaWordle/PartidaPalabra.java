@@ -81,10 +81,10 @@ public class PartidaPalabra {
                 } while (entrada == null); //Mientas que la palabra introducida no se encuentre entre las palabras del fichero.
                 System.out.println(comprobarPalabra(entrada));
             }
+            if (intento.getNumIntento() == 0)
+                mostrarPalabraOculta();
         }
-        catch(Exception e){System.out.println(e);}
-        if (intento.getNumIntento() == 0)
-            mostrarPalabraOculta();
+        catch(Exception e){System.err.println("Se para aqui" + e);}
     }                   
 
     private String comprobarPalabra(String palabra) {
@@ -109,6 +109,7 @@ public class PartidaPalabra {
                     }
                 }
                 intento.actualizarIntento();
+                respuesta += "\nTe quedan " + getIntento().toString() + " intentos";
             }
         } else {
             respuesta = "No se ha introducido una palabra de 5 letras. Inserte una válida";

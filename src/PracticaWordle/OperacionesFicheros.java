@@ -27,6 +27,7 @@ public class OperacionesFicheros {
         }
     }
     
+
     public String[] obtenerPalabras(){    
         String[] palabras = new String[NUM_PALABRAS];
         abrirLector();            
@@ -39,6 +40,7 @@ public class OperacionesFicheros {
         }        
         cerrarLector();
         return palabras;
+
     }
 
     private void cerrarLector(){
