@@ -78,7 +78,7 @@ public class Wordle {
         String[] soloParaPrueba = {"patas", "tapas", "cinco", "aereo", "doble", "movil", "cofre", "sobre", "molde",
         "suave", "pobre", "reloj", "pulso", "sordo", "miedo", "hiena", "crema", "casco", "redes", "letra"};
 
-        for (int i = 0; i <= numPalabras; i++) {
+       // for (int i = 0; i <= numPalabras; i++) {
             //Palabra palabraJ1 = new Palabra(soloParaPrueba[i]); //En el modelo final, accedería al 
             //Palabra palabraJ2 = new Palabra(soloParaPrueba[i+1]); //fichero y esogería una palabra aleatoriamente
             //p.crearPartidaPalabra(jug1, palabraJ1);
@@ -89,7 +89,7 @@ public class Wordle {
              * Esto se repetiría tantas veces como numero de palabras hayamos metido en la partida.
              * 
              */
-        }
+      //  }
         anadirPartida(p);
         p.crearPartidasPalabra(soloParaPrueba);
         p.jugarPartida();

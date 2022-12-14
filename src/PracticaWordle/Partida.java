@@ -127,7 +127,7 @@ public class Partida {
 
     public void jugarPartida(){
         for (int j = 0; j <= (NUMJUGADORES - 1); j++){
-            for (int i = 0; i<(getNumPalabras() - 1); i++){
+            for (int i = 0; i<=(getNumPalabras() - 1); i++){
                 System.out.println("J" + (j+1));
                 getListaPPalabras()[j][i].resolver();
             }
