@@ -61,7 +61,7 @@ public class Wordle {
         String[] palabras = new String[p.getNumPalabras()*2];
         //of.abrirLector("C:/ficherosPOO/PalabrasWordleDefinitivo.txt");
         for (int i = 0; i < p.getNumPalabras()*2; i++) {
-            palabras[i]= of.obtenerPalabra("C:/ficherosPOO/PalabrasWordleDefinitivo.txt");            
+            palabras[i]= of.obtenerPalabra("PalabrasWordleDefinitivo.txt");            
         }
         //of.cerrarLector();
         return palabras;
