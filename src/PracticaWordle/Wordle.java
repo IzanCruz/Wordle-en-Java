@@ -60,19 +60,22 @@ public class Wordle {
         OperacionesFicheros of = new OperacionesFicheros();
         String[] palabrasObtenidas = of.obtenerPalabras();
         int i = 0;
+        int aux = of.getNLINEAS();
         while (i < numPalabras) {
-            int aleatorio = (int)Math.random()*of.getNLINEAS()+1;
-            if (!existePalabra(palabrasObtenidas[aleatorio], palabrasPartida, numPalabras)) {
-               palabrasPartida[i++]= palabrasObtenidas[aleatorio]; 
+            int aleatorio;
+            aleatorio = (int)(Math.random() * aux);
+            if (!existePalabra(palabrasObtenidas[aleatorio], palabrasPartida)) {
+               palabrasPartida[i]= palabrasObtenidas[aleatorio];
+               i++; 
             }        
         }
         return palabrasPartida;
     }
 
-    private boolean existePalabra(String palabra, String[] almacen, int nLineas) {
+    private boolean existePalabra(String palabra, String[] almacen) {
         boolean encontrado = false;
         int i = 0;
-        while (!encontrado && (i < nLineas)){
+        while (!encontrado && (i < almacen.length)){
             encontrado = palabra.equals(almacen[i]);
             i++;
         }

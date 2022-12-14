@@ -33,7 +33,7 @@ public class OperacionesFicheros {
         abrirLector();            
         try { 
             for(int i = 0; i < NLINEAS; i++) {
-              palabras[0] = br.readLine();
+              palabras[i] = br.readLine();
             }        
         } catch (IOException ex) {
             System.err.println("Error al leer el fichero.");
