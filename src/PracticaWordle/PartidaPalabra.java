@@ -116,6 +116,7 @@ public class PartidaPalabra {
         return respuesta;
     }
 
+
     
     private void mostrarPalabraOculta() {
         System.out.println("Vaya! Has alcanzado el número máximo de intentos.\nLa palabra oculta" +
@@ -123,12 +124,18 @@ public class PartidaPalabra {
     }
 
     private void mostrarLeyenda() {
-        System.out.println("Para identificar que letras de la palabra que has introducido"
-                + " se encuentran en la palabra oculta, usaremos el siguiente formato:/n" +
-                "[] -> letra incorrecta\n(a) -> la letra \"a\" pertenece a la palabra pero no esta en lugar correcto"
-                + "\na -> letra correcta.\n Por ejemplo, si la palabra oculta es \"tapas\" y se introduce \"patos\","
-                + " se mostrará el siguiente mensaje:\n Palabra incorrecta. Quedan n intentos.\n (p) a (t) [] s");
-    }
+        System.out.println(""
+        +"Para identificar que letras de la palabra que has introducido"
+        +"se encuentran en la palabra oculta, usaremos el siguiente formato:\n\n"
+        +"      *  [] -> LETRA INCORRECTA.\n"
+        +"      *  (a) -> LA LETRA \"a\" PERTENECE A LA PALABRA PERO NO ESTA EN EL LUGAR CORRECTO.\n"
+        +"      *  a -> LETRA CORRECTA.\n\n"   
+        +"Por ejemplo, si la palabra oculta es \"tapas\" y se introduce \"patos\",\n"
+        +"se mostrará el siguiente mensaje:\n\n"
+        +"Palabra incorrecta. Quedan n intentos.\n\n"
+        +"      (p) a (t) [] s"
+        +"");
+    }       
 
 
     private void marcarGanada() {
