@@ -13,6 +13,11 @@ public class OperacionesFicheros {
     
     //Atributes
     private BufferedReader br;
+<<<<<<< Updated upstream
+=======
+    private static final int NLINEAS = 990;
+    private static final String FICHEROPALABRAS = "PalabrasWordleDefinitivo.txt";    
+>>>>>>> Stashed changes
     
     //Constructors
     public OperacionesFicheros() {}
@@ -27,6 +32,7 @@ public class OperacionesFicheros {
         return null;
     }
     
+<<<<<<< Updated upstream
     public String obtenerPalabra(String n){
         abrirLector(n);
         int aleatorio = (int) (Math.random()*990+1);
@@ -42,6 +48,18 @@ public class OperacionesFicheros {
         } catch (IOException e) {
             System.err.println("No se ha encontrado el archivo");
         }
+=======
+    public String[] obtenerPalabras(){    
+        String[] palabras = new String[NLINEAS];
+        abrirLector();            
+        try { 
+            for(int i = 0; i < NLINEAS; i++) {
+              palabras[0] = br.readLine();
+            }        
+        } catch (IOException ex) {
+            System.err.println("Error al leer el fichero.");
+        }        
+>>>>>>> Stashed changes
         cerrarLector();
         return null;
     }
@@ -53,6 +71,15 @@ public class OperacionesFicheros {
             System.err.println("Error: No se ha podido cerrar el lector. " + e.getMessage());
         }
     }
+<<<<<<< Updated upstream
+=======
+
+    public int getNLINEAS() {
+        return NLINEAS;
+    }
+
+    
+>>>>>>> Stashed changes
 }
     
 

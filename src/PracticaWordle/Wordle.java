@@ -58,16 +58,40 @@ public class Wordle {
 
     private String[] obtenerPalabras(Partida p){
         OperacionesFicheros of = new OperacionesFicheros();
+<<<<<<< Updated upstream
         String[] palabras = new String[p.getNumPalabras()*2];
         //of.abrirLector("C:/ficherosPOO/PalabrasWordleDefinitivo.txt");
         for (int i = 0; i < p.getNumPalabras()*2; i++) {
             palabras[i]= of.obtenerPalabra("C:/ficherosPOO/PalabrasWordleDefinitivo.txt");            
+=======
+        String[] palabrasObtenidas = of.obtenerPalabras();
+        for (int i = 0; i < numPalabras; i++) {
+            int aleatorio = (int)Math.random()*of.getNLINEAS()+1;
+            if (existePalabra(palabrasObtenidas[aleatorio], palabrasPartida, numPalabras)) {
+               palabrasPartida[i]= palabrasObtenidas[aleatorio]; 
+            }
+            
+>>>>>>> Stashed changes
         }
         //of.cerrarLector();
         return palabras;
     }
 
+<<<<<<< Updated upstream
     public void iniciarPartida(String j1, String j2, int numPalabras) {  
+=======
+    private boolean existePalabra(String palabra, String[] almacen, int nLineas) {
+        boolean encontrado = false;
+        int i = 0;
+        while (!encontrado && (i < nLineas)){
+            encontrado = palabra.equals(almacen[i]);
+            i++;
+        }
+        return encontrado;
+    }
+
+    public void iniciarPartida(String j1, String j2, int numPalabras) {          
+>>>>>>> Stashed changes
         //Verifico si los jugadores con los que se quiere iniciar la partida están registrados
         Jugador jug1 = registrarJugador(j1);
         Jugador jug2 = registrarJugador(j2);    
