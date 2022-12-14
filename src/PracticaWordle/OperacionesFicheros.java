@@ -50,15 +50,12 @@ public class OperacionesFicheros {
             System.err.println("Error: No se ha podido cerrar el lector. " + e.getMessage());
         }
     }
-<<<<<<< Updated upstream
-=======
 
     public int getNLINEAS() {
         return NLINEAS;
     }
 
     
->>>>>>> Stashed changes
 }
     
 
