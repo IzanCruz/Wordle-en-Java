@@ -56,42 +56,33 @@ public class Wordle {
         }        
     }    
 
-    private String[] obtenerPalabras(Partida p){
+    private String[] meterPalabras(Partida p){
+        int numPalabras = p.getNumPalabras()*2;
+        String[] palabrasPartida = new String[numPalabras];
         OperacionesFicheros of = new OperacionesFicheros();
-        String[] palabras = new String[p.getNumPalabras()*2];
-        //of.abrirLector("C:/ficherosPOO/PalabrasWordleDefinitivo.txt");
-        for (int i = 0; i < p.getNumPalabras()*2; i++) {
-            palabras[i]= of.obtenerPalabra("PalabrasWordleDefinitivo.txt");            
+
+        String[] palabrasObtenidas = of.obtenerPalabras();
+        for (int i = 0; i < numPalabras; i++) {
+            int aleatorio = (int)Math.random()*of.getNumPalanbrasFich();
+            palabrasPartida[i]= palabrasObtenidas[aleatorio];
         }
-        //of.cerrarLector();
-        return palabras;
+        return palabrasPartida;
     }
 
-    public void iniciarPartida(String j1, String j2, int numPalabras) {  
+    public void iniciarPartida(String j1, String j2, int numPalabras) {          
         //Verifico si los jugadores con los que se quiere iniciar la partida están registrados
         Jugador jug1 = registrarJugador(j1);
         Jugador jug2 = registrarJugador(j2);    
         //Creo la partida con los jugadore y el numero de palabras que se me indique
         Partida p = new Partida(jug1, jug2, numPalabras);
-        //Crear las partidaPalabras
+ 
+        //Se obtienen las palabras de manera aleatoria accediendo a un fichero con miles de palabras
+        String[] palabras = meterPalabras(p);
+        //Se añade la partida a la lista de partidas
+        anadirPartida(p);
+        //Se crean todas las partidasPalabras y finalmente se juega la partida
+        p.crearPartidasPalabra(palabras);
 
-        /*String[] soloParaPrueba = {"patas", "tapas", "cinco", "aereo", "doble", "movil", "cofre", "sobre", "molde",
-        "suave", "pobre", "reloj", "pulso", "sordo", "miedo", "hiena", "crema", "casco", "redes", "letra"};
-
-        for (int i = 0; i <= numPalabras; i++) {
-            //Palabra palabraJ1 = new Palabra(soloParaPrueba[i]); //En el modelo final, accedería al 
-            //Palabra palabraJ2 = new Palabra(soloParaPrueba[i+1]); //fichero y esogería una palabra aleatoriamente
-            //p.crearPartidaPalabra(jug1, palabraJ1);
-            //p.crearPartidaPalabra(jug2, palabraJ2);
-            /*
-             * Aqui la idea es que se lean las palabras de un fichero y se les pasen a los constructores
-             * de palabra, de manera que los jugadores tendrían palabras distintas siempre.
-             * Esto se repetiría tantas veces como numero de palabras hayamos metido en la partida.
-             * 
-             
-        }*/
-        String [] prueba = obtenerPalabras(p);
-        p.crearPartidasPalabra(prueba);
         p.jugarPartida();
         anadirPartida(p);
        System.out.println("Fin de partida");
