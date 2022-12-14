@@ -138,7 +138,6 @@ public class PartidaPalabra {
         +"");
     }       
 
-
     private void marcarGanada() {
         for (int i = 0; i < MAX; i++) {
             letrasEncontradas[i] = true;
