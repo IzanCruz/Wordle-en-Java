@@ -87,7 +87,8 @@ public class PartidaPalabra {
         catch(Exception e){System.err.println("Se para aqui" + e);}
     }                   
 
-    private String comprobarPalabra(String palabra) {
+    private String comprobarPalabra(String palabra) {   
+        cardinalidadLetrasPalabra(palabraOculta);     
         String respuesta = ""; // Respuesta al usuario sobre el estado de la palabra.
         if (palabra.length() == 5) {
             Palabra aux = new Palabra(palabra);
@@ -102,7 +103,7 @@ public class PartidaPalabra {
                         letrasEncontradas[i] = true;
                         respuesta += aux.getPalabra()[i] + " ";
                     } else {
-                        if (contieneLetra(aux.getPalabra()[i])) {
+                        if (contieneLetra(aux.getPalabra()[i])) {                            
                             respuesta += "(" + aux.getPalabra()[i] + ") ";
                         } else
                             respuesta += "[] ";
@@ -117,7 +118,26 @@ public class PartidaPalabra {
         return respuesta;
     }
 
+    private void cardinalidadLetrasPalabra(Palabra palabra) {
+        char[] aux = palabra.getPalabra();
+        CardinalidadLetras[] cl = new CardinalidadLetras[5];
+        for (int i = 0; i < aux.length; i++) {
+            if (!existeLetra(aux[i], cl))
+                cl[i] = new CardinalidadLetras(aux[i]);
+            else cl[i].aumentarCardinalidad();
+        }
+    }
 
+    private boolean existeLetra(char c, CardinalidadLetras[] cl) {
+        boolean encontrado = false;
+        int i = 0;
+        CardinalidadLetras letra = new CardinalidadLetras(c);
+        while (!encontrado && i < cl.length) {
+            encontrado = letra.equals(cl[i]);
+            if (!encontrado) i++;
+        }
+        return encontrado;
+    }
     
     private void mostrarPalabraOculta() {
         System.out.println("Vaya! Has alcanzado el número máximo de intentos.\nLa palabra oculta" +
