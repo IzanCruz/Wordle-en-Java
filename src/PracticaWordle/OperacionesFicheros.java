@@ -29,7 +29,7 @@ public class OperacionesFicheros {
     
     public String obtenerPalabra(String n){
         abrirLector(n);
-        int aleatorio = (int) (Math.random()*4896+1);
+        int aleatorio = (int) (Math.random()*990+1);
         int i = 0;
         String palabra = null;
         try {            
