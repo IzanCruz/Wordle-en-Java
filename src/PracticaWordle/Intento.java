@@ -49,5 +49,10 @@ public class Intento {
         if (getNumIntento() > 0)
             setIntento(getNumIntento() - 1);
     }
+
+    public String toString(){
+        return ("" + getNumIntento());
+    }
+
     
 }

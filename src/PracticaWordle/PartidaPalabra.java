@@ -109,6 +109,7 @@ public class PartidaPalabra {
                     }
                 }
                 intento.actualizarIntento();
+                respuesta += "\nTe quedan " + getIntento().toString() + " intentos";
             }
         } else {
             respuesta = "No se ha introducido una palabra de 5 letras. Inserte una válida";
