@@ -27,7 +27,8 @@ public class OperacionesFicheros {
         return null;
     }
     
-    public String obtenerPalabra(){
+    public String obtenerPalabra(String n){
+        abrirLector(n);
         int aleatorio = (int) (Math.random()*4896+1);
         int i = 0;
         String palabra = null;
@@ -36,10 +37,12 @@ public class OperacionesFicheros {
                 palabra = br.readLine();                
                 i++;
             } while (i <= aleatorio);
+            cerrarLector();
             return palabra;               
         } catch (IOException e) {
             System.err.println("No se ha encontrado el archivo");
         }
+        cerrarLector();
         return null;
     }
 

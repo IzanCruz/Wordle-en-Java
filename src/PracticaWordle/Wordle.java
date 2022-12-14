@@ -59,11 +59,11 @@ public class Wordle {
     private String[] obtenerPalabras(Partida p){
         OperacionesFicheros of = new OperacionesFicheros();
         String[] palabras = new String[p.getNumPalabras()*2];
-        of.abrirLector("C:/Users/santi/OneDrive - Universidad Rey Juan Carlos/3º Curso/POO/PracticaWordle/PalabrasWordleDefinitivo.txt");
+        //of.abrirLector("C:/ficherosPOO/PalabrasWordleDefinitivo.txt");
         for (int i = 0; i < p.getNumPalabras()*2; i++) {
-            palabras[i]= of.obtenerPalabra();            
+            palabras[i]= of.obtenerPalabra("C:/ficherosPOO/PalabrasWordleDefinitivo.txt");            
         }
-        of.cerrarLector();
+        //of.cerrarLector();
         return palabras;
     }
 
@@ -75,10 +75,10 @@ public class Wordle {
         Partida p = new Partida(jug1, jug2, numPalabras);
         //Crear las partidaPalabras
 
-        String[] soloParaPrueba = {"patas", "tapas", "cinco", "aereo", "doble", "movil", "cofre", "sobre", "molde",
+        /*String[] soloParaPrueba = {"patas", "tapas", "cinco", "aereo", "doble", "movil", "cofre", "sobre", "molde",
         "suave", "pobre", "reloj", "pulso", "sordo", "miedo", "hiena", "crema", "casco", "redes", "letra"};
 
-       // for (int i = 0; i <= numPalabras; i++) {
+        for (int i = 0; i <= numPalabras; i++) {
             //Palabra palabraJ1 = new Palabra(soloParaPrueba[i]); //En el modelo final, accedería al 
             //Palabra palabraJ2 = new Palabra(soloParaPrueba[i+1]); //fichero y esogería una palabra aleatoriamente
             //p.crearPartidaPalabra(jug1, palabraJ1);
@@ -88,11 +88,12 @@ public class Wordle {
              * de palabra, de manera que los jugadores tendrían palabras distintas siempre.
              * Esto se repetiría tantas veces como numero de palabras hayamos metido en la partida.
              * 
-             */
-      //  }
-        anadirPartida(p);
-        p.crearPartidasPalabra(soloParaPrueba);
+             
+        }*/
+        String [] prueba = obtenerPalabras(p);
+        p.crearPartidasPalabra(prueba);
         p.jugarPartida();
+        anadirPartida(p);
        System.out.println("Fin de partida");
     }
 
