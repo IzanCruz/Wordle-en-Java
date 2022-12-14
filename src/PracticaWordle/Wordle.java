@@ -5,8 +5,6 @@
  */
 package PracticaWordle;
 import java.util.ArrayList;
-import java.util.Scanner;
-import java.io.FileInputStream;
 /**
  *
  * @author USER
@@ -60,12 +58,12 @@ public class Wordle {
         int numPalabras = p.getNumPalabras()*2;
         String[] palabrasPartida = new String[numPalabras];
         OperacionesFicheros of = new OperacionesFicheros();
-
         String[] palabrasObtenidas = of.obtenerPalabras();
-        for (int i = 0; i < numPalabras; i++) {
+        int i = 0;
+        while (i < numPalabras) {
             int aleatorio = (int)Math.random()*of.getNLINEAS()+1;
-            if (existePalabra(palabrasObtenidas[aleatorio], palabrasPartida, numPalabras)) {
-               palabrasPartida[i]= palabrasObtenidas[aleatorio]; 
+            if (!existePalabra(palabrasObtenidas[aleatorio], palabrasPartida, numPalabras)) {
+               palabrasPartida[i++]= palabrasObtenidas[aleatorio]; 
             }        
         }
         return palabrasPartida;
