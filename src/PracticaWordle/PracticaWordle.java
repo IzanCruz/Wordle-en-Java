@@ -22,14 +22,15 @@ public class PracticaWordle {
         w.registrarJugador("Santiago");
         w.registrarJugador("David");
 
-        w.iniciarPartida("David", "Santiago", 1);
+        //w.iniciarPartida("David", "Santiago", 1);
+        w.iniciarPartida("Izan", null, 1);
 
-        PartidaPalabra [][] aux = w.getListaPartidas().get(0).getListaPPalabras();
+        /*PartidaPalabra [][] aux = w.getListaPartidas().get(0).getListaPPalabras();
         for (int j = 0; j<=1; j++){    
             for(int i = 0; i<=w.getListaPartidas().get(0).getNumPalabras()-1; i++){
                 System.out.println(aux[j][i].getPalabraOculta().toString());
             }
-        }
+        }*/
     }
     
 }

@@ -19,11 +19,12 @@ public class PartidaPalabra {
     private Intento intento;
     private int puntos;
     private boolean[] letrasEncontradas;
-    private final static int MAX = 5;
+    private final static int MAX_LETRAS = 5; 
+
 
     // Constructors
     public PartidaPalabra(Jugador j, Palabra p) {
-        letrasEncontradas = new boolean[MAX];
+        letrasEncontradas = new boolean[MAX_LETRAS];
         if (j != null)
             jugador = j;
         if (p != null)
@@ -87,18 +88,18 @@ public class PartidaPalabra {
         catch(Exception e){System.err.println("Se para aqui" + e);}
     }                   
 
-    private String comprobarPalabra(String palabra) {   
-        cardinalidadLetrasPalabra(palabraOculta);     
+    private String comprobarPalabra(String palabra) {                    
         String respuesta = ""; // Respuesta al usuario sobre el estado de la palabra.
-        if (palabra.length() == 5) {
+        if (palabra.length() == MAX_LETRAS) {
             Palabra aux = new Palabra(palabra);
+            //CardinalidadLetras[] cl = cardinalidadLetrasPalabra(aux);
             if (getPalabraOculta().equals(aux)) {
                 respuesta = "Felicidades! Has adivinado la palabra: " + getPalabraOculta();
                 darPuntos();
                 setGanada(true);
                 marcarGanada();
             } else {
-                for (int i = 0; i <= 4; i++) {
+                for (int i = 0; i < MAX_LETRAS; i++) {
                     if (getPalabraOculta().getPalabra()[i] == aux.getPalabra()[i]) { // En caso de que la letra sea correcta
                         letrasEncontradas[i] = true;
                         respuesta += aux.getPalabra()[i] + " ";
@@ -118,15 +119,16 @@ public class PartidaPalabra {
         return respuesta;
     }
 
-    private void cardinalidadLetrasPalabra(Palabra palabra) {
+    /*private CardinalidadLetras[] cardinalidadLetrasPalabra(Palabra palabra) {
         char[] aux = palabra.getPalabra();
-        CardinalidadLetras[] cl = new CardinalidadLetras[5];
+        CardinalidadLetras[] cl = new CardinalidadLetras[MAX_LETRAS];
         for (int i = 0; i < aux.length; i++) {
             if (!existeLetra(aux[i], cl))
                 cl[i] = new CardinalidadLetras(aux[i]);
             else cl[i].aumentarCardinalidad();
         }
-    }
+        return cl;
+    }*/
 
     private boolean existeLetra(char c, CardinalidadLetras[] cl) {
         boolean encontrado = false;
@@ -160,7 +162,7 @@ public class PartidaPalabra {
 
 
     private void marcarGanada() {
-        for (int i = 0; i < MAX; i++) {
+        for (int i = 0; i < MAX_LETRAS; i++) {
             letrasEncontradas[i] = true;
         }
     }

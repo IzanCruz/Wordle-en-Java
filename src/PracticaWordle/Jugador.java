@@ -19,7 +19,7 @@ public class Jugador {
     
     //Cinstructores
     public Jugador(String n){
-        if (!(n.equals(" "))){
+        if (!(n.equals(""))){
             nombreUsuario = n;
         }
     }

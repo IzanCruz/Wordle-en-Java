@@ -45,15 +45,15 @@ public class Wordle {
             System.out.println ("El jugador ya está registrado actualmente");
             return null;*/
         //CODIGO SANTI:
-        if (!existeJugador(nombre)) {
-            Jugador nuevo = new Jugador(nombre);
-            listaJugadores.add(nuevo);
-            System.out.println(nombre + " has sido registrado con éxito!");
-            return nuevo;
-        } else {
-            System.out.println("Bienvenid@ de nuevo, " + nombre + "!");
-            return encontrarJugador(nombre);
-        }        
+            if (!existeJugador(nombre)) {
+                Jugador nuevo = new Jugador(nombre);
+                listaJugadores.add(nuevo);
+                System.out.println(nombre + " has sido registrado con éxito!");
+                return nuevo;
+            } else {
+                System.out.println("Bienvenid@ de nuevo, " + nombre + "!");
+                return encontrarJugador(nombre);
+            }        
     }    
 
     private String[] meterPalabras(Partida p){
@@ -63,7 +63,7 @@ public class Wordle {
 
         String[] palabrasObtenidas = of.obtenerPalabras();
         for (int i = 0; i < numPalabras; i++) {
-            int aleatorio = (int)Math.random()*of.getNumPalanbrasFich();
+            int aleatorio = (int)(Math.random()*of.getNumPalanbrasFich());
             palabrasPartida[i]= palabrasObtenidas[aleatorio];
         }
         return palabrasPartida;
@@ -72,21 +72,22 @@ public class Wordle {
     public void iniciarPartida(String j1, String j2, int numPalabras) {          
         //Verifico si los jugadores con los que se quiere iniciar la partida están registrados
         Jugador jug1 = registrarJugador(j1);
-        Jugador jug2 = registrarJugador(j2);    
+        Partida p;  
         //Creo la partida con los jugadore y el numero de palabras que se me indique
-        Partida p = new Partida(jug1, jug2, numPalabras);
+        if (j2 != null) {
+            Jugador jug2 = registrarJugador(j2); 
+            p = new Partida(jug1, jug2, numPalabras);
+        } else p = new Partida(jug1, numPalabras);       
  
         //Se obtienen las palabras de manera aleatoria accediendo a un fichero con miles de palabras
         String[] palabras = meterPalabras(p);
-        //Se añade la partida a la lista de partidas
-        anadirPartida(p);
         //Se crean todas las partidasPalabras y finalmente se juega la partida
         p.crearPartidasPalabra(palabras);
-
         p.jugarPartida();
+        //Se añade la partida a la lista de partidas
         anadirPartida(p);
        System.out.println("Fin de partida");
-    }
+    }    
 
     private void anadirPartida(Partida p) {
         if (!listaPartidas.contains(p)) {
