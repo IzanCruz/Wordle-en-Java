@@ -1,49 +1,49 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package PracticaWordle;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
+import java.io.ObjectOutputStream;
 
-public class OperacionesFicheros {    
-    
-    //Atributes
+public class OperacionesFicheros {
+
+    // Atributes
     private BufferedReader br;
     private static final int NUM_PALABRAS = 990;
-    private static final String FICHEROPALABRAS = "PalabrasWordleDefinitivo.txt";    
-    
-    //Constructors
-    public OperacionesFicheros() {}
-    
-    private void abrirLector() {        
+    private static final String FICHEROPALABRAS = "PalabrasWordleDefinitivo.txt";
+
+    // Constructors
+    public OperacionesFicheros() {
+    }
+
+    private void abrirLector() {
         try {
-            br = new BufferedReader(new FileReader((FICHEROPALABRAS)));            
+            br = new BufferedReader(new FileReader((FICHEROPALABRAS)));
         } catch (FileNotFoundException e) {
-            System.err.println("Error: Archivo no encontrado." + e.getMessage());            
+            System.err.println("Error: Archivo no encontrado." + e.getMessage());
         }
     }
-    
 
-    public String[] obtenerPalabras(){    
+    public String[] obtenerPalabras() {
         String[] palabras = new String[NUM_PALABRAS];
-        abrirLector();            
-        try { 
-            for(int i = 0; i < NUM_PALABRAS; i++) {
-              palabras[i] = br.readLine();
-            }        
+        abrirLector();
+        try {
+            for (int i = 0; i < NUM_PALABRAS; i++) {
+                palabras[i] = br.readLine();
+            }
         } catch (IOException ex) {
             System.err.println("Error al leer el fichero.");
-        }        
+        }
         cerrarLector();
         return palabras;
 
     }
 
-    private void cerrarLector(){
+    private void cerrarLector() {
         try {
             br.close();
         } catch (IOException e) {
@@ -55,7 +55,17 @@ public class OperacionesFicheros {
         return NUM_PALABRAS;
     }
 
-    
+    /*public void guardarSistema(Wordle sistema) {
+        try {
+            String fechaAhora = "";
+            File ficheroBinario = new File("/ficheros/binarios/partida" + fechaAhora + ".dat");
+            ficheroBinario.createNewFile();
+            FileOutputStream fos = new FileOutputStream(ficheroBinario);
+            ObjectOutputStream escritorObjetos = new ObjectOutputStream(fos);
+            escritorObjetos.writeObject(ficheroBinario);                              
+        } catch(Exception e) {
+            System.err.println("Error al escribir en el archivo.");
+        }
+    }*/
 }
-    
 

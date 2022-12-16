@@ -20,6 +20,7 @@ public class PartidaPalabra {
     private int puntos;
     private boolean[] letrasEncontradas;
     private final static int MAX_LETRAS = 5; 
+    private CardinalidadPalabra cp;
 
 
     // Constructors
@@ -73,8 +74,8 @@ public class PartidaPalabra {
 
     public void resolver() {
         mostrarLeyenda();
-        Scanner s = new Scanner(System.in);
         String entrada = null;
+        Scanner s = new Scanner(System.in);        
         try{
             while (intento.getNumIntento() > 0 && !isGanada()) {//Mientras que el numero de intentos sea mayor que 0 o no se haya adivinado la palabra
                 do {
@@ -90,9 +91,10 @@ public class PartidaPalabra {
 
     private String comprobarPalabra(String palabra) {                    
         String respuesta = ""; // Respuesta al usuario sobre el estado de la palabra.
+        cp = new CardinalidadPalabra();        
         if (palabra.length() == MAX_LETRAS) {
             Palabra aux = new Palabra(palabra);
-            //CardinalidadLetras[] cl = cardinalidadLetrasPalabra(aux);
+            cp.calcularCardinalidad(getPalabraOculta()); //Se usara para saber cuantas apariciones de cada letra se han adivinado.
             if (getPalabraOculta().equals(aux)) {
                 respuesta = "Felicidades! Has adivinado la palabra: " + getPalabraOculta();
                 darPuntos();
@@ -100,13 +102,18 @@ public class PartidaPalabra {
                 marcarGanada();
             } else {
                 for (int i = 0; i < MAX_LETRAS; i++) {
+                    int pos = cp.obtenerPos(aux.getPalabra()[i]);  
                     if (getPalabraOculta().getPalabra()[i] == aux.getPalabra()[i]) { // En caso de que la letra sea correcta
-                        letrasEncontradas[i] = true;
+                        letrasEncontradas[i] = true;                        
+                        cp.disminuirCardinalidad(aux.getPalabra()[i]);
                         respuesta += aux.getPalabra()[i] + " ";
-                    } else {
-                        if (contieneLetra(aux.getPalabra()[i])) {                            
-                            respuesta += "(" + aux.getPalabra()[i] + ") ";
-                        } else
+                    } else { //En caso de que la letra pertenezca a la palabra pero no este bien colocada.
+                        if (contieneLetra(aux.getPalabra()[i])) {
+                            //Si contiene letra y además, la cardinalidad es mayor que 0 
+                            if (cp.getCardinalidadLetras()[pos].getCardinalidad() > 0)                          
+                                respuesta += "(" + aux.getPalabra()[i] + ") ";
+                            else respuesta += "[] ";
+                        } else //En caso de que la letra no pertenezca a la palabra
                             respuesta += "[] ";
                     }
                 }
@@ -117,29 +124,7 @@ public class PartidaPalabra {
             respuesta = "No se ha introducido una palabra de 5 letras. Inserte una válida";
         }
         return respuesta;
-    }
-
-    /*private CardinalidadLetras[] cardinalidadLetrasPalabra(Palabra palabra) {
-        char[] aux = palabra.getPalabra();
-        CardinalidadLetras[] cl = new CardinalidadLetras[MAX_LETRAS];
-        for (int i = 0; i < aux.length; i++) {
-            if (!existeLetra(aux[i], cl))
-                cl[i] = new CardinalidadLetras(aux[i]);
-            else cl[i].aumentarCardinalidad();
-        }
-        return cl;
-    }*/
-
-    private boolean existeLetra(char c, CardinalidadLetras[] cl) {
-        boolean encontrado = false;
-        int i = 0;
-        CardinalidadLetras letra = new CardinalidadLetras(c);
-        while (!encontrado && i < cl.length) {
-            encontrado = letra.equals(cl[i]);
-            if (!encontrado) i++;
-        }
-        return encontrado;
-    }
+    }    
     
     private void mostrarPalabraOculta() {
         System.out.println("Vaya! Has alcanzado el número máximo de intentos.\nLa palabra oculta" +

@@ -4,14 +4,15 @@
  * and open the template in the editor.
  */
 package PracticaWordle;
+
 import java.util.ArrayList;
-import java.util.Scanner;
-import java.io.FileInputStream;
+import PracticaWordle.Exepciones.JugadorExcepcion;
+import java.io.Serializable;
 /**
  *
  * @author USER
  */
-public class Wordle {
+public class Wordle implements Serializable{
 
     //Atributes
     private ArrayList <Partida> listaPartidas;
@@ -33,26 +34,14 @@ public class Wordle {
     }
 
     //Methods
-    public Jugador registrarJugador(String nombre){
-        //CODIGO YULIANS:
-        /*Jugador aux = new Jugador(n);
-        if (!existeJugador(aux)){
-            getListaJugadores().add(aux);
-            System.out.println ("Jugador registrado con exito");
-            return aux;
-        }
-        else
-            System.out.println ("El jugador ya está registrado actualmente");
-            return null;*/
-        //CODIGO SANTI:
+    public Jugador registrarJugador(String nombre) throws JugadorExcepcion {        
             if (!existeJugador(nombre)) {
                 Jugador nuevo = new Jugador(nombre);
                 listaJugadores.add(nuevo);
                 System.out.println(nombre + " has sido registrado con éxito!");
                 return nuevo;
             } else {
-                System.out.println("Bienvenid@ de nuevo, " + nombre + "!");
-                return encontrarJugador(nombre);
+                throw new JugadorExcepcion("El jugador ya está registrado actualmente.");
             }        
     }    
 
@@ -69,7 +58,7 @@ public class Wordle {
         return palabrasPartida;
     }
 
-    public void iniciarPartida(String j1, String j2, int numPalabras) {          
+    public void iniciarPartida(String j1, String j2, int numPalabras) throws JugadorExcepcion {          
         //Verifico si los jugadores con los que se quiere iniciar la partida están registrados
         Jugador jug1 = registrarJugador(j1);
         Partida p;  
@@ -96,18 +85,18 @@ public class Wordle {
         } else System.err.println("Error: Esta partida ya se ha guardado anteriormente.");
     }
 
-    private Jugador encontrarJugador(String nombre) {
+    /*private Jugador encontrarJugador(String nombre) {
         Jugador aux = new Jugador(nombre);
         int pos = listaJugadores.indexOf(aux);
         return listaJugadores.get(pos);
-    }
+    }*/
 
     private boolean existeJugador(String nombre) {
         Jugador jugador = new Jugador(nombre);
         return listaJugadores.contains(jugador);
     }
 
-    private boolean existeJugador(Jugador j){
+    /*private boolean existeJugador(Jugador j){
         int i = 0;
         boolean estado = false;
         do{
@@ -116,7 +105,7 @@ public class Wordle {
         }
         while((i < (getListaJugadores().size() - 1)) && (estado == false));
         return estado;
-    }
+    }*/
 
     public String rankingJugadores(ArrayList <Jugador> list){
         list.sort(new ComparadorJugador());

@@ -28,6 +28,10 @@ public class CardinalidadLetras {
     public void aumentarCardinalidad() {
         cardinalidad++;
     }
+
+    public void disminuirCardinalidad() {
+        cardinalidad--;
+    }    
     
 
     @Override

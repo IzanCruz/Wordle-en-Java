@@ -5,6 +5,8 @@
  */
 package PracticaWordle;
 
+import PracticaWordle.Exepciones.JugadorExcepcion;
+
 /**
  *
  * @author USER
@@ -13,8 +15,9 @@ public class PracticaWordle {
 
     /**
      * @param args the command line arguments
+     * @throws JugadorExcepcion
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws JugadorExcepcion {
         
         
         Wordle w = new Wordle();
