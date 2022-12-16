@@ -112,7 +112,19 @@ public class PartidaPalabra {
                 respuesta += "\nTe quedan " + getIntento().toString() + " intentos";
             }
         } else {
-            respuesta = "No se ha introducido una palabra de 5 letras. Inserte una válida";
+            PistaLetra p1 = new PistaLetra();
+            PistaPalabra p2 = new PistaPalabra();
+            if(palabra.length() == 1){
+                if (palabra.equals("1")){
+                    p1.obtenerPista(getJugador(), isGanada(), getPalabraOculta(), getPuntos(), getLetrasEncontradas());
+                }
+                if (palabra.equals("2")){
+                    p2.obtenerPista(getJugador(), isGanada(), getPalabraOculta(), getPuntos(), getLetrasEncontradas());
+                }
+            }
+            else{
+                respuesta = "No se ha introducido una palabra de 5 letras. Inserte una válida";
+            }
         }
         return respuesta;
     }

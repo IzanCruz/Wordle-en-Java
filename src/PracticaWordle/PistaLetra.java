@@ -29,19 +29,23 @@ public class PistaLetra extends Pista {
     }
 
     //Methods
-    public void obtenerPista(PartidaPalabra p) {
-        int posLetra = 0;
-        do {
-            posLetra = (int) Math.random()*4;
-        } while (p.getLetrasEncontradas()[posLetra] == true); //Cuando sea false, parará. 
-        mostrarPista(posLetra, p);
-        setLetra(p.getPalabraOculta().getPalabra()[posLetra]);                           //Esto es para que no te de una pista de una letra que ya se ha encontrado
+    public void obtenerPista(Jugador j, boolean g, Palabra c, int p, boolean[] b) {
+        if (j.getPuntos() >= COSTE) {
+            int posLetra = 0;
+            do {
+                posLetra = (int) Math.random()*4;
+            } while (b[posLetra] == true); //Cuando sea false, parará. 
+            mostrarPista(posLetra, c.getPalabra());
+            setLetra(c.getPalabra()[posLetra]); //Esto es para que no te de una pista de una letra que ya se ha encontrado
+            }                           
+            else{
+                System.out.println("Puntos insuficientes");
+            }
     }
 
-    public void mostrarPista(int n, PartidaPalabra p) {
+    public void mostrarPista(int n, char[] c) {
         System.out.println("La letra concedida como pista es la " + 
-        p.getPalabraOculta().getPalabra()[n] + 
-        "y se encuentra en la posición " + n+1);
+        c[n] + "y se encuentra en la posición " + (n+1));
     }
 
     //mejor que esto habria que darle al usuario un estado actual de la palabra

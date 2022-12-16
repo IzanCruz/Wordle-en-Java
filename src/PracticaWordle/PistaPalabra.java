@@ -18,14 +18,20 @@ public class PistaPalabra extends Pista {
         super(COSTE);
     }
 
-    public void obtenerPista(PartidaPalabra p) {
-        mostrarPista(p);
-        System.out.println("Se te restarán 5 puntos del cómputo total de esta partida.");
-        p.setPuntos(p.getPuntos()-5);
-        p.setGanada(true);    
+    public void obtenerPista(Jugador j, boolean g, Palabra c, int p, boolean[] b) {
+        if (j.getPuntos() >= COSTE){
+            mostrarPista(c);
+            System.out.println("Se te restarán 5 puntos.");
+            j.setPuntos(j.getPuntos()-5);
+            p--;
+            g = true;
+        }
+        else{
+            System.out.println("Puntos insuficientes");
+        }    
     }
     
-    public void mostrarPista(PartidaPalabra p) {
-        System.out.println("La palabra oculta es: " + p.getPalabraOculta());        
+    public void mostrarPista(Palabra p) {
+        System.out.println("La palabra oculta es: " + p.getPalabra().toString());        
     }
 }
