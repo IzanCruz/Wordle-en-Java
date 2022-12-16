@@ -159,12 +159,12 @@ public class Partida {
         //Acualizar datos de esta clase        
         int i = 0; //Actualizar para jugador1
         for (int j = 0; j < getNumPalabras(); j++) {
-            if (listaPPalabras[i][j].isGanada()) setGanadosJug1();
+            if (listaPPalabras[i][j].getGanada()) setGanadosJug1();
             setPuntosJ1(listaPPalabras[i][j].getPuntos() + getPuntosJ1());
         }
         i = 1; //Actualizar para jugador2
         for (int j = 0; j < getNumPalabras(); j++) {
-            if (listaPPalabras[i][j].isGanada()) setGanadosJug2();
+            if (listaPPalabras[i][j].getGanada()) setGanadosJug2();
             setPuntosJ2(listaPPalabras[i][j].getPuntos() + getPuntosJ2());
         }
         elegirGanador(); //Se elige el ganador de esta partida.

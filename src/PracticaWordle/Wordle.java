@@ -88,14 +88,16 @@ public class Wordle {
  
         //Se obtienen las palabras de manera aleatoria accediendo a un fichero con miles de palabras
         String[] palabras = meterPalabras(p);
-        //Se añade la partida a la lista de partidas
-        anadirPartida(p);
+        
         //Se crean todas las partidasPalabras y finalmente se juega la partida
         p.crearPartidasPalabra(palabras);
 
         p.jugarPartida();
         anadirPartida(p);
        System.out.println("Fin de partida");
+
+       //Se añade la partida a la lista de partidas
+       anadirPartida(p);
     }
 
     private void anadirPartida(Partida p) {
