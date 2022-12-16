@@ -18,12 +18,18 @@ public class PracticaWordle {
         
         
         Wordle w = new Wordle();
+
+        Jugador j1 = new Jugador("Santiago");
+        Jugador j2 = new Jugador("David");
+
         
-        w.registrarJugador("Santiago");
-        w.registrarJugador("David");
+        w.registrarJugador(j1);
+        w.registrarJugador(j2);
 
         //w.iniciarPartida("David", "Santiago", 1);
-        w.iniciarPartida("Izan", null, 1);
+        w.iniciarPartida(j1, j2, 1);
+
+        System.out.println(w.getListaPartidas().get(0).toString());
 
         /*PartidaPalabra [][] aux = w.getListaPartidas().get(0).getListaPPalabras();
         for (int j = 0; j<=1; j++){    

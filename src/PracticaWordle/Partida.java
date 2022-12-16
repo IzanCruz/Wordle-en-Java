@@ -218,9 +218,9 @@ public class Partida {
      */
 
     private void elegirGanador() {
-        if (getJugador1().getGanadas() > getJugador2().getGanadas())
+        if (getGanadosJug1() > getGanadosJug2())
             setGanador(getJugador1());
-        else if (getJugador1().getGanadas() < getJugador2().getGanadas())
+        else if (getGanadosJug2() > getGanadosJug1())
             setGanador(getJugador2());
         else
             setGanador(null);
@@ -241,7 +241,7 @@ public class Partida {
     }
 
     public String toString() {
-        return (" J1: " + getJugador1() + " J2: " + getJugador2() + " Ganador: " + getGanador() + "\n");
+        return (" J1: " + getJugador1() + "\nJ2: " + getJugador2() + "\nGanador: " + getGanador() + "\n");
     }
 
 }
