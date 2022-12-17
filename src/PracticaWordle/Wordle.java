@@ -58,7 +58,7 @@ public class Wordle implements Serializable{
         return palabrasPartida;
     }
 
-    public void iniciarPartida(String j1, String j2, int numPalabras) throws JugadorExcepcion {          
+    public void iniciarPartida(Jugador j1, Jugador j2, int numPalabras) throws JugadorExcepcion {          
         //Verifico si los jugadores con los que se quiere iniciar la partida están registrados
         //Jugador jug1 = registrarJugador(j1);
         Partida p;  
