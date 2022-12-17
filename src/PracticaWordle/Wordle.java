@@ -60,13 +60,13 @@ public class Wordle implements Serializable{
 
     public void iniciarPartida(String j1, String j2, int numPalabras) throws JugadorExcepcion {          
         //Verifico si los jugadores con los que se quiere iniciar la partida están registrados
-        Jugador jug1 = registrarJugador(j1);
+        //Jugador jug1 = registrarJugador(j1);
         Partida p;  
-        //Creo la partida con los jugadore y el numero de palabras que se me indique
+        //Creo la partida con los jugadores y el numero de palabras que se me indique
         if (j2 != null) {
-            Jugador jug2 = registrarJugador(j2); 
-            p = new Partida(jug1, jug2, numPalabras);
-        } else p = new Partida(jug1, numPalabras);       
+            //Jugador jug2 = registrarJugador(j2); 
+            p = new Partida(j1, j2, numPalabras);
+        } else p = new Partida(j1, numPalabras);       
  
         //Se obtienen las palabras de manera aleatoria accediendo a un fichero con miles de palabras
         String[] palabras = meterPalabras(p);
