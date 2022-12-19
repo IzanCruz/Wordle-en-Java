@@ -20,13 +20,14 @@ public class CardinalidadPalabra {
 
     public void calcularCardinalidad(Palabra palabra) {        
         char [] p = palabra.getPalabra();
-        while (cont < MAX_LETRAS) {            
-            char c = p[cont];
+        int i = 0;
+        while (i < MAX_LETRAS) {            
+            char c = p[i];
             if (!existeLetra(c)) 
-                cl[cont] = new CardinalidadLetras(c);           
+                cl[cont++] = new CardinalidadLetras(c);           
             else 
-                cl[obtenerPos(c)].aumentarCardinalidad();        
-            cont++;                      
+                cl[obtenerPos(c)].aumentarCardinalidad();
+            i++;                                       
         }
     }
 
@@ -40,6 +41,8 @@ public class CardinalidadPalabra {
                 i++;
                 pos = i;
         }
+
+        if (!encontrado) pos = -1;
         return pos;
     }
 

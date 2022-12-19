@@ -90,8 +90,8 @@ public class PartidaPalabra {
         }
     }
 
-    private String comprobarPalabra(String palabra) {
-        /*String respuesta = ""; // Respuesta al usuario sobre el estado de la palabra.
+    /*private String comprobarPalabra(String palabra) {
+        String respuesta = ""; // Respuesta al usuario sobre el estado de la palabra.
         cp = new CardinalidadPalabra();
         if (palabra.length() == MAX_LETRAS) {
             Palabra aux = new Palabra(palabra);
@@ -102,7 +102,7 @@ public class PartidaPalabra {
                 darPuntos();
                 setGanada(true);
                 marcarGanada();
-            } */else {
+            } else {
                 for (int i = 0; i < MAX_LETRAS; i++) {
                     int pos = cp.obtenerPos(aux.getPalabra()[i]);
                     if (getPalabraOculta().getPalabra()[i] == aux.getPalabra()[i]) { // En caso de que la letra sea
@@ -125,7 +125,7 @@ public class PartidaPalabra {
                 getIntento().actualizarIntento();
                 respuesta += "\nTe quedan " + getIntento().toString() + " intentos";
             }
-        } /*else {
+        } else {
             PistaLetra p1 = new PistaLetra();
             PistaPalabra p2 = new PistaPalabra();
             if (palabra.length() == 1) {
@@ -139,12 +139,65 @@ public class PartidaPalabra {
                 }
             } else {
                 respuesta = "No se ha introducido una palabra de 5 letras. Inserte una válida";
-            }*/
+            }
         }
         return respuesta;
     }
 
-    public void comprobarPalabra(String palabra) {
+    public String comprobarPalabra(String palabra){
+        String respuesta = ""; // Respuesta al usuario sobre el estado de la palabra.
+        cp = new CardinalidadPalabra();
+        
+        if (palabra.length() == MAX_LETRAS) {
+            Palabra aux = new Palabra(palabra);// Guarda la palabra en formato "Palabra"
+            cp.calcularCardinalidad(getPalabraOculta());// calcula la cardinalidad de las letras de la palabra oculta
+
+            if (getPalabraOculta().equals(aux)) { // en caso de que se acierte todo, directamente se da la victoria
+                respuesta = "Felicidades! Has adivinado la palabra: " + getPalabraOculta();
+                darPuntos();
+                setGanada(true);
+                marcarGanada();
+            }
+            else{
+                for (int i = 0; i < MAX_LETRAS; i++){
+                    getLetrasEncontradas()[i] = aux.getPalabra()[i] == getPalabraOculta().getPalabra()[i]; 
+                }
+                for (int i = 0; i < MAX_LETRAS; i++){
+                    if (!getLetrasEncontradas()[i]){
+                        if(){
+
+                        }
+                    }
+                    else{
+                        respuesta += "" + getPalabraOculta().getPalabra()[i] + " ";
+                    }
+                }
+            }
+        }
+        else {
+            //Creamos los dos tipos de pista
+            PistaLetra p1 = new PistaLetra();
+            PistaPalabra p2 = new PistaPalabra();
+            
+            if (palabra.length() == 1) {//En caso de que se untroduzca solo un caracter, se comprueba si es un 1
+                
+                if (palabra.equals("1")) {
+                    p1.obtenerPista(getJugador(), isGanada(), getPalabraOculta(), getPuntos(), getLetrasEncontradas());
+                    getIntento().actualizarIntento();
+                }
+                
+                if (palabra.equals("2")) {
+                    p2.obtenerPista(getJugador(), isGanada(), getPalabraOculta(), getPuntos(), getLetrasEncontradas());
+                    getIntento().setIntento(0);
+                }
+            } else {
+                respuesta = "No se ha introducido una palabra de 5 letras. Inserte una válida";
+            }
+        }
+        return respuesta;
+    }*/
+
+    public String comprobarPalabra(String palabra) {
         String respuesta = ""; // Respuesta al usuario sobre el estado de la palabra.
         cp = new CardinalidadPalabra();
         
@@ -160,25 +213,31 @@ public class PartidaPalabra {
             } 
             else {
                 for (int i = 0; i < MAX_LETRAS; i++) {
-                    int pos = cp.obtenerPos(aux.getPalabra()[i]);
                     if (getPalabraOculta().getPalabra()[i] == aux.getPalabra()[i]) { // En caso de que la letra sea
                                                                                      // correcta
-                        letrasEncontradas[i] = true;
+                        getLetrasEncontradas()[i] = true;
                         cp.disminuirCardinalidad(aux.getPalabra()[i]);
                     }
                 } //Hace los cálculos de la cardinalidad de cada letra.
 
                 for (int i = 0; i < MAX_LETRAS; i++) { //Aqui procederíamos a imprimir la respuesta
                     int pos = cp.obtenerPos(aux.getPalabra()[i]);//Se obtiene la posicion de la letra introducida por el usuario
-                    int cardLetra = cp.getCardinalidadLetras()[pos].getCardinalidad();
-                    if (!letrasEncontradas[i]){
-                        if (cardLetra > 0){
-                            respuesta += "(" + aux.getPalabra()[i] + ")";
-                        }
-                    }
+                    if (pos >= 0) { //Si esto es false, tengo que poner por pantalla []
+                        int cardLetra = cp.getCardinalidadLetras()[pos].getCardinalidad(); //Guarda la cardinalidad de la letra que va en la posición
+                        if (!getLetrasEncontradas()[i]){
+                            if (cardLetra > 0){ //Si la letra es parcialmente correcta
+                                respuesta += "(" + aux.getPalabra()[i] + ") ";
+                                cp.disminuirCardinalidad(aux.getPalabra()[i]);                            
+                            } else respuesta += "[] "; //Si la letra es parcialmente correcta pero ya se ha repetido el numero máximo de veces (cardinalidad)
+                        }else respuesta += aux.getPalabra()[i] + " "; //Si la letra es totalmente correcta (lugar)
+                    } else respuesta += "[] ";
                 }
-            }
-        }
+                getIntento().actualizarIntento();
+                respuesta += "\nTe quedan " + getIntento().toString() + " intentos";
+            } //manga       //altar
+              //aaaaa       //aaaaa
+              //[]a[][]a    //_lt_r
+        }        
 
         else {
             //Creamos los dos tipos de pista
@@ -200,6 +259,7 @@ public class PartidaPalabra {
                 respuesta = "No se ha introducido una palabra de 5 letras. Inserte una válida";
             }
         }
+        return respuesta;
 
     }
 
@@ -218,7 +278,7 @@ public class PartidaPalabra {
                 + "Por ejemplo, si la palabra oculta es \"tapas\" y se introduce \"patos\",\n"
                 + "se mostrará el siguiente mensaje:\n\n"
                 + "      (p) a (t) [] s\n\n"
-                + "Palabra incorrecta. Quedan n intentos."
+                + "Palabra incorrecta. Quedan n intentos.\n\n"
                 + "");
     }
 
