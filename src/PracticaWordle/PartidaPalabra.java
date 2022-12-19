@@ -19,11 +19,13 @@ public class PartidaPalabra {
     private Intento intento;
     private int puntos;
     private boolean[] letrasEncontradas;
-    private final static int MAX = 5;
+    private final static int MAX_LETRAS = 5; 
+    private CardinalidadPalabra cp;
+
 
     // Constructors
     public PartidaPalabra(Jugador j, Palabra p) {
-        letrasEncontradas = new boolean[MAX];
+        letrasEncontradas = new boolean[MAX_LETRAS];
         if (j != null)
             jugador = j;
         if (p != null)
@@ -72,8 +74,8 @@ public class PartidaPalabra {
 
     public void resolver() {
         mostrarLeyenda();
-        Scanner s = new Scanner(System.in);
         String entrada = null;
+        Scanner s = new Scanner(System.in);        
         try{
             while (intento.getNumIntento() > 0 && !getGanada()) {//Mientras que el numero de intentos sea mayor que 0 o no se haya adivinado la palabra
                 do {
@@ -87,24 +89,31 @@ public class PartidaPalabra {
         catch(Exception e){System.err.println("Se para aqui" + e);}
     }                   
 
-    private String comprobarPalabra(String palabra) {
+    private String comprobarPalabra(String palabra) {                    
         String respuesta = ""; // Respuesta al usuario sobre el estado de la palabra.
-        if (palabra.length() == 5) {
+        cp = new CardinalidadPalabra();        
+        if (palabra.length() == MAX_LETRAS) {
             Palabra aux = new Palabra(palabra);
+            cp.calcularCardinalidad(getPalabraOculta()); //Se usara para saber cuantas apariciones de cada letra se han adivinado.
             if (getPalabraOculta().equals(aux)) {
                 respuesta = "Felicidades! Has adivinado la palabra: " + getPalabraOculta();
                 darPuntos();
                 setGanada(true);
                 marcarGanada();
             } else {
-                for (int i = 0; i <= 4; i++) {
+                for (int i = 0; i < MAX_LETRAS; i++) {
+                    int pos = cp.obtenerPos(aux.getPalabra()[i]);  
                     if (getPalabraOculta().getPalabra()[i] == aux.getPalabra()[i]) { // En caso de que la letra sea correcta
-                        letrasEncontradas[i] = true;
+                        letrasEncontradas[i] = true;                        
+                        cp.disminuirCardinalidad(aux.getPalabra()[i]);
                         respuesta += aux.getPalabra()[i] + " ";
-                    } else {
+                    } else { //En caso de que la letra pertenezca a la palabra pero no este bien colocada.
                         if (contieneLetra(aux.getPalabra()[i])) {
-                            respuesta += "(" + aux.getPalabra()[i] + ") ";
-                        } else
+                            //Si contiene letra y además, la cardinalidad es mayor que 0 
+                            if (cp.getCardinalidadLetras()[pos].getCardinalidad() > 0)                          
+                                respuesta += "(" + aux.getPalabra()[i] + ") ";
+                            else respuesta += "[] ";
+                        } else //En caso de que la letra no pertenezca a la palabra
                             respuesta += "[] ";
                     }
                 }
@@ -131,9 +140,7 @@ public class PartidaPalabra {
             }
         }
         return respuesta;
-    }
-
-
+    }    
     
     private void mostrarPalabraOculta() {
         System.out.println("Vaya! Has alcanzado el número máximo de intentos.\nLa palabra oculta" +
@@ -143,19 +150,19 @@ public class PartidaPalabra {
     private void mostrarLeyenda() {
         System.out.println(""
         +"Para identificar que letras de la palabra que has introducido"
-        +"se encuentran en la palabra oculta, usaremos el siguiente formato:\n\n"
+        +" se encuentran en la palabra oculta, usaremos el siguiente formato:\n\n"
         +"      *  [] -> LETRA INCORRECTA.\n"
         +"      *  (a) -> LA LETRA \"a\" PERTENECE A LA PALABRA PERO NO ESTA EN EL LUGAR CORRECTO.\n"
         +"      *  a -> LETRA CORRECTA.\n\n"   
         +"Por ejemplo, si la palabra oculta es \"tapas\" y se introduce \"patos\",\n"
         +"se mostrará el siguiente mensaje:\n\n"
-        +"Palabra incorrecta. Quedan n intentos.\n\n"
-        +"      (p) a (t) [] s"
+        +"      (p) a (t) [] s\n\n"
+        +"Palabra incorrecta. Quedan n intentos."
         +"");
     }       
 
     private void marcarGanada() {
-        for (int i = 0; i < MAX; i++) {
+        for (int i = 0; i < MAX_LETRAS; i++) {
             letrasEncontradas[i] = true;
         }
     }
