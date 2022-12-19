@@ -38,7 +38,7 @@ public class PartidaPalabra {
         return jugador;
     }
 
-    public boolean getGanada() {
+    public boolean isGanada() {
         return ganada;
     }
 
@@ -77,13 +77,13 @@ public class PartidaPalabra {
         String entrada = null;
         Scanner s = new Scanner(System.in);        
         try{
-            while (intento.getNumIntento() > 0 && !getGanada()) {//Mientras que el numero de intentos sea mayor que 0 o no se haya adivinado la palabra
+            while (intento.getNumIntento() > 0 && !isGanada()) {//Mientras que el numero de intentos sea mayor que 0 o no se haya adivinado la palabra
                 do {
                     entrada = s.next();   
                 } while (entrada == null); //Mientas que la palabra introducida no se encuentre entre las palabras del fichero.
                 System.out.println(comprobarPalabra(entrada));
             }
-            if (intento.getNumIntento() == 0 && !getGanada())
+            if (intento.getNumIntento() == 0 && !isGanada())
                 mostrarPalabraOculta();
         }
         catch(Exception e){System.err.println("Se para aqui" + e);}
@@ -125,12 +125,12 @@ public class PartidaPalabra {
             PistaPalabra p2 = new PistaPalabra();
             if(palabra.length() == 1){
                 if (palabra.equals("1")){
-                    p1.obtenerPista(getJugador(), getGanada
+                    p1.obtenerPista(getJugador(), isGanada
     (), getPalabraOculta(), getPuntos(), getLetrasEncontradas());
                     getIntento().actualizarIntento();
                 }
                 if (palabra.equals("2")){
-                    p2.obtenerPista(getJugador(), getGanada
+                    p2.obtenerPista(getJugador(), isGanada
     (), getPalabraOculta(), getPuntos(), getLetrasEncontradas());
                     getIntento().setIntento(0);
                 }

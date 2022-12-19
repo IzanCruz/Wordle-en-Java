@@ -19,7 +19,7 @@ public class Partida {
     private final static int MAX_NUM_JUGADORES = 2;
     private int puntosJug1, puntosJug2;
     private int cont1, cont2;
-    private boolean turno; // TRUE: J1 FALSE:J2
+    //private boolean turno; // TRUE: J1 FALSE:J2
 
     // Constructores
     public Partida(Jugador j1, Jugador j2, int n) { // Modo multijugador
@@ -31,7 +31,7 @@ public class Partida {
     public Partida(Jugador j, int n) { // Modo entrenamiento
         listaPPalabras = new PartidaPalabra[MAX_NUM_JUGADORES][MAXPALABRAS];
         numPalabras = n;
-        turno = true;
+       // turno = true;
         if (j != null)
             jugador1 = j;
     }

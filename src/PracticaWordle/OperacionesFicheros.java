@@ -8,7 +8,6 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class OperacionesFicheros {
@@ -53,8 +52,8 @@ public class OperacionesFicheros {
         }
     }
 
-    public int getNLINEAS() {
-        return NLINEAS;
+    public int getNUM_PALABRAS() {
+        return NUM_PALABRAS;
     }
 
     public void guardarSistema(Wordle sistema) {
