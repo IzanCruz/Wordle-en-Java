@@ -134,14 +134,14 @@ public class PartidaPalabra {
     private void mostrarLeyenda() {
         System.out.println(""
         +"Para identificar que letras de la palabra que has introducido"
-        +"se encuentran en la palabra oculta, usaremos el siguiente formato:\n\n"
+        +" se encuentran en la palabra oculta, usaremos el siguiente formato:\n\n"
         +"      *  [] -> LETRA INCORRECTA.\n"
         +"      *  (a) -> LA LETRA \"a\" PERTENECE A LA PALABRA PERO NO ESTA EN EL LUGAR CORRECTO.\n"
         +"      *  a -> LETRA CORRECTA.\n\n"   
         +"Por ejemplo, si la palabra oculta es \"tapas\" y se introduce \"patos\",\n"
         +"se mostrará el siguiente mensaje:\n\n"
-        +"Palabra incorrecta. Quedan n intentos.\n\n"
-        +"      (p) a (t) [] s"
+        +"      (p) a (t) [] s\n\n"
+        +"Palabra incorrecta. Quedan n intentos."
         +"");
     }       
 
