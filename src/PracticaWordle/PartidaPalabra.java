@@ -38,7 +38,7 @@ public class PartidaPalabra {
         return jugador;
     }
 
-    public boolean isGanada() {
+    public boolean getGanada() {
         return ganada;
     }
 
@@ -77,13 +77,13 @@ public class PartidaPalabra {
         String entrada = null;
         Scanner s = new Scanner(System.in);        
         try{
-            while (intento.getNumIntento() > 0 && !isGanada()) {//Mientras que el numero de intentos sea mayor que 0 o no se haya adivinado la palabra
+            while (intento.getNumIntento() > 0 && !getGanada()) {//Mientras que el numero de intentos sea mayor que 0 o no se haya adivinado la palabra
                 do {
                     entrada = s.next();   
                 } while (entrada == null); //Mientas que la palabra introducida no se encuentre entre las palabras del fichero.
                 System.out.println(comprobarPalabra(entrada));
             }
-            if (intento.getNumIntento() == 0)
+            if (intento.getNumIntento() == 0 && !getGanada())
                 mostrarPalabraOculta();
         }
         catch(Exception e){System.err.println("Se para aqui" + e);}
@@ -117,11 +117,27 @@ public class PartidaPalabra {
                             respuesta += "[] ";
                     }
                 }
-                intento.actualizarIntento();
+                getIntento().actualizarIntento();
                 respuesta += "\nTe quedan " + getIntento().toString() + " intentos";
             }
         } else {
-            respuesta = "No se ha introducido una palabra de 5 letras. Inserte una válida";
+            PistaLetra p1 = new PistaLetra();
+            PistaPalabra p2 = new PistaPalabra();
+            if(palabra.length() == 1){
+                if (palabra.equals("1")){
+                    p1.obtenerPista(getJugador(), getGanada
+    (), getPalabraOculta(), getPuntos(), getLetrasEncontradas());
+                    getIntento().actualizarIntento();
+                }
+                if (palabra.equals("2")){
+                    p2.obtenerPista(getJugador(), getGanada
+    (), getPalabraOculta(), getPuntos(), getLetrasEncontradas());
+                    getIntento().setIntento(0);
+                }
+            }
+            else{
+                respuesta = "No se ha introducido una palabra de 5 letras. Inserte una válida";
+            }
         }
         return respuesta;
     }    
@@ -144,7 +160,6 @@ public class PartidaPalabra {
         +"Palabra incorrecta. Quedan n intentos."
         +"");
     }       
-
 
     private void marcarGanada() {
         for (int i = 0; i < MAX_LETRAS; i++) {

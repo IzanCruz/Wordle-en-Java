@@ -53,8 +53,8 @@ public class OperacionesFicheros {
         }
     }
 
-    public int getNumPalanbrasFich() {
-        return NUM_PALABRAS;
+    public int getNLINEAS() {
+        return NLINEAS;
     }
 
     public void guardarSistema(Wordle sistema) {

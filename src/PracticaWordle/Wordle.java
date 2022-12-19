@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import PracticaWordle.Exepciones.JugadorExcepcion;
 import java.io.Serializable;
 
+
 /**
  *
  * @author USER
@@ -48,7 +49,6 @@ public class Wordle implements Serializable {
         int numPalabras = p.getNumPalabras() * 2;
         String[] palabrasPartida = new String[numPalabras];
         OperacionesFicheros of = new OperacionesFicheros();
-
         String[] palabrasObtenidas = of.obtenerPalabras();
         for (int i = 0; i < numPalabras; i++) {
             int aleatorio = (int) (Math.random() * of.getNumPalanbrasFich());
