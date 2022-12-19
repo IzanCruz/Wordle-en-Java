@@ -12,9 +12,11 @@ public class CardinalidadLetras {
     
     private char letra;
     private int cardinalidad;
+    private static final int CARDINALIDAD_INICIAL = 1;
 
     public CardinalidadLetras(char c) {
         letra = c;
+        cardinalidad = CARDINALIDAD_INICIAL;
     }
 
     public char getLetra() {

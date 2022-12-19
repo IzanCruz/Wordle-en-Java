@@ -12,7 +12,7 @@ public class CardinalidadPalabra {
 
     private CardinalidadLetras[] cl;
     private int cont;
-    private int MAX_LETRAS = 5;
+    private static final int MAX_LETRAS = 5;
 
     public CardinalidadPalabra() {
         cl = new CardinalidadLetras[MAX_LETRAS];
@@ -23,9 +23,9 @@ public class CardinalidadPalabra {
         while (cont < MAX_LETRAS) {            
             char c = p[cont];
             if (!existeLetra(c)) 
-                cl[cont] = new CardinalidadLetras(c);
-            if (existeLetra(c))    
-                cl[obtenerPos(c)].aumentarCardinalidad();  
+                cl[cont] = new CardinalidadLetras(c);           
+            else 
+                cl[obtenerPos(c)].aumentarCardinalidad();        
             cont++;                      
         }
     }
@@ -38,6 +38,7 @@ public class CardinalidadPalabra {
             encontrado = cl[i].getLetra() == c;
             if (!encontrado)
                 i++;
+                pos = i;
         }
         return pos;
     }
@@ -51,7 +52,7 @@ public class CardinalidadPalabra {
         boolean encontrado = false;
         int i = 0;
         CardinalidadLetras letra = new CardinalidadLetras(c);
-        while (!encontrado && i < cont) {
+        while (!encontrado && i <= cont) {
             encontrado = letra.equals(cl[i]);
             if (!encontrado)
                 i++;

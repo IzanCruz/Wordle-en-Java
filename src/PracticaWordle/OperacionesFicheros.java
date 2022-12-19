@@ -8,6 +8,8 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class OperacionesFicheros {
 
@@ -55,10 +57,10 @@ public class OperacionesFicheros {
         return NUM_PALABRAS;
     }
 
-    /*public void guardarSistema(Wordle sistema) {
+    public void guardarSistema(Wordle sistema) {
         try {
-            String fechaAhora = "";
-            File ficheroBinario = new File("/ficheros/binarios/partida" + fechaAhora + ".dat");
+            LocalDateTime fechaAhora = LocalDateTime.now();
+            File ficheroBinario = new File("/ficheros/binarios/partida" + fechaAhora.toString() + ".dat");
             ficheroBinario.createNewFile();
             FileOutputStream fos = new FileOutputStream(ficheroBinario);
             ObjectOutputStream escritorObjetos = new ObjectOutputStream(fos);
@@ -66,5 +68,5 @@ public class OperacionesFicheros {
         } catch(Exception e) {
             System.err.println("Error al escribir en el archivo.");
         }
-    }*/
+    }
 }
