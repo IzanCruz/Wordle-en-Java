@@ -19,6 +19,7 @@ public class Partida {
     private final static int MAX_NUM_JUGADORES = 2;
     private int puntosJug1, puntosJug2;
     private int cont1, cont2;
+    private int nPistasJ1, nPistasJ2;
     //private boolean turno; // TRUE: J1 FALSE:J2
 
     // Constructores
@@ -79,6 +80,22 @@ public class Partida {
 
     public int getCont2() {
         return cont2;
+    }
+
+    public int getNPistasJ1(){
+        return nPistasJ1;
+    }
+
+    public int getNPistasJ2(){
+        return nPistasJ2;
+    }
+
+    public void setNPistasJ1(int n){
+        nPistasJ1 = n;
+    }
+
+    public void setNPistasJ2(int n){
+        nPistasJ2 = n;
     }
 
     public void setNumPalabras(int n) {
@@ -143,38 +160,25 @@ public class Partida {
                 getListaPPalabras()[j][i].resolver();
             }
         }
-        actualizarDatos();
-        /*
-         * int i = 0;
-         * int j = 0;
-         * while ((i < getNumPalabras()) || (j < getNumPalabras())) {
-         * if(turno) {
-         * System.out.println("\nJ1");
-         * getListaPPalabras()[0][i++].resolver();
-         * 
-         * } else {
-         * System.out.println("\nJ2");
-         * getListaPPalabras()[1][j++].resolver();
-         * }
-         * turno = !turno;
-         * }
-         */
+        actualizarDatos();      
     }
 
     public void actualizarDatos() {
         // Acualizar datos de esta clase
         int i = 0; // Actualizar para jugador1
         for (int j = 0; j < getNumPalabras(); j++) {
-            if (listaPPalabras[i][j].isGanada())
+            if (getListaPPalabras()[i][j].isGanada())
                 setGanadosJug1();
-            setPuntosJ1(listaPPalabras[i][j].getPuntos() + getPuntosJ1());
+            setPuntosJ1(getListaPPalabras()[i][j].getPuntos() + getPuntosJ1());
+            setNPistasJ1(getNPistasJ1() + getListaPPalabras()[j][i].getPistas());
         }
-        if (jugador2 != null) {
+        if (getJugador2() != null) {
             i = 1; // Actualizar para jugador2
             for (int j = 0; j < getNumPalabras(); j++) {
-                if (listaPPalabras[i][j].isGanada())
+                if (getListaPPalabras()[i][j].isGanada())
                     setGanadosJug2();
-                setPuntosJ2(listaPPalabras[i][j].getPuntos() + getPuntosJ2());
+                setPuntosJ2(getListaPPalabras()[i][j].getPuntos() + getPuntosJ2());
+                setNPistasJ2(getNPistasJ2() + getListaPPalabras()[j][i].getPistas());
             }
             elegirGanador(); // Se elige el ganador de esta partida.
             actualizarJugadores(getJugador1(), getJugador2()); // Luego actualiza los datos en la clase Jugador
@@ -200,22 +204,6 @@ public class Partida {
         getJugador2().setPuntos(getJugador2().getPuntos() + getPuntosJ2());
     }
 
-    /*
-     * private boolean partidaEncontrada(int n, PartidaPalabra nueva) {
-     * boolean encontrado = false;
-     * int i = 0;
-     * int j = 0;
-     * while(i < 1 && !encontrado){
-     * while ((j < cont1 - 1) && !encontrado){
-     * encontrado = nueva.equals(listaPPalabras[i][j]);
-     * if (!encontrado)
-     * j++;
-     * }
-     * i++;
-     * }
-     * return encontrado;
-     * }
-     */
 
     private void elegirGanador() {
         if (getGanadosJug1() > getGanadosJug2())
@@ -241,7 +229,7 @@ public class Partida {
     }
 
     public String toString() {
-        return (" J1: " + getJugador1() + "\nJ2: " + getJugador2() + "\nGanador: " + getGanador() + "\n");
+        return (" J1: " + getJugador1() + "\nJ2: " + getJugador2() + "\nGanador: " + getGanador().getNombre() + "\n");
     }
 
 }

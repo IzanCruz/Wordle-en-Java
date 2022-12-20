@@ -25,10 +25,10 @@ public class Palabra {
         return palabra;
     }
     
-    public String getPalabraString() {
+    private String getPalabraString() {
         //Hacer que devuelva la versión de String de la palabra.
         String res = "";
-        for (int i = 0; i <= (MAX-1); i++){
+        for (int i = 0; i < MAX; i++){
             res += getPalabra()[i];
         }
         return res;
@@ -58,7 +58,8 @@ public class Palabra {
 
     @Override
     public String toString() {
-        return getPalabraString();
+        String res = new String(palabra);
+        return res;
     }
     
 }

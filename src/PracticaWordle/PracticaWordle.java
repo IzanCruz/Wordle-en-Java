@@ -25,6 +25,8 @@ public class PracticaWordle {
         Jugador j1 = new Jugador("Santiago");
         Jugador j2 = new Jugador("David");
 
+        j1.setPuntos(10);
+
         
         w.registrarJugador(j1);
         w.registrarJugador(j2);

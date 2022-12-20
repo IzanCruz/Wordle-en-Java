@@ -15,7 +15,7 @@ public class Jugador {
     private int puntos;
     private int ganadas;
     private int empatadas;
-    private int perdidas;
+    private int perdidas;    
     
     //Cinstructores
     public Jugador(String n){

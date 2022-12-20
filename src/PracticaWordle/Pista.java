@@ -23,7 +23,7 @@ public abstract class Pista {
     }
     
     //Metodos
-    public abstract void obtenerPista(Jugador j, boolean g, Palabra c, int p, boolean[] b);
+    public abstract boolean obtenerPista(Jugador j, Palabra c, Intento intent, boolean[] b);
 
 
 
