@@ -20,7 +20,6 @@ public class Partida {
     private int puntosJug1, puntosJug2;
     private int cont1, cont2;
     private int nPistasJ1, nPistasJ2;
-    //private boolean turno; // TRUE: J1 FALSE:J2
 
     // Constructores
     public Partida(Jugador j1, Jugador j2, int n) { // Modo multijugador
@@ -178,7 +177,7 @@ public class Partida {
                 if (getListaPPalabras()[i][j].isGanada())
                     setGanadosJug2();
                 setPuntosJ2(getListaPPalabras()[i][j].getPuntos() + getPuntosJ2());
-                setNPistasJ2(getNPistasJ2() + getListaPPalabras()[j][i].getPistas());
+                setNPistasJ2(getNPistasJ2() + getListaPPalabras()[i][j].getPistas());
             }
             elegirGanador(); // Se elige el ganador de esta partida.
             actualizarJugadores(getJugador1(), getJugador2()); // Luego actualiza los datos en la clase Jugador
@@ -229,7 +228,7 @@ public class Partida {
     }
 
     public String toString() {
-        return (" J1: " + getJugador1() + "\nJ2: " + getJugador2() + "\nGanador: " + getGanador().getNombre() + "\n");
+        return (" J1: " + getJugador1().getNombre() + "\nPistas utilizadas: " + getNPistasJ1() + "\nJ2: " + getJugador2().getNombre() + "\nPistas utilizadas: " + getNPistasJ2() + "\nGanador: " + getGanador().getNombre() + "\n");
     }
 
 }
