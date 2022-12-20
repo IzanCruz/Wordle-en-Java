@@ -228,7 +228,12 @@ public class Partida {
     }
 
     public String toString() {
-        return (" J1: " + getJugador1().getNombre() + "\nPistas utilizadas: " + getNPistasJ1() + "\nJ2: " + getJugador2().getNombre() + "\nPistas utilizadas: " + getNPistasJ2() + "\nGanador: " + getGanador().getNombre() + "\n");
+        String aux;
+        aux = (" J1: " + getJugador1().getNombre() + "\nPistas utilizadas: " + getNPistasJ1() + "\nJ2: " + getJugador2().getNombre() + "\nPistas utilizadas: " + getNPistasJ2());
+        if (getGanador() != null)
+            aux += ("\nGanador: " + getGanador().getNombre() + "\n");
+        else aux += "\nEmpate";
+        return aux;
     }
 
 }
