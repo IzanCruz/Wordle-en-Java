@@ -26,37 +26,38 @@ public class Jugar extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabelNombre = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
-        jLabel1 = new javax.swing.JLabel();
+        jToggleButtonJugar = new javax.swing.JToggleButton();
+        jLabel2 = new javax.swing.JLabel();
 
-        setMaximumSize(new java.awt.Dimension(860, 570));
-        setPreferredSize(new java.awt.Dimension(860, 570));
+        setMaximumSize(new java.awt.Dimension(770, 360));
+        setPreferredSize(new java.awt.Dimension(770, 360));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabelNombre.setFont(new java.awt.Font("Dubai Medium", 1, 100)); // NOI18N
-        jLabelNombre.setForeground(new java.awt.Color(0, 0, 0));
-        jLabelNombre.setText("WORDLE");
-        add(jLabelNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, 430, 100));
 
         jTextArea1.setBackground(new java.awt.Color(204, 204, 204));
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, 740, 420));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 680, 270));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PracticaWordle/InterfazGrafica/imagenes/wallpaper_hd.jpg"))); // NOI18N
-        jLabel1.setText("jLabel1");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        jToggleButtonJugar.setBackground(new java.awt.Color(204, 204, 204));
+        jToggleButtonJugar.setFont(new java.awt.Font("Dubai Medium", 1, 14)); // NOI18N
+        jToggleButtonJugar.setForeground(new java.awt.Color(0, 0, 0));
+        jToggleButtonJugar.setText("JUGAR");
+        add(jToggleButtonJugar, new org.netbeans.lib.awtextra.AbsoluteConstraints(232, 20, 310, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PracticaWordle/InterfazGrafica/imagenes/wallpaper_hd.jpg"))); // NOI18N
+        jLabel2.setText("jLabel2");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 770, 360));
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabelNombre;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JToggleButton jToggleButtonJugar;
     // End of variables declaration//GEN-END:variables
 }

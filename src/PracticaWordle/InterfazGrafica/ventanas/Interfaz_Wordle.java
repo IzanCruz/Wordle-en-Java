@@ -4,6 +4,8 @@
  */
 package PracticaWordle.InterfazGrafica.ventanas;
 
+import java.awt.BorderLayout;
+
 /**
  *
  * @author Usuario
@@ -18,8 +20,13 @@ public class Interfaz_Wordle extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         
         Jugar j1 = new Jugar(); 
-        this.getContentPane().add(j1);
-    
+        j1.setSize(770,360);
+        j1.setLocation(0,0);
+        
+        content.removeAll();
+        content.add(j1,BorderLayout.CENTER);
+        content.revalidate(); 
+        content.repaint();
     }
 
     /**
@@ -35,6 +42,7 @@ public class Interfaz_Wordle extends javax.swing.JFrame {
         jButtonJugar = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButtonOpciones = new javax.swing.JButton();
+        content = new javax.swing.JPanel();
         jLabelFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -44,10 +52,10 @@ public class Interfaz_Wordle extends javax.swing.JFrame {
         jLabelNombre.setFont(new java.awt.Font("Dubai Medium", 1, 100)); // NOI18N
         jLabelNombre.setForeground(new java.awt.Color(0, 0, 0));
         jLabelNombre.setText("WORDLE");
-        getContentPane().add(jLabelNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, 430, 100));
+        getContentPane().add(jLabelNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 10, 430, 100));
 
         jButtonJugar.setBackground(new java.awt.Color(204, 204, 204));
-        jButtonJugar.setFont(new java.awt.Font("Dubai Medium", 1, 48)); // NOI18N
+        jButtonJugar.setFont(new java.awt.Font("Dubai Medium", 1, 14)); // NOI18N
         jButtonJugar.setForeground(new java.awt.Color(0, 0, 0));
         jButtonJugar.setText("JUGAR");
         jButtonJugar.addActionListener(new java.awt.event.ActionListener() {
@@ -55,30 +63,69 @@ public class Interfaz_Wordle extends javax.swing.JFrame {
                 jButtonJugarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonJugar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 180, 400, 90));
+        getContentPane().add(jButtonJugar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, 170, 50));
 
         jButton1.setBackground(new java.awt.Color(204, 204, 204));
-        jButton1.setFont(new java.awt.Font("Dubai Medium", 1, 36)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Dubai Medium", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(0, 0, 0));
         jButton1.setText("ESTADISTICAS");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 290, 340, 90));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 120, 190, 50));
 
         jButtonOpciones.setBackground(new java.awt.Color(204, 204, 204));
-        jButtonOpciones.setFont(new java.awt.Font("Dubai Medium", 1, 36)); // NOI18N
+        jButtonOpciones.setFont(new java.awt.Font("Dubai Medium", 1, 14)); // NOI18N
         jButtonOpciones.setForeground(new java.awt.Color(0, 0, 0));
         jButtonOpciones.setText("OPCIONES");
-        getContentPane().add(jButtonOpciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 400, 290, 90));
+        getContentPane().add(jButtonOpciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 120, 180, 50));
+
+        content.setBackground(new java.awt.Color(204, 204, 204));
+        content.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
+
+        javax.swing.GroupLayout contentLayout = new javax.swing.GroupLayout(content);
+        content.setLayout(contentLayout);
+        contentLayout.setHorizontalGroup(
+            contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 762, Short.MAX_VALUE)
+        );
+        contentLayout.setVerticalGroup(
+            contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 352, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(content, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, 770, 360));
 
         jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PracticaWordle/InterfazGrafica/imagenes/wallpaper_hd.jpg"))); // NOI18N
         jLabelFondo.setText("jLabel1");
-        getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 860, 570));
+        getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 860, 580));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonJugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonJugarActionPerformed
+        Jugar j1 = new Jugar(); 
+        j1.setSize(770,360);
+        j1.setLocation(0,0);
         
+        content.removeAll();
+        content.add(j1,BorderLayout.CENTER);
+        content.revalidate(); 
+        content.repaint();
     }//GEN-LAST:event_jButtonJugarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Estadisticas e1 = new Estadisticas(); 
+        e1.setSize(770,360);
+        e1.setLocation(0,0);
+        
+        content.removeAll();
+        content.add(e1,BorderLayout.CENTER);
+        content.revalidate(); 
+        content.repaint();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -116,6 +163,7 @@ public class Interfaz_Wordle extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel content;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonJugar;
     private javax.swing.JButton jButtonOpciones;
