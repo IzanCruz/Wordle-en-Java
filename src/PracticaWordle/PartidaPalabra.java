@@ -82,10 +82,9 @@ public class PartidaPalabra implements Serializable{
         setPuntos(getPuntos() + getIntento().getNumIntento());
     }
 
-    public void resolver() {
+    public void resolver(Scanner s) {
         mostrarLeyenda();
-        String entrada = null;
-        Scanner s = new Scanner(System.in);
+        String entrada = null;        
         try {
             while (intento.getNumIntento() > 0 && !isGanada()) {// Mientras que el numero de intentos sea mayor que 0 o
                                                                 // no se haya adivinado la palabra

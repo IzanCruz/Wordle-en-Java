@@ -52,20 +52,6 @@ public class OperacionesFicheros {
         }
     }
 
-
-    /*public void guardarSistema(Wordle sistema) {
-        try {
-            LocalDateTime fechaAhora = LocalDateTime.now();
-            File ficheroBinario = new File("/ficheros/binarios/partida" + fechaAhora.toString() + ".dat");
-            ficheroBinario.createNewFile();
-            FileOutputStream fos = new FileOutputStream(ficheroBinario);
-            ObjectOutputStream escritorObjetos = new ObjectOutputStream(fos);
-            escritorObjetos.writeObject(ficheroBinario);                              
-        } catch(Exception e) {
-            System.err.println("Error al escribir en el archivo.");
-        }
-    }*/
-
     private String obtenerFechaYHora(){
         LocalDateTime fechaAhora = LocalDateTime.now();
         String fecha = new String();

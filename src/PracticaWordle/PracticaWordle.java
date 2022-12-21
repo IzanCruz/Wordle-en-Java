@@ -5,6 +5,8 @@
  */
 package PracticaWordle;
 
+import java.util.Scanner;
+
 import PracticaWordle.Exepciones.JugadorExcepcion;
 
 /**
@@ -18,9 +20,10 @@ public class PracticaWordle {
      * @throws JugadorExcepcion
      */
     public static void main(String[] args) throws JugadorExcepcion {
-        
+        Scanner s = new Scanner(System.in);
         
         Wordle w = new Wordle();
+
 
         OperacionesFicheros f = new OperacionesFicheros();
 
@@ -28,13 +31,9 @@ public class PracticaWordle {
         f.leerJugadores(w);
         f.leerPartidas(w);
 
-        w.rankingJugadores(w.getListaJugadores());
-        w.rankingAlfabetico(w.getListaJugadores());
-
+        w.mostrarMenu(s);
         
-        f.guardarJugadores(w);
-        f.guardarPartidas(w);
-
+        s.close();
     }
     
 }

@@ -150,7 +150,7 @@ public class Partida implements Serializable{
         }
     }
 
-    public void jugarPartida() {
+    public void jugarPartida(Scanner s) {
         int numJugadores = MAX_NUM_JUGADORES;
         if (jugador2 == null) {
             numJugadores--;
@@ -158,7 +158,7 @@ public class Partida implements Serializable{
         for (int j = 0; j < numJugadores; j++) {
             for (int i = 0; i < getNumPalabras(); i++) {
                 System.out.println("J" + (j + 1));
-                getListaPPalabras()[j][i].resolver();
+                getListaPPalabras()[j][i].resolver(s);
             }
         }
         actualizarDatos();      
