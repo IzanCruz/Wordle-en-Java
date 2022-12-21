@@ -24,7 +24,6 @@ public class PracticaWordle {
         
         Wordle w = new Wordle();
 
-
         OperacionesFicheros f = new OperacionesFicheros();
 
         

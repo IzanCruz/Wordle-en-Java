@@ -119,7 +119,7 @@ public class OperacionesFicheros {
                 return;
             }
         }catch(Exception e){
-            System.err.println("Error al leer el archivo" + e);;
+            System.err.println("Error al leer el archivo p" + e);;
         }
     }
 
@@ -138,7 +138,7 @@ public class OperacionesFicheros {
                 return;
             }
         }catch(Exception e){
-            System.err.println("Error al leer el archivo" + e);;
+            System.err.println("Error al leer el archivo j" + e);;
         }
     }
 
@@ -172,7 +172,7 @@ public class OperacionesFicheros {
             }
             escribir.close();
         }catch(Exception e){
-            System.err.println("Error al guardar las partidas" + e);
+            System.err.println("Error al guardar los Jugadores" + e);
         }
     }
 }
