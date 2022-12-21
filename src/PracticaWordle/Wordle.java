@@ -51,7 +51,7 @@ public class Wordle implements Serializable {
         OperacionesFicheros of = new OperacionesFicheros();
         String[] palabrasObtenidas = of.obtenerPalabras();
         for (int i = 0; i < numPalabras; i++) {
-            int aleatorio = (int) (Math.random() * of.getNumPalanbrasFich());
+            int aleatorio = (int) (Math.random() * of.getNumPalabrasFich());
             palabrasPartida[i] = palabrasObtenidas[aleatorio];
         }
         return palabrasPartida;
