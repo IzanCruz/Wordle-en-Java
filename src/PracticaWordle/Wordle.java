@@ -160,7 +160,7 @@ public class Wordle implements Serializable {
             System.out.println(j2.toString());
         }
         else{
-            System.out.println("El jugador no existe actualmente·\n");
+            System.out.println("El jugador no existe actualmente.\n");
         }
     }
 
