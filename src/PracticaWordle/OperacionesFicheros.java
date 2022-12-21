@@ -1,17 +1,9 @@
 
 package PracticaWordle;
 
-import java.io.BufferedReader;
-import java.io.EOFException;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 public class OperacionesFicheros {
 
@@ -73,6 +65,58 @@ public class OperacionesFicheros {
             System.err.println("Error al escribir en el archivo.");
         }
     }*/
+
+    private String obtenerFechaYHora(){
+        LocalDateTime fechaAhora = LocalDateTime.now();
+        String fecha = new String();
+        
+        fecha += "" + fechaAhora.getDayOfMonth() + ".";
+        fecha += "" + fechaAhora.getMonth().getValue() + ".";
+        fecha += "" + fechaAhora.getYear() + "-";
+        fecha += "" + fechaAhora.getHour() + "-";
+        fecha += "" + fechaAhora.getMinute();
+        
+        return fecha;
+    }
+
+    public void crearRanking(ArrayList <Jugador> n){
+        Object[] lista = n.toArray();
+        File f = new File("Ranking." + obtenerFechaYHora() + ".txt");
+
+        try{
+            f.createNewFile();
+            FileWriter fw = new FileWriter(f);
+            BufferedWriter bw = new BufferedWriter(fw);
+            int i = 0;
+            while(i < lista.length){
+                bw.write(lista[i].toString());
+                i++;
+            }
+            bw.close();
+        }catch(Exception e){
+            System.err.println("Error al generar el archivo" + e);
+        }
+    }
+
+    public void crearRankingAlfabetico(ArrayList <Jugador> n){
+        Object[] lista = n.toArray();
+        File f = new File("Listado." + obtenerFechaYHora() + ".txt");
+
+        try{
+            f.createNewFile();
+            FileWriter fw = new FileWriter(f);
+            BufferedWriter bw = new BufferedWriter(fw);
+            int i = 0;
+            while(i < lista.length){
+                bw.write(lista[i].toString());
+                i++;
+            }
+            bw.close();
+        }catch(Exception e){
+            System.err.println("Error al generar el archivo" + e);
+        }
+    }
+
 
     public void leerPartidas(Wordle w){
         Partida p;

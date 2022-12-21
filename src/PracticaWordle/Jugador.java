@@ -86,7 +86,7 @@ public class Jugador implements Serializable{
 
     @Override
     public String toString() {
-        return (getNombre() + "\n" + getPuntos() + " pts\n" + getGanadas() + " ganadas\n" + getEmpatadas() + " empatadas\n" + getPerdidas() + " perdidas");
+        return (getNombre() + "\n" + getPuntos() + " pts\n" + getGanadas() + " ganadas\n" + getEmpatadas() + " empatadas\n" + getPerdidas() + " perdidas\n");
     }
     
 }

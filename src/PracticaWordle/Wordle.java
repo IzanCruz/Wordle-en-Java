@@ -88,53 +88,29 @@ public class Wordle implements Serializable {
             System.err.println("Error: Esta partida ya se ha guardado anteriormente.");
     }
 
-    /*
-     * private Jugador encontrarJugador(String nombre) {
-     * Jugador aux = new Jugador(nombre);
-     * int pos = listaJugadores.indexOf(aux);
-     * return listaJugadores.get(pos);
-     * }
-     */
-
     private boolean existeJugador(String nombre) {
         Jugador jugador = new Jugador(nombre);
         return listaJugadores.contains(jugador);
     }
 
-    /*
-     * private boolean existeJugador(Jugador j){
-     * int i = 0;
-     * boolean estado = false;
-     * do{
-     * estado = getListaJugadores().get(i).equals(j);
-     * i++;
-     * }
-     * while((i < (getListaJugadores().size() - 1)) && (estado == false));
-     * return estado;
-     * }
-     */
-
-    public String rankingJugadores(ArrayList<Jugador> list) {
-        list.sort(new ComparadorJugador());
-        return imprimirListaJ(list);
+    public void rankingJugadores(ArrayList<Jugador> list) {
+        ArrayList <Jugador> aux = list;
+        aux.sort(new ComparadorJugador());
+        OperacionesFicheros f = new OperacionesFicheros();
+        f.crearRanking(aux);
     }
 
-    public String ordenAlfabetico(ArrayList<Jugador> list) {
-        list.sort(new ComparadorAlfabetico());
-        return imprimirListaJ(list);
+    public void rankingAlfabetico(ArrayList<Jugador> list) {
+        ArrayList <Jugador> aux = list;
+        aux.sort(new ComparadorAlfabetico());
+        OperacionesFicheros f = new OperacionesFicheros();
+        f.crearRankingAlfabetico(aux);
     }
 
-    public String partidas(ArrayList<Partida> part) {
+    /*public String partidas(ArrayList<Partida> part) {
         return imprimirListaP(part);
     }
 
-    private String imprimirListaJ(ArrayList<Jugador> list) {
-        String aux = "";
-        for (int i = 0; i <= (list.size() - 1); i++) {
-            aux += list.get(i).toString();
-        }
-        return aux;
-    }
 
     private String imprimirListaP(ArrayList<Partida> list) {
         String aux = "";
@@ -142,6 +118,6 @@ public class Wordle implements Serializable {
             aux += list.get(i).toString();
         }
         return aux;
-    }
+    }*/
 
 }

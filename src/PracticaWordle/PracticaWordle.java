@@ -28,6 +28,9 @@ public class PracticaWordle {
         f.leerJugadores(w);
         f.leerPartidas(w);
 
+        w.rankingJugadores(w.getListaJugadores());
+        w.rankingAlfabetico(w.getListaJugadores());
+
         
         f.guardarJugadores(w);
         f.guardarPartidas(w);
