@@ -6,6 +6,7 @@
 package PracticaWordle;
 
 import java.io.Serializable;
+import java.util.Scanner;
 
 /**
  *
