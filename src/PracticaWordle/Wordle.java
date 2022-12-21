@@ -114,6 +114,7 @@ public class Wordle implements Serializable {
             while(i < getListaJugadores().size() && !encontrado){
                 aux = getListaJugadores().get(i);
                 encontrado = j.equals(aux);
+                i++;
             }
             return aux;
         }
@@ -149,8 +150,18 @@ public class Wordle implements Serializable {
         return aux;
     }*/
 
-    public void mostarEstadisticasJugador(Jugador j) {
-        System.out.println(j.toString());
+    public void mostrarEstadisticas(Scanner s) {
+        System.out.println("Escriba el nombre del jugador: ");
+        String res = s.next();
+        System.out.println("\n\n");
+        if (existeJugador(res)){
+            Jugador j = new Jugador(res);
+            Jugador j2 = encontrarJugador(j);
+            System.out.println(j2.toString());
+        }
+        else{
+            System.out.println("El jugador no existe actualmente·\n");
+        }
     }
 
     public void mostrarMenu(Scanner s) throws JugadorExcepcion {
@@ -188,8 +199,8 @@ public class Wordle implements Serializable {
                         }
                     }
             break;            
-            case 2: ;
-            break;            
+            case 2: mostrarEstadisticas(s);
+                    break;            
                 case 3: if(comprobarAdministrador(s)){
                             mostrarConfigurarOpciones();
                             opcion = s.nextInt();
