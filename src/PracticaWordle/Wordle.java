@@ -263,7 +263,7 @@ public class Wordle implements Serializable {
     }
 
     private void leyendaInicio() {
-        System.out.println("Hola! Bienvenido a Wordle.\n"
+        System.out.println("\nHola! Bienvenido a Wordle.\n"
         + "Wordle es un juego de palabras en el que deberás adivinar la palabra oculta.\n\n"
         + "Selecciona una opción:\n\n"
         + "1. Jugar.\n"
@@ -274,7 +274,7 @@ public class Wordle implements Serializable {
     }
 
     private void MostrarOpcionesPartida() {
-        System.out.println("Seleccione modo de juego:\n\n"
+        System.out.println("\nSeleccione modo de juego:\n\n"
         + "1. Modo entrenamiento.\n"
         + "2. 1 contra 1.\n"
         + "3. volver atras.\n"
@@ -282,7 +282,7 @@ public class Wordle implements Serializable {
     }    
 
     private void mostrarConfigurarOpciones() {
-        System.out.println("Seleccione una opción:\n\n"
+        System.out.println("\nSeleccione una opción:\n\n"
         + "1. Modificar número de palabras en las partidas.\n"
         + "2. Registrar jugador.\n"
         + "3. Eliminar jugador.\n"
@@ -301,7 +301,7 @@ public class Wordle implements Serializable {
         if (b1 && b2)
             return true;
         else{
-            System.out.println("Usuario o contrasena incorrectos.");
+            System.out.println("\nUsuario o contrasena incorrectos.\n");
             return false;
         }
     }
