@@ -20,7 +20,8 @@ public class Wordle implements Serializable {
 
     // Atributes
     private ArrayList<Partida> listaPartidas;
-    private ArrayList<Jugador> listaJugadores;        
+    private ArrayList<Jugador> listaJugadores;  
+    private static final int PALABRAS_POR_DEFECTO = 1;      
 
     // Constructors
     public Wordle() {
@@ -147,7 +148,7 @@ public class Wordle implements Serializable {
     }
 
     private void menu(Scanner s, int opcion) throws JugadorExcepcion { 
-        int numPalabras = 1;     
+        int numPalabras = PALABRAS_POR_DEFECTO;     
         OperacionesFicheros of = new OperacionesFicheros();     
         switch(opcion) {
             case 1: MostrarOpcionesPartida();
@@ -165,7 +166,6 @@ public class Wordle implements Serializable {
                     Jugador j2 = new Jugador(s.next());
                     iniciarPartida(j1, j2, numPalabras, s);
 
-                    of.guardarSistema(this);
             break;            
             case 2: ;
             break;            
@@ -222,6 +222,8 @@ public class Wordle implements Serializable {
                     }
             break;            
             case 4: System.out.println("Saliendo...");
+                    of.guardarPartidas(this);
+                    of.guardarJugadores(this);
             break;            
         }
     }
