@@ -5,11 +5,13 @@
  */
 package PracticaWordle;
 
+import java.io.Serializable;
+
 /**
  *
  * @author USER
  */
-public class Palabra {
+public class Palabra implements Serializable{
     //Atributos 
     private static final int MAX = 5; 
     private char[] palabra;

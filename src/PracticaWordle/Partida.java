@@ -5,11 +5,13 @@
  */
 package PracticaWordle;
 
+import java.io.Serializable;
+
 /**
  *
  * @author USER
  */
-public class Partida {
+public class Partida implements Serializable{
     // Atributes
     private int numPalabras; // Numero de palabras que se juega
     private Jugador jugador1, jugador2, ganador;

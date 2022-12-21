@@ -4,11 +4,13 @@
  */
 package PracticaWordle;
 
+import java.io.Serializable;
+
 /**
  *
  * @author santi
  */
-public class CardinalidadPalabra {
+public class CardinalidadPalabra implements Serializable{
 
     private CardinalidadLetras[] cl;
     private int cont;

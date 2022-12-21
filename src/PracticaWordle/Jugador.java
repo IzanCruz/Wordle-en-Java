@@ -5,11 +5,13 @@
  */
 package PracticaWordle;
 
+import java.io.Serializable;
+
 /**
  *
  * @author USER
  */
-public class Jugador {
+public class Jugador implements Serializable{
     
     private String nombreUsuario;
     private int puntos;

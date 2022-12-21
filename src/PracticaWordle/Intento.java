@@ -5,11 +5,13 @@
  */
 package PracticaWordle;
 
+import java.io.Serializable;
+
 /**
  *
  * @author USER
  */
-public class Intento {
+public class Intento implements Serializable{
 
     private int numIntento;
     private static final int MAXNUMINTENTOS = 5;

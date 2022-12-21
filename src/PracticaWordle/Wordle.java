@@ -80,7 +80,7 @@ public class Wordle implements Serializable {
         System.out.println("Fin de partida");
     }
 
-    private void anadirPartida(Partida p) {
+    public void anadirPartida(Partida p) {
         if (!listaPartidas.contains(p)) {
             listaPartidas.add(p);
             System.out.println("La partida se ha guardado correctamente.");

@@ -5,13 +5,14 @@
  */
 package PracticaWordle;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
 /**
  *
  * @author USER
  */
-public class PartidaPalabra {
+public class PartidaPalabra implements Serializable{
     // Atributes
     private Jugador jugador;
     private boolean ganada;
