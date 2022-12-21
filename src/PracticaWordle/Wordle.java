@@ -6,6 +6,8 @@
 package PracticaWordle;
 
 import java.util.ArrayList;
+import java.util.Scanner;
+
 import PracticaWordle.Exepciones.JugadorExcepcion;
 import java.io.Serializable;
 
@@ -18,7 +20,7 @@ public class Wordle implements Serializable {
 
     // Atributes
     private ArrayList<Partida> listaPartidas;
-    private ArrayList<Jugador> listaJugadores;
+    private ArrayList<Jugador> listaJugadores;        
 
     // Constructors
     public Wordle() {
@@ -45,6 +47,12 @@ public class Wordle implements Serializable {
         }
     }
 
+    public void eliminarJugador(Jugador j) throws JugadorExcepcion {
+        if (existeJugador(j.getNombre())) {
+            listaJugadores.remove(j);
+        }
+    }
+
     private String[] meterPalabras(Partida p) {
         int numPalabras = p.getNumPalabras() * 2;
         String[] palabrasPartida = new String[numPalabras];
@@ -57,7 +65,7 @@ public class Wordle implements Serializable {
         return palabrasPartida;
     }
 
-    public void iniciarPartida(Jugador j1, Jugador j2, int numPalabras) throws JugadorExcepcion {
+    public void iniciarPartida(Jugador j1, Jugador j2, int numPalabras, Scanner s) throws JugadorExcepcion {
         // Verifico si los jugadores con los que se quiere iniciar la partida están
         // registrados
         // Jugador jug1 = registrarJugador(j1);
@@ -74,7 +82,7 @@ public class Wordle implements Serializable {
         String[] palabras = meterPalabras(p);
         // Se crean todas las partidasPalabras y finalmente se juega la partida
         p.crearPartidasPalabra(palabras);
-        p.jugarPartida();
+        p.jugarPartida(s);
         // Se añade la partida a la lista de partidas
         anadirPartida(p);
         System.out.println("Fin de partida");
@@ -88,31 +96,11 @@ public class Wordle implements Serializable {
             System.err.println("Error: Esta partida ya se ha guardado anteriormente.");
     }
 
-    /*
-     * private Jugador encontrarJugador(String nombre) {
-     * Jugador aux = new Jugador(nombre);
-     * int pos = listaJugadores.indexOf(aux);
-     * return listaJugadores.get(pos);
-     * }
-     */
-
     private boolean existeJugador(String nombre) {
         Jugador jugador = new Jugador(nombre);
         return listaJugadores.contains(jugador);
     }
 
-    /*
-     * private boolean existeJugador(Jugador j){
-     * int i = 0;
-     * boolean estado = false;
-     * do{
-     * estado = getListaJugadores().get(i).equals(j);
-     * i++;
-     * }
-     * while((i < (getListaJugadores().size() - 1)) && (estado == false));
-     * return estado;
-     * }
-     */
 
     public String rankingJugadores(ArrayList<Jugador> list) {
         list.sort(new ComparadorJugador());
@@ -143,5 +131,128 @@ public class Wordle implements Serializable {
         }
         return aux;
     }
+
+    public void mostarEstadisticasJugador(Jugador j) {
+        System.out.println(j.toString());
+    }
+
+    public void mostrarMenu(Scanner s) throws JugadorExcepcion {
+        int eleccion;
+        do {
+            leyendaInicio();
+            eleccion = s.nextInt();
+            menu(s, eleccion);
+        } while (eleccion != 4);
+        
+    }
+
+    private void menu(Scanner s, int opcion) throws JugadorExcepcion { 
+        int numPalabras = 1;     
+        OperacionesFicheros of = new OperacionesFicheros();     
+        switch(opcion) {
+            case 1: MostrarOpcionesPartida();
+                    opcion = s.nextInt();
+                    if (opcion == 1) {
+                        System.out.print("Jugador: ");
+                        Jugador j1 = new Jugador(s.next());
+                        iniciarPartida(j1, null, numPalabras, s);
+                    }
+                        
+                    else if (opcion == 2) 
+                    System.out.print("Jugador 1: ");
+                    Jugador j1 = new Jugador(s.next());
+                    System.out.print("\nJugador 2: ");
+                    Jugador j2 = new Jugador(s.next());
+                    iniciarPartida(j1, j2, numPalabras, s);
+
+                    of.guardarSistema(this);
+            break;            
+            case 2: ;
+            break;            
+            case 3: mostrarConfigurarOpciones();
+                    opcion = s.nextInt();
+                    if (opcion == 1) {
+                        do {
+                            System.out.print("Inserte un numero entre 1 y 10.\n"
+                            + "Número de palabras por partida: "
+                            );
+                            numPalabras = s.nextInt();
+                            System.out.println();
+                        } while((numPalabras < 1) && (numPalabras > 10));
+                        
+                    } 
+                    else if (opcion == 2) {
+                        System.out.println("Introduzca el nombre: ");
+                        registrarJugador(new Jugador(s.next()));
+                    }   
+                    else if (opcion == 3) {
+                        String nombreJugador = null;                                                
+                        do {
+                            System.out.println("\nPulse 0 si desea salir. 1 para continuar.");
+                            opcion = s.nextInt();
+                            if (opcion != 0) {                                                        
+                                System.out.println("Introduzca el nombre: "); 
+                                nombreJugador = s.next();                           
+                                if (existeJugador(nombreJugador)) {                               
+                                    System.out.println("Seguro que desea eliminar a " + nombreJugador);
+                                    System.out.println("1. Sí.\n"
+                                    + "2. No.\n");
+                                    opcion = s.nextInt();
+                                    if (opcion == 1) {
+                                        eliminarJugador(new Jugador(nombreJugador));
+                                        System.out.println("El jugador \'" + nombreJugador + "\' ha sido eliminado.");
+                                    }       
+                                    
+                                    System.out.println("Desea eliminar a otro jugador?\n\n"
+                                    + "1. Sí.\n"                            
+                                    + "2. No.\n"                            
+                                    );
+
+                                    opcion = s.nextInt();
+                                }
+                                else {
+                                    System.out.println("El jugador \'" + nombreJugador + "\' no existe.\n" 
+                                    + "Inserte un nombre válido.\n\n" 
+                                    );    
+                                                                
+                                }     
+                            }                                                                            
+                            
+                        } while ((opcion == 1) );                                                                        
+                    }
+            break;            
+            case 4: System.out.println("Saliendo...");
+            break;            
+        }
+    }
+
+    private void leyendaInicio() {
+        System.out.println("Hola! Bienvenido a Wordle.\n"
+        + "Wordle es un juego de palabras en el que deberás adivinar la palabra oculta.\n\n"
+        + "Selecciona una opción:\n\n"
+        + "1. Jugar.\n"
+        + "2. Consultar Estadísticas.\n"
+        + "3. Configurar Opciones.\n"
+        + "4. Salir.\n"        
+        );
+    }
+
+    private void MostrarOpcionesPartida() {
+        System.out.println("Seleccione modo de juego:\n\n"
+        + "1. Modo entrenamiento.\n"
+        + "2. 1 contra 1.\n"
+        );        
+    }    
+
+    private void mostrarConfigurarOpciones() {
+        System.out.println("Seleccione una opción:\n\n"
+        + "1. Modificar número de palabras en las partidas.\n"
+        + "2. Registrar jugador.\n"
+        + "3. Eliminar jugador.\n"
+        ); 
+    }
+
+
+    
 
 }

@@ -5,6 +5,8 @@
  */
 package PracticaWordle;
 
+import java.util.Scanner;
+
 import PracticaWordle.Exepciones.JugadorExcepcion;
 
 /**
@@ -18,23 +20,27 @@ public class PracticaWordle {
      * @throws JugadorExcepcion
      */
     public static void main(String[] args) throws JugadorExcepcion {
-        
+        Scanner s = new Scanner(System.in);
         
         Wordle w = new Wordle();
 
-        Jugador j1 = new Jugador("Santiago");
-        Jugador j2 = new Jugador("David");
+        OperacionesFicheros of = new OperacionesFicheros();
 
-        j1.setPuntos(10);
+        //Jugador j1 = new Jugador("Santiago");
+        //Jugador j2 = new Jugador("David");
+
+        //j1.setPuntos(10);
 
         
-        w.registrarJugador(j1);
-        w.registrarJugador(j2);
+        //w.registrarJugador(j1);
+        //w.registrarJugador(j2);
 
         //w.iniciarPartida("David", "Santiago", 1);
-        w.iniciarPartida(j1, j2, 1);
+        //w.iniciarPartida(j1, j2, 1, s);
 
-        System.out.println(w.getListaPartidas().get(0).toString());
+        w.mostrarMenu(s);
+
+        //System.out.println(w.getListaPartidas().get(0).toString());
 
         /*PartidaPalabra [][] aux = w.getListaPartidas().get(0).getListaPPalabras();
         for (int j = 0; j<=1; j++){    
@@ -42,6 +48,10 @@ public class PracticaWordle {
                 System.out.println(aux[j][i].getPalabraOculta().toString());
             }
         }*/
+
+        //of.guardarSistema(w);    
+        
+        s.close();
     }
     
 }

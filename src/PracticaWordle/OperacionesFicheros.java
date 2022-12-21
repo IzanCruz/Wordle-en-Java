@@ -57,12 +57,24 @@ public class OperacionesFicheros {
     }
 
     public void guardarSistema(Wordle sistema) {
-        try {
-            LocalDateTime fechaAhora = LocalDateTime.now();
-            File ficheroBinario = new File("/ficheros/binarios/partida" + fechaAhora.toString() + ".dat");
+        try {                        
+            File ficheroBinario = new File("/ficheros/binarios/partidas.dat");            
             ficheroBinario.createNewFile();
             FileOutputStream fos = new FileOutputStream(ficheroBinario);
-            ObjectOutputStream escritorObjetos = new ObjectOutputStream(fos);
+            ObjectOutputStream escritorObjetos = new ObjectOutputStream(fos);            
+            escritorObjetos.writeObject(ficheroBinario);                              
+        } catch(Exception e) {
+            System.err.println("Error al escribir en el archivo." + e.getMessage());
+        }
+    }
+
+    public void guardarJugadores(Jugador sistema){
+        try {                        
+            File ficheroBinario = new File("jugadores.dat");
+            if (!ficheroBinario.exists()) 
+                ficheroBinario.createNewFile();
+            FileOutputStream fos = new FileOutputStream(ficheroBinario);
+            ObjectOutputStream escritorObjetos = new ObjectOutputStream(fos);            
             escritorObjetos.writeObject(ficheroBinario);                              
         } catch(Exception e) {
             System.err.println("Error al escribir en el archivo.");
