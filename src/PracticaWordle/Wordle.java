@@ -186,7 +186,7 @@ public class Wordle implements Serializable {
             case "1":
                 mostrarOpcionesPartida();
                 opcion = s.next();
-                if (opcion.equals(1)) {
+                if (opcion.equals("1")) {
                     System.out.print("Jugador: ");
                     Jugador j1 = new Jugador(s.next());
                     if (j1 == encontrarJugador(j1)) {

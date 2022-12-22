@@ -153,25 +153,20 @@ public class PartidaPalabra implements Serializable{
             // Creamos los dos tipos de pista
             PistaLetra p1 = new PistaLetra();
             PistaPalabra p2 = new PistaPalabra();
-
-            if (palabra.length() == 1) {// En caso de que se untroduzca solo un caracter, se comprueba si es un 1
-                boolean b;
-                if (palabra.equals("1")) {
-                    b = p1.obtenerPista(getJugador(), getPalabraOculta(), getIntento(), getLetrasEncontradas());
-                    if (b){
-                        getJugador().setPuntos(getPuntos()-COSTE_PISTALETRA);
-                        setPistas(getPistas()+1);
-                    }
+            // En caso de que se untroduzca solo un caracter, se comprueba si es un 1
+            boolean b;
+            if (palabra.equals("1")) {
+                b = p1.obtenerPista(getJugador(), getPalabraOculta(), getIntento(), getLetrasEncontradas());
+                if (b){
+                    getJugador().setPuntos(getPuntos()-COSTE_PISTALETRA);
+                    setPistas(getPistas()+1);
                 }
-
-                if (palabra.equals("2")) {
-                    setGanada(p2.obtenerPista(getJugador(), getPalabraOculta(), getIntento(), getLetrasEncontradas()));
-                    if (isGanada()){
-                        getJugador().setPuntos(getPuntos()-COSTE_PISTAPALABRA);
-                        setPistas(getPistas()+1);
-                    }
+            }else if (palabra.equals("2")) {
+                setGanada(p2.obtenerPista(getJugador(), getPalabraOculta(), getIntento(), getLetrasEncontradas()));
+                if (isGanada()){
+                    getJugador().setPuntos(getPuntos()-COSTE_PISTAPALABRA);
+                    setPistas(getPistas()+1);
                 }
-
             } else {
                 respuesta = "\nNo se ha introducido una palabra de 5 letras. Inserte una válida\n";
             }
