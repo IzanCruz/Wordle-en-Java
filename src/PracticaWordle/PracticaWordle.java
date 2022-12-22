@@ -21,11 +21,8 @@ public class PracticaWordle {
      */
     public static void main(String[] args) throws JugadorExcepcion {
         Scanner s = new Scanner(System.in);
-        
         Wordle w = new Wordle();
-
         OperacionesFicheros f = new OperacionesFicheros();
-
         
         f.leerJugadores(w);
         f.leerPartidas(w);
