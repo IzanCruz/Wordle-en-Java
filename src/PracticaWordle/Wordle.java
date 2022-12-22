@@ -7,6 +7,9 @@ package PracticaWordle;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import javax.swing.plaf.synth.SynthStyle;
+
 import PracticaWordle.Exepciones.JugadorExcepcion;
 import java.io.Serializable;
 
@@ -254,6 +257,7 @@ public class Wordle implements Serializable {
         + "1. Mostrar ranking jugadores."
         + "2. Volver al menu principal.");
         int res = s.nextInt();
+        System.out.println("\n");
         if (res == 1){
             ArrayList <Jugador> aux = getListaJugadores();
             aux.sort(new ComparadorJugador());
