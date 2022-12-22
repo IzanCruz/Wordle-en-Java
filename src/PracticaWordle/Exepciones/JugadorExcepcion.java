@@ -3,7 +3,7 @@ package PracticaWordle.Exepciones;
 
 /**
  *
- * @author santi
+ * @author GRUPO 19
  */
 public class JugadorExcepcion extends Exception{
 

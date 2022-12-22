@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author USER
+ * @author GRUPO 19
  */
 public class Partida implements Serializable{
     // Atributes

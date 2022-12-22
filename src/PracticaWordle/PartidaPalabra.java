@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author USER
+ * @author GEUPO 19
  */
 public class PartidaPalabra implements Serializable{
     // Atributes

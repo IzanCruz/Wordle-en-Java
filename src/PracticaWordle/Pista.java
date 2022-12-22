@@ -7,7 +7,7 @@ package PracticaWordle;
 
 /**
  *
- * @author USER
+ * @author GRUPO 19
  */
 public abstract class Pista {
     //Atributes

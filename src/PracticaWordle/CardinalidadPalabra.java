@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 /**
  *
- * @author santi
+ * @author GRUPO 19
  */
 public class CardinalidadPalabra implements Serializable{
 

@@ -13,7 +13,7 @@ import java.io.Serializable;
 
 /**
  *
- * @author USER
+ * @author GRUPO 19
  */
 public class Wordle implements Serializable {
 

@@ -7,7 +7,7 @@ package PracticaWordle;
 import java.util.Comparator;
 /**
  *
- * @author USER
+ * @author GRUPO 19
  */
 public class ComparadorAlfabetico implements Comparator <Jugador>{
 
