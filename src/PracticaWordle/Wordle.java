@@ -70,14 +70,14 @@ public class Wordle implements Serializable {
     public void iniciarPartida(Jugador j1, Jugador j2, int numPalabras, Scanner s) throws JugadorExcepcion {
         // Verifico si los jugadores con los que se quiere iniciar la partida están
         // registrados
-        // Jugador jug1 = registrarJugador(j1);
+        Jugador jug1 = encontrarJugador(j1);
         Partida p;
         // Creo la partida con los jugadores y el numero de palabras que se me indique
         if (j2 != null) {
-            // Jugador jug2 = registrarJugador(j2);
-            p = new Partida(j1, j2, numPalabras);
+            Jugador jug2 = encontrarJugador(j2);
+            p = new Partida(jug1, jug2, numPalabras);
         } else
-            p = new Partida(j1, numPalabras);
+            p = new Partida(jug1, numPalabras);
 
         // Se obtienen las palabras de manera aleatoria accediendo a un fichero con
         // miles de palabras
@@ -85,9 +85,11 @@ public class Wordle implements Serializable {
         // Se crean todas las partidasPalabras y finalmente se juega la partida
         p.crearPartidasPalabra(palabras);
         p.jugarPartida(s);
-        // Se añade la partida a la lista de partidas
-        anadirPartida(p);
-        System.out.println("\nFin de partida\n");
+        System.out.println("Fin de partida");
+        if (j2 != null){
+            // Se añade la partida a la lista de partidas
+            anadirPartida(p);
+        }
     }
 
     public void anadirPartida(Partida p) {
@@ -259,28 +261,31 @@ public class Wordle implements Serializable {
     }
 
     private void leyendaInicio() {
-        System.out.println("Hola! Bienvenido a Wordle.\n"
-                + "Wordle es un juego de palabras en el que deberás adivinar la palabra oculta.\n\n"
-                + "Selecciona una opción:\n\n"
-                + "1. Jugar.\n"
-                + "2. Consultar Estadísticas.\n"
-                + "3. Configurar Opciones.\n"
-                + "4. Salir.\n");
+        System.out.println("\nHola! Bienvenido a Wordle.\n"
+        + "Wordle es un juego de palabras en el que deberás adivinar la palabra oculta.\n\n"
+        + "Selecciona una opción:\n\n"
+        + "1. Jugar.\n"
+        + "2. Consultar Estadísticas.\n"
+        + "3. Configurar Opciones.\n"
+        + "4. Salir.\n"        
+        );
     }
 
-    private void MostrarMenuPartida() {
-        System.out.println("Seleccione modo de juego:\n\n"
-                + "1. Modo entrenamiento.\n"
-                + "2. 1 contra 1.\n"
-                + "3. Salir.\n");
-    }
+    private void mostrarOpcionesPartida() {
+        System.out.println("\nSeleccione modo de juego:\n\n"
+        + "1. Modo entrenamiento.\n"
+        + "2. 1 contra 1.\n"
+        + "3. Volver al menu principal.\n"
+        );        
+    }    
 
-    private void mostrarMenuConfigurarOpciones() {
-        System.out.println("Seleccione una opción:\n\n"
-                + "1. Modificar número de palabras en las partidas.\n"
-                + "2. Registrar jugador.\n"
-                + "3. Eliminar jugador.\n"
-                + "4. Salir.\n");
+    private void mostrarConfigurarOpciones() {
+        System.out.println("\nSeleccione una opción:\n\n"
+        + "1. Modificar número de palabras en las partidas.\n"
+        + "2. Registrar jugador.\n"
+        + "3. Eliminar jugador.\n"
+        + "4. Volver al menu principal.\n"
+        ); 
     }
 
     private void mostrarMenuEstadisticas() {
