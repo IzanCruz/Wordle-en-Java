@@ -42,7 +42,7 @@ public class Wordle implements Serializable {
     }
 
     // Methods
-    public void registrarJugador(Jugador j) throws JugadorExcepcion {
+    private void registrarJugador(Jugador j) throws JugadorExcepcion {
         if (!existeJugador(j.getNombre())) {
             listaJugadores.add(j);
             System.out.println(j.getNombre() + " has sido registrado con éxito!");
@@ -51,7 +51,7 @@ public class Wordle implements Serializable {
         }
     }
 
-    public void eliminarJugador(Jugador j) throws JugadorExcepcion {
+    private void eliminarJugador(Jugador j) throws JugadorExcepcion {
         if (existeJugador(j.getNombre())) {
             listaJugadores.remove(j);
         }
@@ -69,7 +69,7 @@ public class Wordle implements Serializable {
         return palabrasPartida;
     }
 
-    public void iniciarPartida(Jugador j1, Jugador j2, int numPalabras, Scanner s) throws JugadorExcepcion {
+    private void iniciarPartida(Jugador j1, Jugador j2, int numPalabras, Scanner s) throws JugadorExcepcion {
         // Verifico si los jugadores con los que se quiere iniciar la partida están
         // registrados
         Jugador jug1 = encontrarJugador(j1);
@@ -94,7 +94,7 @@ public class Wordle implements Serializable {
         }
     }
 
-    public void anadirPartida(Partida p) {
+    private void anadirPartida(Partida p) {
         if (!listaPartidas.contains(p)) {
             listaPartidas.add(p);
             System.out.println("La partida se ha guardado correctamente.");
@@ -124,14 +124,14 @@ public class Wordle implements Serializable {
         }
     }
 
-    public void rankingJugadores(ArrayList<Jugador> list) {
+    private void rankingJugadores(ArrayList<Jugador> list) {
         ArrayList<Jugador> aux = list;
         aux.sort(new ComparadorJugador());
         OperacionesFicheros f = new OperacionesFicheros();
         f.crearRanking(aux);
     }
 
-    public void rankingAlfabetico(ArrayList<Jugador> list) {
+    private void rankingAlfabetico(ArrayList<Jugador> list) {
         ArrayList<Jugador> aux = list;
         aux.sort(new ComparadorAlfabetico());
         OperacionesFicheros f = new OperacionesFicheros();
@@ -153,7 +153,7 @@ public class Wordle implements Serializable {
      * }
      */
 
-    public void mostrarEstadisticas(Scanner s) {
+    private void mostrarEstadisticas(Scanner s) {
         System.out.println("Escriba el nombre del jugador: ");
         String res = s.next();
         System.out.println("\n\n");
@@ -205,8 +205,6 @@ public class Wordle implements Serializable {
                     mostrarOpcionesPerfil(s);
                     break;            
             case 3: if(comprobarAdministrador(s)){
-                            mostrarConfigurarOpciones();
-                            opcion = s.nextInt();
                             ejecutarOpciones(s, opcion, numPalabras);
                     }
                 break;            
@@ -241,7 +239,9 @@ public class Wordle implements Serializable {
         + "1. Modificar número de palabras en las partidas.\n"
         + "2. Registrar jugador.\n"
         + "3. Eliminar jugador.\n"
-        + "4. Volver al menu principal.\n"
+        + "4. Generar archivo de ranking de jugadores.\n"
+        + "5. Generar archivo de listado de jugadores.\n"
+        + "6. Volver al menu principal.\n"
         ); 
     }
 
@@ -328,8 +328,14 @@ public class Wordle implements Serializable {
                                 }
                             }
                         } while ((opcion == 1));
-                    } else if (opcion == 4)
-                        System.out.println("Volviendo al menu principal...");
+                    } else if (opcion == 4){
+                        rankingJugadores(getListaJugadores());
+                        System.out.println("Ranking generado correctamente.\n");
+                    } else if (opcion == 5){
+                        rankingAlfabetico(getListaJugadores());
+                        System.out.println("Listado generado correctamente.\n");
+                    } else if (opcion == 6)
+                            System.out.println("Volviendo al menu principal...\n");
     }
 
 }
