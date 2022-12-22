@@ -177,7 +177,6 @@ public class PartidaPalabra implements Serializable{
             }
         }
         return respuesta;
-
     }
 
     private void mostrarPalabraOculta() {

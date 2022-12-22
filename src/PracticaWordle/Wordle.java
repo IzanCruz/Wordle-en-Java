@@ -42,7 +42,7 @@ public class Wordle implements Serializable {
     }
 
     // Methods
-    private void registrarJugador(Jugador j) throws JugadorExcepcion {
+    public void registrarJugador(Jugador j) throws JugadorExcepcion {
         if (!existeJugador(j.getNombre())) {
             listaJugadores.add(j);
             System.out.println(j.getNombre() + " has sido registrado con éxito!");
@@ -94,7 +94,7 @@ public class Wordle implements Serializable {
         }
     }
 
-    private void anadirPartida(Partida p) {
+    public void anadirPartida(Partida p) {
         if (!listaPartidas.contains(p)) {
             listaPartidas.add(p);
             System.out.println("\nLa partida se ha guardado correctamente.");
@@ -174,12 +174,13 @@ public class Wordle implements Serializable {
         do {
             leyendaInicio();
             eleccion = s.nextInt();
-            menu(s, eleccion, numPalabras);
+            numPalabras = menu(s, eleccion, numPalabras);
         } while (eleccion != 4);
 
     }
 
-    private void menu(Scanner s, int opcion, int numPalabras) throws JugadorExcepcion {        
+    private int menu(Scanner s, int opcion, int numPalabras) throws JugadorExcepcion {  
+        int num = numPalabras;      
         OperacionesFicheros of = new OperacionesFicheros();
         switch (opcion) {
             case 1:
@@ -191,7 +192,7 @@ public class Wordle implements Serializable {
                     if (j1 == encontrarJugador(j1)) {
                         System.out.println("El jugador que ha introducido no se encuentra en la lista.\n"
                                 + "No se guardarán los datos de esta partida.");
-                        iniciarPartida(j1, null, numPalabras, s);
+                        iniciarPartida(j1, null, num, s);
                     }
                 }else if(opcion == 2){
                     System.out.println("\nJugador 1: ");
@@ -200,7 +201,7 @@ public class Wordle implements Serializable {
                     Jugador j2 = new Jugador(s.next());
                     Jugador jug1 = encontrarJugador(j1);
                     Jugador jug2 = encontrarJugador(j2);
-                    iniciarPartida(jug1, jug2, numPalabras, s);
+                    iniciarPartida(jug1, jug2, num, s);
                 }else if(opcion == 3){
                     System.out.println("\nVolviendo al menu principal.\n");
                 }
@@ -210,7 +211,7 @@ public class Wordle implements Serializable {
                     break;            
             case 3:
                 if (comprobarAdministrador(s)) {
-                    ejecutarOpciones(s, opcion, numPalabras);
+                    num = ejecutarOpciones(s, opcion, num);
                 }
                 break;
 
@@ -220,6 +221,7 @@ public class Wordle implements Serializable {
                 of.guardarJugadores(this);
                 break;
         }
+        return num;
     }
 
     private void leyendaInicio() {
@@ -254,8 +256,8 @@ public class Wordle implements Serializable {
 
     private void mostrarOpcionesPerfil(Scanner s){
         System.out.println("\nSeleccione la accion que desee realizar.\n"
-        + "1. Mostrar ranking jugadores."
-        + "2. Volver al menu principal.");
+        + "1. Mostrar ranking jugadores.\n"
+        + "2. Volver al menu principal.\n");
         int res = s.nextInt();
         System.out.println("\n");
         if (res == 1){
@@ -290,7 +292,7 @@ public class Wordle implements Serializable {
     }
 
 
-    private void ejecutarOpciones(Scanner s, int opcion, int num) throws JugadorExcepcion {
+    private int ejecutarOpciones(Scanner s, int opcion, int num) throws JugadorExcepcion {
         mostrarConfigurarOpciones();
         int numPalabras = num;
         opcion = s.nextInt();
@@ -343,6 +345,7 @@ public class Wordle implements Serializable {
             System.out.println("Listado generado correctamente.\n");
         } else if (opcion == 6)
                 System.out.println("Volviendo al menu principal...\n");
+        return numPalabras;
     }
 
 }
