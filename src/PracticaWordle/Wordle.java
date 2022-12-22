@@ -181,7 +181,7 @@ public class Wordle implements Serializable {
         OperacionesFicheros of = new OperacionesFicheros();
         switch (opcion) {
             case "1":
-                MostrarMenuPartida();
+                mostrarOpcionesPartida();
                 opcion = s.next();
                 if (opcion.equals("1")) {
                     System.out.print("Jugador: ");
@@ -318,7 +318,7 @@ public class Wordle implements Serializable {
 
 
     private int ejecutarOpciones(Scanner s, String opcion) throws JugadorExcepcion {
-        mostrarMenuConfigurarOpciones();
+        mostrarConfigurarOpciones();
         int numPalabras = PALABRAS_POR_DEFECTO;
         opcion = s.next();
         if (opcion.equals("1")) {
