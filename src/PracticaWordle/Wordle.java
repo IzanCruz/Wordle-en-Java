@@ -8,8 +8,6 @@ package PracticaWordle;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import javax.swing.plaf.synth.SynthStyle;
-
 import PracticaWordle.Exepciones.JugadorExcepcion;
 import java.io.Serializable;
 
@@ -139,21 +137,6 @@ public class Wordle implements Serializable {
         OperacionesFicheros f = new OperacionesFicheros();
         f.crearRankingAlfabetico(aux);
     }
-
-    /*
-     * public String partidas(ArrayList<Partida> part) {
-     * return imprimirListaP(part);
-     * }
-     * 
-     * 
-     * private String imprimirListaP(ArrayList<Partida> list) {
-     * String aux = "";
-     * for (int i = 0; i <= (list.size() - 1); i++) {
-     * aux += list.get(i).toString();
-     * }
-     * return aux;
-     * }
-     */
 
     private void mostrarEstadisticas(Scanner s) {
         System.out.println("Escriba el nombre del jugador: ");
