@@ -172,7 +172,7 @@ public class Partida implements Serializable{
             if (getListaPPalabras()[i][j].isGanada())
                 setGanadosJug1();
             setPuntosJ1(getListaPPalabras()[i][j].getPuntos() + getPuntosJ1());
-            setNPistasJ1(getNPistasJ1() + getListaPPalabras()[j][i].getPistas());
+            setNPistasJ1(getNPistasJ1() + getListaPPalabras()[i][j].getPistas());
         }
         if (getJugador2() != null) {
             i = 1; // Actualizar para jugador2

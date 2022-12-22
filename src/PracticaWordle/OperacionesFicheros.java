@@ -67,7 +67,8 @@ public class OperacionesFicheros {
 
     public void crearRanking(ArrayList <Jugador> n){
         Object[] lista = n.toArray();
-        File f = new File("Ranking." + obtenerFechaYHora() + ".txt");
+        String nombreFich = "Ranking." + obtenerFechaYHora() + ".txt";
+        File f = new File(nombreFich);
 
         try{
             f.createNewFile();
@@ -82,7 +83,9 @@ public class OperacionesFicheros {
         }catch(Exception e){
             System.err.println("Error al generar el archivo" + e);
         }
-    }
+        
+    }    
+        
 
     public void crearRankingAlfabetico(ArrayList <Jugador> n){
         Object[] lista = n.toArray();

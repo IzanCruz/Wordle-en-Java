@@ -112,7 +112,7 @@ public class PartidaPalabra implements Serializable{
             cp.calcularCardinalidad(getPalabraOculta());// calcula la cardinalidad de las letras de la palabra oculta
 
             if (getPalabraOculta().equals(aux)) { // en caso de que se acierte todo, directamente se da la victoria
-                respuesta = "Felicidades! Has adivinado la palabra: " + getPalabraOculta();
+                respuesta = "\n\nFELICIDADES! Has adivinado la palabra: " + getPalabraOculta() + "\n\n";
                 darPuntos();
                 setGanada(true);
                 marcarGanada();
@@ -145,7 +145,7 @@ public class PartidaPalabra implements Serializable{
                         respuesta += "[] ";
                 }
                 getIntento().actualizarIntento();
-                respuesta += "\nTe quedan " + getIntento().toString() + " intentos";
+                respuesta += "\nTe quedan " + getIntento().toString() + " intentos.\n";
             }
         }
 
@@ -173,7 +173,7 @@ public class PartidaPalabra implements Serializable{
                 }
 
             } else {
-                respuesta = "No se ha introducido una palabra de 5 letras. Inserte una válida";
+                respuesta = "\nNo se ha introducido una palabra de 5 letras. Inserte una válida\n";
             }
         }
         return respuesta;
@@ -181,7 +181,7 @@ public class PartidaPalabra implements Serializable{
     }
 
     private void mostrarPalabraOculta() {
-        System.out.println("Vaya! Has alcanzado el número máximo de intentos.\nLa palabra oculta" +
+        System.out.println("\nVaya! Has alcanzado el número máximo de intentos.\nLa palabra oculta" +
                 " era: " + getPalabraOculta().toString());
     }
 
