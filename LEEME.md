@@ -1,7 +1,7 @@
 # Practica-Wordle
 
 Usuario adninistrador para las configuraciones --> Nombre: admin  ;  Contraseña: 12345
-Jugadores registrados: Santiago, David, Izan.
+Jugadores registrados: Santiago, David, Izan y Alex.
 
 
 Esta entrega implementa el juego de Wordle sin interfaces gráficas.
