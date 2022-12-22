@@ -8,8 +8,6 @@ package PracticaWordle;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import javax.rmi.ssl.SslRMIClientSocketFactory;
-
 import PracticaWordle.Exepciones.JugadorExcepcion;
 import java.io.Serializable;
 
@@ -24,7 +22,7 @@ public class Wordle implements Serializable {
     private ArrayList<Jugador> listaJugadores;
     private static final int PALABRAS_POR_DEFECTO = 1;
     private static final String USUARIO = "admin";
-    private static final String PASSWD = "12345";
+    private static final String PASSWD = "12345";    
 
     // Constructors
     public Wordle() {
@@ -89,13 +87,13 @@ public class Wordle implements Serializable {
         p.jugarPartida(s);
         // Se añade la partida a la lista de partidas
         anadirPartida(p);
-        System.out.println("Fin de partida");
+        System.out.println("\nFin de partida\n");
     }
 
     public void anadirPartida(Partida p) {
         if (!listaPartidas.contains(p)) {
             listaPartidas.add(p);
-            System.out.println("La partida se ha guardado correctamente.");
+            System.out.println("\nLa partida se ha guardado correctamente.");
         } else
             System.err.println("Error: Esta partida ya se ha guardado anteriormente.");
     }
@@ -105,19 +103,21 @@ public class Wordle implements Serializable {
         return listaJugadores.contains(jugador);
     }
 
-    private Jugador encontrarJugador(Jugador j){
-        if (existeJugador(j.getNombre())){
-            int i = 0;
+    private Jugador encontrarJugador(Jugador j) { // Revisa si el jugador que se le ha pasado está en la lista de
+                                                  // jugadores.
+        if (existeJugador(j.getNombre())) { // Si no está, se devuelve la misma instancia de jugador que se le ha pasado
+                                            // por parámetro
+            int i = 0; // Si está, se pasa dicha instancia de jugador (que se encuentra dentro de la
+                       // lista).
             Jugador aux = new Jugador("");
             boolean encontrado = false;
-            while(i < getListaJugadores().size() && !encontrado){
+            while (i < getListaJugadores().size() && !encontrado) {
                 aux = getListaJugadores().get(i);
                 encontrado = j.equals(aux);
                 i++;
             }
             return aux;
-        }
-        else{
+        } else {
             return j;
         }
     }
@@ -166,16 +166,16 @@ public class Wordle implements Serializable {
 
     public void mostrarMenu(Scanner s) throws JugadorExcepcion {
         String eleccion;
+        int numPalabras = PALABRAS_POR_DEFECTO;
         do {
             leyendaInicio();
             eleccion = s.next();
-            menu(s, eleccion);
+            numPalabras = menu(s, eleccion, numPalabras);
         } while (!eleccion.equals("4"));
 
     }
 
-    private void menu(Scanner s, String opcion) throws JugadorExcepcion {
-        int numPalabras = PALABRAS_POR_DEFECTO;
+    private int menu(Scanner s, String opcion, int numPalabras) throws JugadorExcepcion {        
         OperacionesFicheros of = new OperacionesFicheros();
         switch (opcion) {
             case "1":
@@ -184,14 +184,26 @@ public class Wordle implements Serializable {
                 if (opcion.equals("1")) {
                     System.out.print("Jugador: ");
                     Jugador j1 = new Jugador(s.next());
+                    if (encontrarJugador(j1) == j1) {
+                        System.out.println("El jugador que ha introducido no se encuentra en la lista.\n"
+                                + "No se guardarán los datos de esta partida.");
+                    }
                     iniciarPartida(j1, null, numPalabras, s);
                 }
 
                 else if (opcion.equals("2")) {
                     System.out.print("Jugador 1: ");
                     Jugador j1 = new Jugador(s.next());
+                    if (encontrarJugador(j1) == j1) {
+                        System.out.println("El jugador que ha introducido no se encuentra en la lista.\n"
+                                + "No se guardarán los datos de esta partida.");
+                    }
                     System.out.print("\nJugador 2: ");
                     Jugador j2 = new Jugador(s.next());
+                    if (encontrarJugador(j2) == j2) {
+                        System.out.println("El jugador que ha introducido no se encuentra en la lista.\n"
+                                + "No se guardarán los datos de esta partida.");
+                    }
                     iniciarPartida(j1, j2, numPalabras, s);
                 }
 
@@ -203,29 +215,28 @@ public class Wordle implements Serializable {
             case "2":
                 mostrarMenuEstadisticas();
                 opcion = s.next();
-                if (opcion.equals("1")) { //Mostrar estadísticas del jugador
+                if (opcion.equals("1")) { // Mostrar estadísticas del jugador
                     mostrarEstadisticas(s);
                 }
 
-                else if (opcion.equals("2")) {//Ver partidas vs otro jugador
+                else if (opcion.equals("2")) {// Ver partidas vs otro jugador
 
                 }
 
-                else if (opcion.equals("3")) {//ver ranking
+                else if (opcion.equals("3")) {// ver ranking
                     do {
-                       System.out.println("Elija el orden del ranking: \n\n"
-                        + "1. Mayor a menor puntuación.\n"
-                        + "2. Orden alfabético.\n"
-                        );
+                        System.out.println("Elija el orden del ranking: \n\n"
+                                + "1. Mayor a menor puntuación.\n"
+                                + "2. Orden alfabético.\n");
                         opcion = s.next();
                         if (opcion.equals("1")) {
-                            rankingJugadores(listaJugadores);
+                            //Mostrar raking jugadores
                         }
 
                         else if (opcion.equals("2")) {
                             rankingAlfabetico(listaJugadores);
-                        }    
-                    } while (!(opcion.equals("1")) && !(opcion.equals("2")));                                
+                        }
+                    } while (!(opcion.equals("1")) && !(opcion.equals("2")));
                 }
 
                 else if (opcion.equals("4"))
@@ -234,7 +245,7 @@ public class Wordle implements Serializable {
 
             case "3":
                 if (comprobarAdministrador(s)) {
-                    ejecutarOpciones(s, opcion, numPalabras);
+                    numPalabras = ejecutarOpciones(s, opcion);
                 }
                 break;
 
@@ -244,6 +255,7 @@ public class Wordle implements Serializable {
                 of.guardarJugadores(this);
                 break;
         }
+        return numPalabras;
     }
 
     private void leyendaInicio() {
@@ -274,73 +286,80 @@ public class Wordle implements Serializable {
     private void mostrarMenuEstadisticas() {
         System.out.println("Seleccione una opción:\n\n"
                 + "1. Consultar mis estadísticas.\n"
-                + "2. Ver partidas contra un jugador.\n"                
-                + "3. Ver ranking.\n"                
+                + "2. Ver partidas contra un jugador.\n"
+                + "3. Ver ranking.\n"
                 + "4. Salir\n");
     }
 
     private boolean comprobarAdministrador(Scanner s) {
-        System.out.println("Usuario: ");
+        System.out.print("Usuario: ");
         String aux = s.next();
-        System.out.println("\nContrasena: ");
+        System.out.print("\nContrasena: ");
         String aux2 = s.next();
 
         boolean b1 = aux.equals(USUARIO);
         boolean b2 = aux2.equals(PASSWD);
 
-        if (b1 && b2)
+        if (b1 && b2) {
+            System.out.println("\nSe ha accedido correctamente.\n");
             return true;
+        }
+
         else {
             System.out.println("\nUsuario o contrasena incorrectos.\n");
             return false;
         }
     }
 
-    private void ejecutarOpciones (Scanner s, String opcion, int numPalabras) throws JugadorExcepcion {
+
+    private int ejecutarOpciones(Scanner s, String opcion) throws JugadorExcepcion {
         mostrarMenuConfigurarOpciones();
+        int numPalabras = PALABRAS_POR_DEFECTO;
         opcion = s.next();
-                    if (opcion.equals("1")) {
-                        do {
-                            System.out.print("Inserte un numero entre 1 y 10.\n"
-                                    + "Número de palabras por partida: ");
-                            numPalabras = s.nextInt();                            
-                            System.out.println();
-                        } while ((numPalabras < 1) && (numPalabras > 10));
+        if (opcion.equals("1")) {
+            do {
+                System.out.print("Inserte un numero entre 1 y 10.\n"
+                        + "Número de palabras por partida: ");
+                numPalabras = s.nextInt();                
+                System.out.println();
+            } while ((numPalabras < 1) || (numPalabras > 10));
 
-                    } else if (opcion.equals("2")) {
-                        System.out.println("Introduzca el nombre: ");
-                        registrarJugador(new Jugador(s.next()));
-                    } else if (opcion.equals("3")) {
-                        String nombreJugador = null;
-                        do {
-                            System.out.println("\nPulse 0 si desea salir. 1 para continuar.");
-                            opcion = s.next();
-                            if (!opcion.equals("0")) {
-                                System.out.println("Introduzca el nombre: ");
-                                nombreJugador = s.next();
-                                if (existeJugador(nombreJugador)) {
-                                    System.out.println("Seguro que desea eliminar a " + nombreJugador);
-                                    System.out.println("1. Sí.\n"
-                                            + "2. No.\n");
-                                    opcion = s.next();
-                                    if (opcion.equals("1")) {
-                                        eliminarJugador(new Jugador(nombreJugador));
-                                        System.out.println("El jugador \'" + nombreJugador + "\' ha sido eliminado.");
-                                    }
+        } else if (opcion.equals("2")) {
+            System.out.print("\nIntroduzca el nombre: ");
+            registrarJugador(new Jugador(s.next()));
+            System.out.println();
+        } else if (opcion.equals("3")) {
+            String nombreJugador = null;
+            do {
+                System.out.println("\nPulse 0 si desea salir. 1 para continuar.\n");
+                opcion = s.next();
+                if (!opcion.equals("0")) {
+                    System.out.print("\nIntroduzca el nombre: ");
+                    nombreJugador = s.next();
+                    if (existeJugador(nombreJugador)) {
+                        System.out.println("\n\nSeguro que desea ELIMINAR a " + nombreJugador + "?");
+                        System.out.println("1. Sí.\n"
+                                + "2. No.\n");
+                        opcion = s.next();
+                        if (opcion.equals("1")) {
+                            eliminarJugador(new Jugador(nombreJugador));
+                            System.out.println("\nEl jugador " + nombreJugador + " ha sido ELIMINADO.\n");
+                        }
 
-                                    System.out.println("Desea eliminar a otro jugador?\n\n"
-                                            + "1. Sí.\n"
-                                            + "2. No.\n");
+                        System.out.println("Desea eliminar a otro jugador?\n"
+                                + "1. Sí.\n"
+                                + "2. No.\n");
 
-                                    opcion = s.next();
-                                } else {
-                                    System.out.println("El jugador \'" + nombreJugador + "\' no existe.\n"
-                                            + "Inserte un nombre válido.\n\n");
-                                }
-                            }
-                        } while ((opcion.equals("1")));
-                    } else if (opcion.equals("4"))
-                        System.out.println("Volviendo al menu principal...");
+                        opcion = s.next();
+                    } else {
+                        System.out.println("El jugador \'" + nombreJugador + "\' no existe.\n"
+                                + "Inserte un nombre válido.\n\n");
+                    }
+                }
+            } while ((opcion.equals("1")));
+        } else if (opcion.equals("4"))
+            System.out.println("Volviendo al menu principal...");
+        return numPalabras;
     }
 
 }
