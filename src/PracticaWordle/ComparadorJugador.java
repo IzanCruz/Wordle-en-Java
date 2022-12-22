@@ -21,7 +21,7 @@ public class ComparadorJugador implements Comparator <Jugador>{
             }
         }
         else{
-            aux = j1.getGanadas() - j2.getGanadas();
+            aux = j2.getGanadas() - j1.getGanadas();
         }
         return aux;
     }

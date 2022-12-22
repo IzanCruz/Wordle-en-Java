@@ -141,10 +141,10 @@ public class Wordle implements Serializable {
     private void mostrarEstadisticas(Scanner s) {
         System.out.println("Escriba el nombre del jugador: ");
         String res = s.next();
-        System.out.println("\n\n");
         if (existeJugador(res)) {
             Jugador j = new Jugador(res);
             Jugador j2 = encontrarJugador(j);
+            System.out.println("\n\n");
             System.out.println(j2.toString());
         } else {
             System.out.println("El jugador no existe actualmente.\n");
@@ -249,6 +249,7 @@ public class Wordle implements Serializable {
             int i = 0;
             while(i < aux.size()){
                 System.out.println("" + (i+1) + "º " + aux.get(i).toString() + "\n");
+                i++;
             }
         }
         else if(res ==2){}
