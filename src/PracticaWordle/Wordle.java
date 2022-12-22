@@ -257,7 +257,7 @@ public class Wordle implements Serializable {
             aux.sort(new ComparadorJugador());
             int i = 0;
             while(i < aux.size()){
-                System.out.println("" + (i+1) + ". " + aux.get(i).toString() + "\n");
+                System.out.println("" + (i+1) + "º " + aux.get(i).toString() + "\n");
                 i++;
             }
         }
