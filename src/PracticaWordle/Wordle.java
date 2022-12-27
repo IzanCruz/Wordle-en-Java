@@ -172,12 +172,8 @@ public class Wordle implements Serializable {
                 if (opcion.equals("1")) {
                     System.out.print("Jugador: ");
                     Jugador j1 = new Jugador(s.next());
-                    if (j1 == encontrarJugador(j1)) {
-                        System.out.println("El jugador que ha introducido no se encuentra en la lista.\n"
-                                + "No se guardarán los datos de esta partida.");
-                        iniciarPartida(j1, null, num, s);
-                    }
-                }else if(opcion.equals("2")){
+                    iniciarPartida(j1, null, num, s);
+                    }else if(opcion.equals("2")){
                     System.out.println("\nJugador 1: ");
                     Jugador j1 = new Jugador(s.next());
                     System.out.println("\nJugador 2: ");
